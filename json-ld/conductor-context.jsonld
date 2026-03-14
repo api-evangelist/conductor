@@ -1,0 +1,169 @@
+{
+  "@context": {
+    "@vocab": "https://conductor-oss.github.io/conductor/schema/",
+    "conductor": "https://conductor-oss.github.io/conductor/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "WorkflowDef": "conductor:WorkflowDef",
+    "TaskDef": "conductor:TaskDef",
+    "WorkflowExecution": "conductor:WorkflowExecution",
+    "Task": "conductor:Task",
+    "EventHandler": "conductor:EventHandler",
+    "EventHandlerAction": "conductor:EventHandlerAction",
+    "WorkflowTask": "conductor:WorkflowTask",
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "conductor:version",
+      "@type": "xsd:integer"
+    },
+    "status": {
+      "@id": "conductor:status",
+      "@type": "xsd:string"
+    },
+    "workflowId": {
+      "@id": "conductor:workflowId",
+      "@type": "xsd:string"
+    },
+    "workflowName": {
+      "@id": "conductor:workflowName",
+      "@type": "xsd:string"
+    },
+    "workflowVersion": {
+      "@id": "conductor:workflowVersion",
+      "@type": "xsd:integer"
+    },
+    "correlationId": {
+      "@id": "conductor:correlationId",
+      "@type": "xsd:string"
+    },
+    "taskId": {
+      "@id": "conductor:taskId",
+      "@type": "xsd:string"
+    },
+    "taskType": {
+      "@id": "conductor:taskType",
+      "@type": "xsd:string"
+    },
+    "taskReferenceName": {
+      "@id": "conductor:taskReferenceName",
+      "@type": "xsd:string"
+    },
+    "taskDefName": {
+      "@id": "conductor:taskDefName",
+      "@type": "xsd:string"
+    },
+    "referenceTaskName": {
+      "@id": "conductor:referenceTaskName",
+      "@type": "xsd:string"
+    },
+    "tasks": {
+      "@id": "conductor:tasks",
+      "@container": "@list"
+    },
+    "actions": {
+      "@id": "conductor:actions",
+      "@container": "@list"
+    },
+    "inputParameters": {
+      "@id": "conductor:inputParameters"
+    },
+    "outputParameters": {
+      "@id": "conductor:outputParameters"
+    },
+    "input": {
+      "@id": "conductor:input"
+    },
+    "output": {
+      "@id": "conductor:output"
+    },
+    "inputData": {
+      "@id": "conductor:inputData"
+    },
+    "outputData": {
+      "@id": "conductor:outputData"
+    },
+    "ownerEmail": {
+      "@id": "conductor:ownerEmail",
+      "@type": "xsd:string"
+    },
+    "failureWorkflow": {
+      "@id": "conductor:failureWorkflow",
+      "@type": "xsd:string"
+    },
+    "timeoutPolicy": {
+      "@id": "conductor:timeoutPolicy",
+      "@type": "xsd:string"
+    },
+    "timeoutSeconds": {
+      "@id": "conductor:timeoutSeconds",
+      "@type": "xsd:integer"
+    },
+    "retryCount": {
+      "@id": "conductor:retryCount",
+      "@type": "xsd:integer"
+    },
+    "retryLogic": {
+      "@id": "conductor:retryLogic",
+      "@type": "xsd:string"
+    },
+    "retryDelaySeconds": {
+      "@id": "conductor:retryDelaySeconds",
+      "@type": "xsd:integer"
+    },
+    "startTime": {
+      "@id": "conductor:startTime",
+      "@type": "xsd:integer"
+    },
+    "endTime": {
+      "@id": "conductor:endTime",
+      "@type": "xsd:integer"
+    },
+    "updateTime": {
+      "@id": "conductor:updateTime",
+      "@type": "xsd:integer"
+    },
+    "createTime": {
+      "@id": "conductor:createTime",
+      "@type": "xsd:integer"
+    },
+    "priority": {
+      "@id": "conductor:priority",
+      "@type": "xsd:integer"
+    },
+    "event": {
+      "@id": "conductor:event",
+      "@type": "xsd:string"
+    },
+    "condition": {
+      "@id": "conductor:condition",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "conductor:active",
+      "@type": "xsd:boolean"
+    },
+    "restartable": {
+      "@id": "conductor:restartable",
+      "@type": "xsd:boolean"
+    },
+    "reasonForIncompletion": {
+      "@id": "conductor:reasonForIncompletion",
+      "@type": "xsd:string"
+    },
+    "workerId": {
+      "@id": "conductor:workerId",
+      "@type": "xsd:string"
+    },
+    "parentWorkflowId": {
+      "@id": "conductor:parentWorkflowId",
+      "@type": "xsd:string"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/json-schema/event-handler.json",
+  "title": "EventHandler",
+  "description": "A Conductor event handler definition that specifies how to respond to events by triggering workflows, completing tasks, or failing tasks based on configurable conditions.",
+  "type": "object",
+  "required": [
+    "name",
+    "event",
+    "actions"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the event handler"
+    },
+    "event": {
+      "type": "string",
+      "description": "Event identifier in the format source:sink:subject (e.g., conductor:workflow_completed:myWorkflow)"
+    },
+    "condition": {
+      "type": "string",
+      "description": "Condition expression to evaluate"
+    },
+    "actions": {
+      "type": "array",
+      "description": "List of actions to perform when the event is received",
+      "items": {
+        "$ref": "#/$defs/EventHandlerAction"
+      }
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the event handler is active",
+      "default": true
+    },
+    "evaluatorType": {
+      "type": "string",
+      "description": "Type of evaluator for the condition"
+    }
+  },
+  "$defs": {
+    "EventHandlerAction": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The action type",
+          "enum": [
+            "start_workflow",
+            "complete_task",
+            "fail_task"
+          ]
+        },
+        "start_workflow": {
+          "type": "object",
+          "description": "Start workflow action parameters",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the workflow to start"
+            },
+            "version": {
+              "type": "integer",
+              "description": "Version of the workflow to start"
+            },
+            "correlationId": {
+              "type": "string",
+              "description": "Correlation ID for the started workflow"
+            },
+            "input": {
+              "type": "object",
+              "description": "Input parameters for the workflow",
+              "additionalProperties": true
+            }
+          }
+        },
+        "complete_task": {
+          "type": "object",
+          "description": "Complete task action parameters",
+          "properties": {
+            "workflowId": {
+              "type": "string",
+              "description": "Workflow instance ID"
+            },
+            "taskRefName": {
+              "type": "string",
+              "description": "Task reference name"
+            },
+            "output": {
+              "type": "object",
+              "description": "Output data for the completed task",
+              "additionalProperties": true
+            }
+          }
+        },
+        "fail_task": {
+          "type": "object",
+          "description": "Fail task action parameters",
+          "properties": {
+            "workflowId": {
+              "type": "string",
+              "description": "Workflow instance ID"
+            },
+            "taskRefName": {
+              "type": "string",
+              "description": "Task reference name"
+            },
+            "output": {
+              "type": "object",
+              "description": "Output data for the failed task",
+              "additionalProperties": true
+            }
+          }
+        },
+        "expandInlineJSON": {
+          "type": "boolean",
+          "description": "Whether to expand inline JSON strings",
+          "default": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,230 @@
+asyncapi: 2.6.0
+info:
+  title: Conductor Events API
+  version: 3.x
+  description: >-
+    Asynchronous event API for Conductor workflow orchestration platform.
+    Conductor emits events when workflows and tasks change state, enabling
+    reactive event-driven architectures. Event handlers can be configured
+    to trigger workflows, complete tasks, or fail tasks in response to
+    these events.
+  contact:
+    name: Conductor OSS
+    url: https://conductor-oss.github.io/conductor/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  local:
+    url: localhost:8080
+    protocol: http
+    description: Local Conductor Server
+  playground:
+    url: play.orkes.io
+    protocol: https
+    description: Orkes Conductor Playground
+channels:
+  workflow.started:
+    description: Emitted when a workflow execution is started
+    subscribe:
+      operationId: onWorkflowStarted
+      summary: Receive workflow started events
+      message:
+        $ref: '#/components/messages/WorkflowStatusEvent'
+  workflow.completed:
+    description: Emitted when a workflow execution completes successfully
+    subscribe:
+      operationId: onWorkflowCompleted
+      summary: Receive workflow completed events
+      message:
+        $ref: '#/components/messages/WorkflowStatusEvent'
+  workflow.failed:
+    description: Emitted when a workflow execution fails
+    subscribe:
+      operationId: onWorkflowFailed
+      summary: Receive workflow failed events
+      message:
+        $ref: '#/components/messages/WorkflowStatusEvent'
+  workflow.terminated:
+    description: Emitted when a workflow execution is terminated
+    subscribe:
+      operationId: onWorkflowTerminated
+      summary: Receive workflow terminated events
+      message:
+        $ref: '#/components/messages/WorkflowStatusEvent'
+  workflow.timed_out:
+    description: Emitted when a workflow execution times out
+    subscribe:
+      operationId: onWorkflowTimedOut
+      summary: Receive workflow timed out events
+      message:
+        $ref: '#/components/messages/WorkflowStatusEvent'
+  workflow.paused:
+    description: Emitted when a workflow execution is paused
+    subscribe:
+      operationId: onWorkflowPaused
+      summary: Receive workflow paused events
+      message:
+        $ref: '#/components/messages/WorkflowStatusEvent'
+  task.scheduled:
+    description: Emitted when a task is scheduled for execution
+    subscribe:
+      operationId: onTaskScheduled
+      summary: Receive task scheduled events
+      message:
+        $ref: '#/components/messages/TaskStatusEvent'
+  task.in_progress:
+    description: Emitted when a task execution begins
+    subscribe:
+      operationId: onTaskInProgress
+      summary: Receive task in progress events
+      message:
+        $ref: '#/components/messages/TaskStatusEvent'
+  task.completed:
+    description: Emitted when a task execution completes successfully
+    subscribe:
+      operationId: onTaskCompleted
+      summary: Receive task completed events
+      message:
+        $ref: '#/components/messages/TaskStatusEvent'
+  task.failed:
+    description: Emitted when a task execution fails
+    subscribe:
+      operationId: onTaskFailed
+      summary: Receive task failed events
+      message:
+        $ref: '#/components/messages/TaskStatusEvent'
+  task.timed_out:
+    description: Emitted when a task execution times out
+    subscribe:
+      operationId: onTaskTimedOut
+      summary: Receive task timed out events
+      message:
+        $ref: '#/components/messages/TaskStatusEvent'
+  task.canceled:
+    description: Emitted when a task execution is canceled
+    subscribe:
+      operationId: onTaskCanceled
+      summary: Receive task canceled events
+      message:
+        $ref: '#/components/messages/TaskStatusEvent'
+components:
+  messages:
+    WorkflowStatusEvent:
+      name: WorkflowStatusEvent
+      title: Workflow Status Event
+      summary: An event indicating a change in workflow execution status
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WorkflowStatusEvent'
+    TaskStatusEvent:
+      name: TaskStatusEvent
+      title: Task Status Event
+      summary: An event indicating a change in task execution status
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/TaskStatusEvent'
+  schemas:
+    WorkflowStatusEvent:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: Unique workflow instance ID
+        workflowName:
+          type: string
+          description: Name of the workflow definition
+        workflowVersion:
+          type: integer
+          description: Version of the workflow definition
+        correlationId:
+          type: string
+          description: Correlation ID
+        status:
+          type: string
+          description: Current status of the workflow
+          enum:
+            - RUNNING
+            - COMPLETED
+            - FAILED
+            - TIMED_OUT
+            - TERMINATED
+            - PAUSED
+        startTime:
+          type: integer
+          description: Start time in epoch milliseconds
+        endTime:
+          type: integer
+          description: End time in epoch milliseconds
+        input:
+          type: object
+          description: Workflow input
+          additionalProperties: true
+        output:
+          type: object
+          description: Workflow output
+          additionalProperties: true
+        reasonForIncompletion:
+          type: string
+          description: Reason for failure or termination
+        priority:
+          type: integer
+          description: Workflow priority
+        parentWorkflowId:
+          type: string
+          description: Parent workflow ID if this is a sub-workflow
+    TaskStatusEvent:
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Unique task instance ID
+        taskType:
+          type: string
+          description: The type of the task
+        taskDefName:
+          type: string
+          description: Task definition name
+        status:
+          type: string
+          description: Current status of the task
+          enum:
+            - IN_PROGRESS
+            - CANCELED
+            - FAILED
+            - FAILED_WITH_TERMINAL_ERROR
+            - COMPLETED
+            - COMPLETED_WITH_ERRORS
+            - SCHEDULED
+            - TIMED_OUT
+            - SKIPPED
+        referenceTaskName:
+          type: string
+          description: Reference name of the task in the workflow
+        workflowInstanceId:
+          type: string
+          description: ID of the workflow instance this task belongs to
+        workflowType:
+          type: string
+          description: Type/name of the workflow
+        correlationId:
+          type: string
+          description: Correlation ID
+        scheduledTime:
+          type: integer
+          description: Scheduled time in epoch milliseconds
+        startTime:
+          type: integer
+          description: Start time in epoch milliseconds
+        endTime:
+          type: integer
+          description: End time in epoch milliseconds
+        workerId:
+          type: string
+          description: ID of the worker that polled this task
+        reasonForIncompletion:
+          type: string
+          description: Reason for failure
+        retryCount:
+          type: integer
+          description: Current retry count

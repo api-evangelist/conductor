@@ -16,6 +16,18 @@ apis:
         type: Documentation
       - url: openapi/conductor-conductor-openapi.yml
         type: OpenAPI
+      - url: asyncapi/conductor-conductor-asyncapi.yml
+        type: AsyncAPI
+      - url: json-schema/workflow-def.json
+        type: JSONSchema
+      - url: json-schema/task-def.json
+        type: JSONSchema
+      - url: json-schema/workflow-execution.json
+        type: JSONSchema
+      - url: json-schema/event-handler.json
+        type: JSONSchema
+      - url: json-ld/conductor-context.jsonld
+        type: JSONLD
     description: >-
       Conductor allows you to build a complex application using simple and
       granular tasks that do not need to be aware of or keep track of the state

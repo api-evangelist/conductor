@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/json-schema/workflow-execution.json",
+  "title": "WorkflowExecution",
+  "description": "A Conductor workflow execution instance representing a running or completed workflow, including its status, input/output data, task executions, timing information, and failure details.",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique workflow instance ID"
+    },
+    "workflowName": {
+      "type": "string",
+      "description": "Name of the workflow definition"
+    },
+    "workflowVersion": {
+      "type": "integer",
+      "description": "Version of the workflow definition"
+    },
+    "correlationId": {
+      "type": "string",
+      "description": "Correlation ID"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the workflow",
+      "enum": [
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "TIMED_OUT",
+        "TERMINATED",
+        "PAUSED"
+      ]
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Start time in epoch milliseconds"
+    },
+    "endTime": {
+      "type": "integer",
+      "description": "End time in epoch milliseconds"
+    },
+    "updateTime": {
+      "type": "integer",
+      "description": "Last update time in epoch milliseconds"
+    },
+    "input": {
+      "type": "object",
+      "description": "Workflow input",
+      "additionalProperties": true
+    },
+    "output": {
+      "type": "object",
+      "description": "Workflow output",
+      "additionalProperties": true
+    },
+    "tasks": {
+      "type": "array",
+      "description": "List of tasks in the workflow execution",
+      "items": {
+        "$ref": "#/$defs/Task"
+      }
+    },
+    "reasonForIncompletion": {
+      "type": "string",
+      "description": "Reason for failure or termination"
+    },
+    "failedReferenceTaskNames": {
+      "type": "array",
+      "description": "List of failed task reference names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workflowDefinition": {
+      "type": "object",
+      "description": "The workflow definition used for this execution"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Workflow priority"
+    },
+    "variables": {
+      "type": "object",
+      "description": "Workflow variables",
+      "additionalProperties": true
+    },
+    "lastRetriedTime": {
+      "type": "integer",
+      "description": "Last retry timestamp in epoch milliseconds"
+    },
+    "ownerApp": {
+      "type": "string",
+      "description": "Owner application"
+    },
+    "createTime": {
+      "type": "integer",
+      "description": "Creation timestamp in epoch milliseconds"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Created by"
+    },
+    "parentWorkflowId": {
+      "type": "string",
+      "description": "Parent workflow ID if this is a sub-workflow"
+    }
+  },
+  "$defs": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "description": "Unique task instance ID"
+        },
+        "taskType": {
+          "type": "string",
+          "description": "The type of the task"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the task",
+          "enum": [
+            "IN_PROGRESS",
+            "CANCELED",
+            "FAILED",
+            "FAILED_WITH_TERMINAL_ERROR",
+            "COMPLETED",
+            "COMPLETED_WITH_ERRORS",
+            "SCHEDULED",
+            "TIMED_OUT",
+            "SKIPPED"
+          ]
+        },
+        "referenceTaskName": {
+          "type": "string",
+          "description": "Reference name of the task in the workflow"
+        },
+        "workflowInstanceId": {
+          "type": "string",
+          "description": "ID of the workflow instance this task belongs to"
+        },
+        "workflowType": {
+          "type": "string",
+          "description": "Type/name of the workflow"
+        },
+        "correlationId": {
+          "type": "string",
+          "description": "Correlation ID"
+        },
+        "scheduledTime": {
+          "type": "integer",
+          "description": "Scheduled time in epoch milliseconds"
+        },
+        "startTime": {
+          "type": "integer",
+          "description": "Start time in epoch milliseconds"
+        },
+        "endTime": {
+          "type": "integer",
+          "description": "End time in epoch milliseconds"
+        },
+        "updateTime": {
+          "type": "integer",
+          "description": "Last update time in epoch milliseconds"
+        },
+        "retryCount": {
+          "type": "integer",
+          "description": "Current retry count"
+        },
+        "pollCount": {
+          "type": "integer",
+          "description": "Number of times this task was polled"
+        },
+        "callbackAfterSeconds": {
+          "type": "integer",
+          "description": "Callback delay in seconds"
+        },
+        "workerId": {
+          "type": "string",
+          "description": "ID of the worker that polled this task"
+        },
+        "inputData": {
+          "type": "object",
+          "description": "Task input data",
+          "additionalProperties": true
+        },
+        "outputData": {
+          "type": "object",
+          "description": "Task output data",
+          "additionalProperties": true
+        },
+        "reasonForIncompletion": {
+          "type": "string",
+          "description": "Reason for failure"
+        },
+        "logs": {
+          "type": "array",
+          "description": "Task execution logs",
+          "items": {
+            "$ref": "#/$defs/TaskExecLog"
+          }
+        },
+        "domain": {
+          "type": "string",
+          "description": "Task domain"
+        },
+        "seq": {
+          "type": "integer",
+          "description": "Sequence number"
+        },
+        "taskDefName": {
+          "type": "string",
+          "description": "Task definition name"
+        },
+        "responseTimeoutSeconds": {
+          "type": "integer",
+          "description": "Response timeout in seconds"
+        },
+        "queueWaitTime": {
+          "type": "integer",
+          "description": "Time spent waiting in queue in milliseconds"
+        }
+      }
+    },
+    "TaskExecLog": {
+      "type": "object",
+      "properties": {
+        "log": {
+          "type": "string",
+          "description": "Log message"
+        },
+        "taskId": {
+          "type": "string",
+          "description": "Associated task ID"
+        },
+        "createdTime": {
+          "type": "integer",
+          "description": "Timestamp of the log entry in epoch milliseconds"
+        }
+      }
+    }
+  }
+}

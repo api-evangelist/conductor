@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/json-schema/workflow-def.json",
+  "title": "WorkflowDef",
+  "description": "A Conductor workflow definition that describes the orchestration of tasks, their sequencing, input/output mappings, failure handling, and timeout policies.",
+  "type": "object",
+  "required": [
+    "name",
+    "tasks"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the workflow definition"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the workflow"
+    },
+    "version": {
+      "type": "integer",
+      "description": "The version of the workflow definition",
+      "default": 1
+    },
+    "tasks": {
+      "type": "array",
+      "description": "The list of tasks in the workflow",
+      "items": {
+        "$ref": "#/$defs/WorkflowTask"
+      }
+    },
+    "inputParameters": {
+      "type": "array",
+      "description": "List of input parameter names for the workflow",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputParameters": {
+      "type": "object",
+      "description": "Mapping of output parameters",
+      "additionalProperties": true
+    },
+    "failureWorkflow": {
+      "type": "string",
+      "description": "Name of the workflow to execute when this workflow fails"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "description": "Schema version (currently 2)",
+      "default": 2
+    },
+    "restartable": {
+      "type": "boolean",
+      "description": "Whether the workflow is restartable",
+      "default": true
+    },
+    "workflowStatusListenerEnabled": {
+      "type": "boolean",
+      "description": "Whether to enable workflow status listener",
+      "default": false
+    },
+    "ownerEmail": {
+      "type": "string",
+      "description": "Email of the workflow definition owner",
+      "format": "email"
+    },
+    "timeoutPolicy": {
+      "type": "string",
+      "description": "Timeout policy for the workflow",
+      "enum": [
+        "TIME_OUT_WF",
+        "ALERT_ONLY"
+      ]
+    },
+    "timeoutSeconds": {
+      "type": "integer",
+      "description": "Timeout in seconds for the workflow",
+      "default": 0
+    },
+    "variables": {
+      "type": "object",
+      "description": "Workflow level variables",
+      "additionalProperties": true
+    },
+    "inputTemplate": {
+      "type": "object",
+      "description": "Default input template",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "WorkflowTask": {
+      "type": "object",
+      "required": [
+        "name",
+        "taskReferenceName",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the task"
+        },
+        "taskReferenceName": {
+          "type": "string",
+          "description": "Unique reference name for the task within the workflow"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of task",
+          "enum": [
+            "SIMPLE",
+            "DYNAMIC",
+            "FORK_JOIN",
+            "FORK_JOIN_DYNAMIC",
+            "DECISION",
+            "SWITCH",
+            "JOIN",
+            "DO_WHILE",
+            "SUB_WORKFLOW",
+            "START_WORKFLOW",
+            "EVENT",
+            "WAIT",
+            "HUMAN",
+            "HTTP",
+            "INLINE",
+            "JSON_JQ_TRANSFORM",
+            "LAMBDA",
+            "SET_VARIABLE",
+            "TERMINATE",
+            "KAFKA_PUBLISH"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "Task description"
+        },
+        "inputParameters": {
+          "type": "object",
+          "description": "Input parameter mappings",
+          "additionalProperties": true
+        },
+        "optional": {
+          "type": "boolean",
+          "description": "Whether this task is optional",
+          "default": false
+        },
+        "startDelay": {
+          "type": "integer",
+          "description": "Delay in seconds before starting the task",
+          "default": 0
+        },
+        "asyncComplete": {
+          "type": "boolean",
+          "description": "Whether the task is completed asynchronously",
+          "default": false
+        },
+        "retryCount": {
+          "type": "integer",
+          "description": "Number of retries"
+        },
+        "sink": {
+          "type": "string",
+          "description": "Sink for EVENT tasks"
+        },
+        "subWorkflowParam": {
+          "type": "object",
+          "description": "Sub workflow parameters",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "integer"
+            }
+          }
+        },
+        "joinOn": {
+          "type": "array",
+          "description": "List of task reference names to join on",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forkTasks": {
+          "type": "array",
+          "description": "List of forked task lists",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/WorkflowTask"
+            }
+          }
+        },
+        "decisionCases": {
+          "type": "object",
+          "description": "Decision cases for SWITCH/DECISION tasks",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/WorkflowTask"
+            }
+          }
+        },
+        "defaultCase": {
+          "type": "array",
+          "description": "Default case tasks for SWITCH/DECISION",
+          "items": {
+            "$ref": "#/$defs/WorkflowTask"
+          }
+        },
+        "loopCondition": {
+          "type": "string",
+          "description": "Loop condition for DO_WHILE tasks"
+        },
+        "loopOver": {
+          "type": "array",
+          "description": "Tasks to loop over in DO_WHILE",
+          "items": {
+            "$ref": "#/$defs/WorkflowTask"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/json-schema/task-def.json",
+  "title": "TaskDef",
+  "description": "A Conductor task definition that specifies the behavior, retry logic, timeout policies, rate limiting, and ownership for a reusable task type.",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the task definition"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the task"
+    },
+    "retryCount": {
+      "type": "integer",
+      "description": "Number of retries",
+      "default": 3
+    },
+    "retryLogic": {
+      "type": "string",
+      "description": "Retry logic",
+      "enum": [
+        "FIXED",
+        "EXPONENTIAL_BACKOFF",
+        "LINEAR_BACKOFF"
+      ]
+    },
+    "retryDelaySeconds": {
+      "type": "integer",
+      "description": "Delay between retries in seconds",
+      "default": 60
+    },
+    "timeoutSeconds": {
+      "type": "integer",
+      "description": "Task execution timeout in seconds",
+      "default": 0
+    },
+    "timeoutPolicy": {
+      "type": "string",
+      "description": "Timeout policy",
+      "enum": [
+        "RETRY",
+        "TIME_OUT_WF",
+        "ALERT_ONLY"
+      ]
+    },
+    "responseTimeoutSeconds": {
+      "type": "integer",
+      "description": "Time to wait for worker to respond after polling",
+      "default": 3600
+    },
+    "pollTimeoutSeconds": {
+      "type": "integer",
+      "description": "Time to wait when polling for task"
+    },
+    "concurrentExecLimit": {
+      "type": "integer",
+      "description": "Concurrent execution limit for the task"
+    },
+    "rateLimitPerFrequency": {
+      "type": "integer",
+      "description": "Rate limit per frequency"
+    },
+    "rateLimitFrequencyInSeconds": {
+      "type": "integer",
+      "description": "Rate limit frequency window in seconds"
+    },
+    "ownerEmail": {
+      "type": "string",
+      "description": "Email of the task definition owner",
+      "format": "email"
+    },
+    "inputKeys": {
+      "type": "array",
+      "description": "Expected input keys",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputKeys": {
+      "type": "array",
+      "description": "Expected output keys",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputTemplate": {
+      "type": "object",
+      "description": "Default input template",
+      "additionalProperties": true
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Creator of the task definition"
+    },
+    "createTime": {
+      "type": "integer",
+      "description": "Creation timestamp in epoch milliseconds"
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "Last updater"
+    },
+    "updateTime": {
+      "type": "integer",
+      "description": "Last update timestamp in epoch milliseconds"
+    }
+  }
+}
