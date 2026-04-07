@@ -26,18 +26,18 @@ servers:
   - url: https://play.orkes.io/api
     description: Orkes Conductor Playground
 tags:
-  - name: Metadata - Workflow
-    description: APIs for managing workflow definitions
-  - name: Metadata - Task
-    description: APIs for managing task definitions
-  - name: Workflow
-    description: APIs for managing workflow executions
-  - name: Task
-    description: APIs for polling and updating tasks
-  - name: Event
-    description: APIs for managing event handlers
   - name: Admin
     description: Administrative and health check APIs
+  - name: Event
+    description: APIs for managing event handlers
+  - name: Metadata - Task
+    description: APIs for managing task definitions
+  - name: Metadata - Workflow
+    description: APIs for managing workflow definitions
+  - name: Task
+    description: APIs for polling and updating tasks
+  - name: Workflow
+    description: APIs for managing workflow executions
 paths:
   /metadata/workflow:
     post:

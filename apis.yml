@@ -5,10 +5,10 @@ apis:
   - aid: conductor:conductor
     name: Conductor
     tags:
-      - Tasks
-      - State
-      - Orchestration
       - Automation
+      - Orchestration
+      - State
+      - Tasks
     humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
     properties:
       - url: >-
@@ -37,10 +37,10 @@ apis:
       outputs the final result.
 name: Conductor
 tags:
-  - Tasks
-  - State
-  - Orchestration
   - Automation
+  - Orchestration
+  - State
+  - Tasks
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
