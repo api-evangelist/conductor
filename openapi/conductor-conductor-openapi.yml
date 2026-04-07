@@ -42,7 +42,7 @@ paths:
   /metadata/workflow:
     post:
       operationId: createWorkflowDefinition
-      summary: Create a new workflow definition
+      summary: Conductor Create a new workflow definition
       description: Registers a new workflow definition with Conductor.
       tags:
         - Metadata - Workflow
@@ -61,7 +61,7 @@ paths:
           description: Workflow definition already exists
     put:
       operationId: updateWorkflowDefinitions
-      summary: Update workflow definitions
+      summary: Conductor Update workflow definitions
       description: Updates one or more existing workflow definitions.
       tags:
         - Metadata - Workflow
@@ -80,7 +80,7 @@ paths:
           description: Invalid workflow definition
     get:
       operationId: getAllWorkflowDefinitions
-      summary: Get all workflow definitions
+      summary: Conductor Get all workflow definitions
       description: Retrieves all registered workflow definitions.
       tags:
         - Metadata - Workflow
@@ -96,7 +96,7 @@ paths:
   /metadata/workflow/{name}:
     get:
       operationId: getWorkflowDefinition
-      summary: Get a workflow definition
+      summary: Conductor Get a workflow definition
       description: Retrieves a workflow definition by name and optionally by version.
       tags:
         - Metadata - Workflow
@@ -124,7 +124,7 @@ paths:
           description: Workflow definition not found
     delete:
       operationId: deleteWorkflowDefinition
-      summary: Delete a workflow definition
+      summary: Conductor Delete a workflow definition
       description: Removes a workflow definition by name and version.
       tags:
         - Metadata - Workflow
@@ -149,7 +149,7 @@ paths:
   /metadata/taskdefs:
     post:
       operationId: createTaskDefinitions
-      summary: Create new task definitions
+      summary: Conductor Create new task definitions
       description: Registers new task definitions with Conductor.
       tags:
         - Metadata - Task
@@ -168,7 +168,7 @@ paths:
           description: Invalid task definition
     get:
       operationId: getAllTaskDefinitions
-      summary: Get all task definitions
+      summary: Conductor Get all task definitions
       description: Retrieves all registered task definitions.
       tags:
         - Metadata - Task
@@ -183,7 +183,7 @@ paths:
                   $ref: '#/components/schemas/TaskDef'
     put:
       operationId: updateTaskDefinition
-      summary: Update a task definition
+      summary: Conductor Update a task definition
       description: Updates an existing task definition.
       tags:
         - Metadata - Task
@@ -201,7 +201,7 @@ paths:
   /metadata/taskdefs/{taskType}:
     get:
       operationId: getTaskDefinition
-      summary: Get a task definition
+      summary: Conductor Get a task definition
       description: Retrieves a task definition by its type name.
       tags:
         - Metadata - Task
@@ -223,7 +223,7 @@ paths:
           description: Task definition not found
     delete:
       operationId: deleteTaskDefinition
-      summary: Delete a task definition
+      summary: Conductor Delete a task definition
       description: Removes a task definition by its type name.
       tags:
         - Metadata - Task
@@ -242,7 +242,7 @@ paths:
   /workflow:
     post:
       operationId: startWorkflow
-      summary: Start a new workflow
+      summary: Conductor Start a new workflow
       description: Starts a new workflow execution based on a registered workflow definition.
       tags:
         - Workflow
@@ -265,7 +265,7 @@ paths:
   /workflow/{workflowId}:
     get:
       operationId: getWorkflowExecution
-      summary: Get workflow execution status
+      summary: Conductor Get workflow execution status
       description: >-
         Retrieves the current status and details of a running or completed
         workflow execution.
@@ -296,7 +296,7 @@ paths:
           description: Workflow execution not found
     delete:
       operationId: deleteWorkflowExecution
-      summary: Delete a workflow execution
+      summary: Conductor Delete a workflow execution
       description: Removes a workflow execution and its associated data.
       tags:
         - Workflow
@@ -322,7 +322,7 @@ paths:
   /workflow/{workflowId}/pause:
     put:
       operationId: pauseWorkflow
-      summary: Pause a running workflow
+      summary: Conductor Pause a running workflow
       description: Pauses a currently running workflow execution.
       tags:
         - Workflow
@@ -341,7 +341,7 @@ paths:
   /workflow/{workflowId}/resume:
     put:
       operationId: resumeWorkflow
-      summary: Resume a paused workflow
+      summary: Conductor Resume a paused workflow
       description: Resumes a previously paused workflow execution.
       tags:
         - Workflow
@@ -360,7 +360,7 @@ paths:
   /workflow/{workflowId}/restart:
     post:
       operationId: restartWorkflow
-      summary: Restart a completed workflow
+      summary: Conductor Restart a completed workflow
       description: >-
         Restarts a completed workflow from the beginning with the same input.
         If useLatestDefinitions is set, the workflow uses the latest definition.
@@ -388,7 +388,7 @@ paths:
   /workflow/{workflowId}/retry:
     post:
       operationId: retryWorkflow
-      summary: Retry a failed workflow
+      summary: Conductor Retry a failed workflow
       description: Retries the last failed task in a workflow execution.
       tags:
         - Workflow
@@ -414,7 +414,7 @@ paths:
   /workflow/{workflowId}/terminate:
     delete:
       operationId: terminateWorkflow
-      summary: Terminate a running workflow
+      summary: Conductor Terminate a running workflow
       description: Terminates a running workflow execution with an optional reason.
       tags:
         - Workflow
@@ -439,7 +439,7 @@ paths:
   /workflow/{workflowId}/skiptask/{taskReferenceName}:
     put:
       operationId: skipTaskFromWorkflow
-      summary: Skip a task in a running workflow
+      summary: Conductor Skip a task in a running workflow
       description: >-
         Skips a given task from a running workflow and moves to the next task.
         The skipped task will be marked as completed with the provided output.
@@ -472,7 +472,7 @@ paths:
   /workflow/search:
     get:
       operationId: searchWorkflows
-      summary: Search for workflow executions
+      summary: Conductor Search for workflow executions
       description: >-
         Searches for workflow executions using Conductor's query language. Uses
         Elasticsearch for indexing workflow execution data.
@@ -522,7 +522,7 @@ paths:
   /workflow/running/{name}:
     get:
       operationId: getRunningWorkflows
-      summary: Get running workflow instances
+      summary: Conductor Get running workflow instances
       description: >-
         Retrieves a list of running workflow instance IDs for a given workflow
         name and optionally filtered by version.
@@ -567,7 +567,7 @@ paths:
   /tasks/poll/{taskType}:
     get:
       operationId: pollForTask
-      summary: Poll for a task
+      summary: Conductor Poll for a task
       description: >-
         Polls for a task of the specified type. Used by workers to get tasks to
         execute. Returns a single task if available.
@@ -604,7 +604,7 @@ paths:
   /tasks/poll/batch/{taskType}:
     get:
       operationId: batchPollForTasks
-      summary: Batch poll for tasks
+      summary: Conductor Batch poll for tasks
       description: >-
         Polls for multiple tasks of the specified type in a single request.
         Returns up to the specified count of tasks.
@@ -655,7 +655,7 @@ paths:
   /tasks:
     post:
       operationId: updateTask
-      summary: Update task status
+      summary: Conductor Update task status
       description: >-
         Updates the status and result of a task. Used by workers to report task
         completion, failure, or progress.
@@ -680,7 +680,7 @@ paths:
   /tasks/{taskId}:
     get:
       operationId: getTask
-      summary: Get task details
+      summary: Conductor Get task details
       description: Retrieves the details of a specific task by its ID.
       tags:
         - Task
@@ -703,7 +703,7 @@ paths:
   /tasks/{taskId}/ack:
     post:
       operationId: acknowledgeTask
-      summary: Acknowledge a task
+      summary: Conductor Acknowledge a task
       description: >-
         Acknowledges that a task has been received by a worker. This prevents the
         task from being sent to another worker.
@@ -734,7 +734,7 @@ paths:
   /tasks/{taskId}/log:
     post:
       operationId: addTaskLog
-      summary: Add a log entry to a task
+      summary: Conductor Add a log entry to a task
       description: Adds a log message to a task execution for debugging or auditing.
       tags:
         - Task
@@ -757,7 +757,7 @@ paths:
           description: Log entry added successfully
     get:
       operationId: getTaskLogs
-      summary: Get task execution logs
+      summary: Conductor Get task execution logs
       description: Retrieves the log entries for a specific task execution.
       tags:
         - Task
@@ -780,7 +780,7 @@ paths:
   /tasks/queue/sizes:
     get:
       operationId: getTaskQueueSizes
-      summary: Get task queue sizes
+      summary: Conductor Get task queue sizes
       description: >-
         Returns the number of pending tasks for each task type in the queue.
       tags:
@@ -806,7 +806,7 @@ paths:
   /tasks/search:
     get:
       operationId: searchTasks
-      summary: Search for tasks
+      summary: Conductor Search for tasks
       description: Searches for task executions based on query parameters.
       tags:
         - Task
@@ -854,7 +854,7 @@ paths:
   /event:
     post:
       operationId: createEventHandler
-      summary: Create an event handler
+      summary: Conductor Create an event handler
       description: >-
         Creates a new event handler definition for processing events from
         external systems.
@@ -873,7 +873,7 @@ paths:
           description: Invalid event handler definition
     put:
       operationId: updateEventHandler
-      summary: Update an event handler
+      summary: Conductor Update an event handler
       description: Updates an existing event handler definition.
       tags:
         - Event
@@ -890,7 +890,7 @@ paths:
           description: Invalid event handler definition
     get:
       operationId: getAllEventHandlers
-      summary: Get all event handlers
+      summary: Conductor Get all event handlers
       description: Retrieves all registered event handler definitions.
       tags:
         - Event
@@ -906,7 +906,7 @@ paths:
   /event/{name}:
     delete:
       operationId: deleteEventHandler
-      summary: Delete an event handler
+      summary: Conductor Delete an event handler
       description: Removes an event handler by name.
       tags:
         - Event
@@ -924,7 +924,7 @@ paths:
           description: Event handler not found
     get:
       operationId: getEventHandlersForEvent
-      summary: Get event handlers for an event
+      summary: Conductor Get event handlers for an event
       description: Retrieves all event handlers registered for a specific event.
       tags:
         - Event
@@ -954,7 +954,7 @@ paths:
   /admin/config:
     get:
       operationId: getConfiguration
-      summary: Get server configuration
+      summary: Conductor Get server configuration
       description: Retrieves the current Conductor server configuration.
       tags:
         - Admin
@@ -969,7 +969,7 @@ paths:
   /admin/task/{taskType}:
     get:
       operationId: getTaskQueueInfo
-      summary: Get task queue information
+      summary: Conductor Get task queue information
       description: Retrieves information about a specific task type's queue.
       tags:
         - Admin
@@ -990,7 +990,7 @@ paths:
   /admin/sweep/requeue/{workflowId}:
     post:
       operationId: requeueSweep
-      summary: Requeue a workflow for sweep
+      summary: Conductor Requeue a workflow for sweep
       description: Requeues a workflow for the sweep operation to re-evaluate its state.
       tags:
         - Admin
@@ -1007,7 +1007,7 @@ paths:
   /health:
     get:
       operationId: healthCheck
-      summary: Health check
+      summary: Conductor Health check
       description: Returns the health status of the Conductor server.
       tags:
         - Admin
