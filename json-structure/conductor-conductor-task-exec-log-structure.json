@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TaskExecLog",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "string"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "createdTime": {
+      "type": "integer"
+    }
+  }
+}

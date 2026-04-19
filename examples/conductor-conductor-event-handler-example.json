@@ -1,0 +1,8 @@
+{
+  "name": "Example Title",
+  "event": "example_value",
+  "condition": "example_value",
+  "actions": [],
+  "active": true,
+  "evaluatorType": "example_value"
+}

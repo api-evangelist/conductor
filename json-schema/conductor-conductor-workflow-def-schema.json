@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorkflowDef",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the workflow definition"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the workflow"
+    },
+    "version": {
+      "type": "integer",
+      "description": "The version of the workflow definition"
+    },
+    "tasks": {
+      "type": "array",
+      "description": "The list of tasks in the workflow"
+    },
+    "inputParameters": {
+      "type": "array",
+      "description": "List of input parameter names for the workflow"
+    },
+    "outputParameters": {
+      "type": "object",
+      "description": "Mapping of output parameters"
+    },
+    "failureWorkflow": {
+      "type": "string",
+      "description": "Name of the workflow to execute when this workflow fails"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "description": "Schema version (currently 2)"
+    },
+    "restartable": {
+      "type": "boolean",
+      "description": "Whether the workflow is restartable"
+    },
+    "workflowStatusListenerEnabled": {
+      "type": "boolean",
+      "description": "Whether to enable workflow status listener"
+    },
+    "ownerEmail": {
+      "type": "string",
+      "description": "Email of the workflow definition owner"
+    },
+    "timeoutPolicy": {
+      "type": "string",
+      "description": "Timeout policy for the workflow"
+    },
+    "timeoutSeconds": {
+      "type": "integer",
+      "description": "Timeout in seconds for the workflow"
+    },
+    "variables": {
+      "type": "object",
+      "description": "Workflow level variables"
+    },
+    "inputTemplate": {
+      "type": "object",
+      "description": "Default input template"
+    }
+  }
+}

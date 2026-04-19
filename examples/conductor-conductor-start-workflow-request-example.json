@@ -1,0 +1,9 @@
+{
+  "name": "Example Title",
+  "version": 10,
+  "correlationId": "500123",
+  "priority": 10,
+  "input": "example_value",
+  "taskToDomain": "example_value",
+  "externalInputPayloadStoragePath": "example_value"
+}

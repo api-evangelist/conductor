@@ -1,0 +1,22 @@
+{
+  "name": "Example Title",
+  "description": "A sample description.",
+  "retryCount": 10,
+  "retryLogic": "example_value",
+  "retryDelaySeconds": 10,
+  "timeoutSeconds": 10,
+  "timeoutPolicy": "example_value",
+  "responseTimeoutSeconds": 10,
+  "pollTimeoutSeconds": 10,
+  "concurrentExecLimit": 10,
+  "rateLimitPerFrequency": 10,
+  "rateLimitFrequencyInSeconds": 10,
+  "ownerEmail": "user@example.com",
+  "inputKeys": [],
+  "outputKeys": [],
+  "inputTemplate": "example_value",
+  "createdBy": "example_value",
+  "createTime": 10,
+  "updatedBy": "example_value",
+  "updateTime": 10
+}

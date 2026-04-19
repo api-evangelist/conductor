@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StartWorkflowRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the workflow to start"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Version of the workflow"
+    },
+    "correlationId": {
+      "type": "string",
+      "description": "Correlation ID for the workflow instance"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Priority of the workflow (0-99)"
+    },
+    "input": {
+      "type": "object",
+      "description": "Input parameters for the workflow"
+    },
+    "taskToDomain": {
+      "type": "object",
+      "description": "Task to domain mapping for routing"
+    },
+    "externalInputPayloadStoragePath": {
+      "type": "string",
+      "description": "Path to externally stored input payload"
+    }
+  }
+}

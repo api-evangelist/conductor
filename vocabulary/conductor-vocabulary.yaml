@@ -1,0 +1,13 @@
+name: conductor API Vocabulary
+provider: conductor
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 39
+schemas: 15
+tags:
+- Admin
+- Event
+- Metadata - Task
+- Metadata - Workflow
+- Task
+- Workflow

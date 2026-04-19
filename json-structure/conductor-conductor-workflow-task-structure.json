@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "WorkflowTask",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "taskReferenceName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "inputParameters": {
+      "type": "object"
+    },
+    "optional": {
+      "type": "boolean"
+    },
+    "startDelay": {
+      "type": "integer"
+    },
+    "asyncComplete": {
+      "type": "boolean"
+    },
+    "retryCount": {
+      "type": "integer"
+    },
+    "sink": {
+      "type": "string"
+    },
+    "subWorkflowParam": {
+      "type": "object"
+    },
+    "joinOn": {
+      "type": "array"
+    },
+    "forkTasks": {
+      "type": "array"
+    },
+    "decisionCases": {
+      "type": "object"
+    },
+    "defaultCase": {
+      "type": "array"
+    },
+    "loopCondition": {
+      "type": "string"
+    },
+    "loopOver": {
+      "type": "array"
+    }
+  }
+}

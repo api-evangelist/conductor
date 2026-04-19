@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Workflow",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string"
+    },
+    "workflowName": {
+      "type": "string"
+    },
+    "workflowVersion": {
+      "type": "integer"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "integer"
+    },
+    "endTime": {
+      "type": "integer"
+    },
+    "updateTime": {
+      "type": "integer"
+    },
+    "input": {
+      "type": "object"
+    },
+    "output": {
+      "type": "object"
+    },
+    "tasks": {
+      "type": "array"
+    },
+    "reasonForIncompletion": {
+      "type": "string"
+    },
+    "failedReferenceTaskNames": {
+      "type": "array"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "variables": {
+      "type": "object"
+    },
+    "lastRetriedTime": {
+      "type": "integer"
+    },
+    "ownerApp": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "integer"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "parentWorkflowId": {
+      "type": "string"
+    }
+  }
+}

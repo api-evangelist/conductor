@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskExecLog",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "string",
+      "description": "Log message"
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Associated task ID"
+    },
+    "createdTime": {
+      "type": "integer",
+      "description": "Timestamp of the log entry"
+    }
+  }
+}

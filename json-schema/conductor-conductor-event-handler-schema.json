@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventHandler",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the event handler"
+    },
+    "event": {
+      "type": "string",
+      "description": "Event identifier in the format source:sink:subject (e.g., conductor:workflow_completed:myWorkflow)"
+    },
+    "condition": {
+      "type": "string",
+      "description": "Condition expression to evaluate"
+    },
+    "actions": {
+      "type": "array",
+      "description": "List of actions to perform when the event is received"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the event handler is active"
+    },
+    "evaluatorType": {
+      "type": "string",
+      "description": "Type of evaluator for the condition"
+    }
+  }
+}

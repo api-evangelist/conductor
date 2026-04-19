@@ -1,0 +1,11 @@
+{
+  "workflowInstanceId": "500123",
+  "taskId": "500123",
+  "status": "example_value",
+  "outputData": "example_value",
+  "reasonForIncompletion": "example_value",
+  "callbackAfterSeconds": 10,
+  "workerId": "500123",
+  "logs": [],
+  "externalOutputPayloadStoragePath": "example_value"
+}

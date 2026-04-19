@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchResultWorkflowSummary",
+  "type": "object",
+  "properties": {
+    "totalHits": {
+      "type": "integer",
+      "description": "Total number of matching results"
+    },
+    "results": {
+      "type": "array",
+      "description": "List of workflow summaries"
+    }
+  }
+}

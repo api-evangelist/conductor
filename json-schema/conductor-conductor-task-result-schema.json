@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskResult",
+  "type": "object",
+  "properties": {
+    "workflowInstanceId": {
+      "type": "string",
+      "description": "The workflow instance ID"
+    },
+    "taskId": {
+      "type": "string",
+      "description": "The task ID"
+    },
+    "status": {
+      "type": "string",
+      "description": "Task execution status"
+    },
+    "outputData": {
+      "type": "object",
+      "description": "Task output data"
+    },
+    "reasonForIncompletion": {
+      "type": "string",
+      "description": "Reason for failure"
+    },
+    "callbackAfterSeconds": {
+      "type": "integer",
+      "description": "Callback delay for IN_PROGRESS tasks"
+    },
+    "workerId": {
+      "type": "string",
+      "description": "ID of the worker updating the task"
+    },
+    "logs": {
+      "type": "array",
+      "description": "Task execution logs"
+    },
+    "externalOutputPayloadStoragePath": {
+      "type": "string",
+      "description": "Path to externally stored output payload"
+    }
+  }
+}

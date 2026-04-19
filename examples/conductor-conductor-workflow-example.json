@@ -1,0 +1,22 @@
+{
+  "workflowId": "500123",
+  "workflowName": "example_value",
+  "workflowVersion": 10,
+  "correlationId": "500123",
+  "status": "example_value",
+  "startTime": 10,
+  "endTime": 10,
+  "updateTime": 10,
+  "input": "example_value",
+  "output": "example_value",
+  "tasks": [],
+  "reasonForIncompletion": "example_value",
+  "failedReferenceTaskNames": [],
+  "priority": 10,
+  "variables": "example_value",
+  "lastRetriedTime": 10,
+  "ownerApp": "example_value",
+  "createTime": 10,
+  "createdBy": "example_value",
+  "parentWorkflowId": "500123"
+}

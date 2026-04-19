@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string"
+    },
+    "taskType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "referenceTaskName": {
+      "type": "string"
+    },
+    "workflowInstanceId": {
+      "type": "string"
+    },
+    "workflowType": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "scheduledTime": {
+      "type": "integer"
+    },
+    "startTime": {
+      "type": "integer"
+    },
+    "endTime": {
+      "type": "integer"
+    },
+    "updateTime": {
+      "type": "integer"
+    },
+    "retryCount": {
+      "type": "integer"
+    },
+    "pollCount": {
+      "type": "integer"
+    },
+    "callbackAfterSeconds": {
+      "type": "integer"
+    },
+    "workerId": {
+      "type": "string"
+    },
+    "inputData": {
+      "type": "object"
+    },
+    "outputData": {
+      "type": "object"
+    },
+    "reasonForIncompletion": {
+      "type": "string"
+    },
+    "logs": {
+      "type": "array"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "seq": {
+      "type": "integer"
+    },
+    "taskDefName": {
+      "type": "string"
+    },
+    "responseTimeoutSeconds": {
+      "type": "integer"
+    },
+    "queueWaitTime": {
+      "type": "integer"
+    }
+  }
+}

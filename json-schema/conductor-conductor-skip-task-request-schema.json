@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SkipTaskRequest",
+  "type": "object",
+  "properties": {
+    "taskInput": {
+      "type": "object",
+      "description": "Input for the skipped task"
+    },
+    "taskOutput": {
+      "type": "object",
+      "description": "Output to set for the skipped task"
+    }
+  }
+}

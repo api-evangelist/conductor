@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Workflow",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique workflow instance ID"
+    },
+    "workflowName": {
+      "type": "string",
+      "description": "Name of the workflow definition"
+    },
+    "workflowVersion": {
+      "type": "integer",
+      "description": "Version of the workflow definition"
+    },
+    "correlationId": {
+      "type": "string",
+      "description": "Correlation ID"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the workflow"
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Start time in epoch milliseconds"
+    },
+    "endTime": {
+      "type": "integer",
+      "description": "End time in epoch milliseconds"
+    },
+    "updateTime": {
+      "type": "integer",
+      "description": "Last update time"
+    },
+    "input": {
+      "type": "object",
+      "description": "Workflow input"
+    },
+    "output": {
+      "type": "object",
+      "description": "Workflow output"
+    },
+    "tasks": {
+      "type": "array",
+      "description": "List of tasks in the workflow execution"
+    },
+    "reasonForIncompletion": {
+      "type": "string",
+      "description": "Reason for failure or termination"
+    },
+    "failedReferenceTaskNames": {
+      "type": "array",
+      "description": "List of failed task reference names"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Workflow priority"
+    },
+    "variables": {
+      "type": "object",
+      "description": "Workflow variables"
+    },
+    "lastRetriedTime": {
+      "type": "integer",
+      "description": "Last retry timestamp"
+    },
+    "ownerApp": {
+      "type": "string",
+      "description": "Owner application"
+    },
+    "createTime": {
+      "type": "integer",
+      "description": "Creation timestamp"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Created by"
+    },
+    "parentWorkflowId": {
+      "type": "string",
+      "description": "Parent workflow ID if this is a sub-workflow"
+    }
+  }
+}

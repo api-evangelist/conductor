@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "WorkflowDef",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "tasks": {
+      "type": "array"
+    },
+    "inputParameters": {
+      "type": "array"
+    },
+    "outputParameters": {
+      "type": "object"
+    },
+    "failureWorkflow": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "restartable": {
+      "type": "boolean"
+    },
+    "workflowStatusListenerEnabled": {
+      "type": "boolean"
+    },
+    "ownerEmail": {
+      "type": "string"
+    },
+    "timeoutPolicy": {
+      "type": "string"
+    },
+    "timeoutSeconds": {
+      "type": "integer"
+    },
+    "variables": {
+      "type": "object"
+    },
+    "inputTemplate": {
+      "type": "object"
+    }
+  }
+}

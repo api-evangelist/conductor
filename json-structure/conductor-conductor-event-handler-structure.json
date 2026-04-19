@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EventHandler",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "event": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "string"
+    },
+    "actions": {
+      "type": "array"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "evaluatorType": {
+      "type": "string"
+    }
+  }
+}

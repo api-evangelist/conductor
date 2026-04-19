@@ -1,0 +1,18 @@
+{
+  "taskId": "500123",
+  "taskType": "example_value",
+  "taskDefName": "example_value",
+  "status": "example_value",
+  "workflowId": "500123",
+  "workflowType": "example_value",
+  "correlationId": "500123",
+  "scheduledTime": "example_value",
+  "startTime": "example_value",
+  "updateTime": "example_value",
+  "endTime": "example_value",
+  "input": "example_value",
+  "output": "example_value",
+  "reasonForIncompletion": "example_value",
+  "queueWaitTime": 10,
+  "domain": "example_value"
+}

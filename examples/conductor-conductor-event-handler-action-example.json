@@ -1,0 +1,7 @@
+{
+  "action": "example_value",
+  "start_workflow": "example_value",
+  "complete_task": "example_value",
+  "fail_task": "example_value",
+  "expandInlineJSON": true
+}

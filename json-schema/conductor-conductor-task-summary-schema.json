@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskSummary",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string"
+    },
+    "taskType": {
+      "type": "string"
+    },
+    "taskDefName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "workflowId": {
+      "type": "string"
+    },
+    "workflowType": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "scheduledTime": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "input": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "reasonForIncompletion": {
+      "type": "string"
+    },
+    "queueWaitTime": {
+      "type": "integer"
+    },
+    "domain": {
+      "type": "string"
+    }
+  }
+}

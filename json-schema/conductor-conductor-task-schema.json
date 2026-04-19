@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Unique task instance ID"
+    },
+    "taskType": {
+      "type": "string",
+      "description": "The type of the task"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the task"
+    },
+    "referenceTaskName": {
+      "type": "string",
+      "description": "Reference name of the task in the workflow"
+    },
+    "workflowInstanceId": {
+      "type": "string",
+      "description": "ID of the workflow instance this task belongs to"
+    },
+    "workflowType": {
+      "type": "string",
+      "description": "Type/name of the workflow"
+    },
+    "correlationId": {
+      "type": "string",
+      "description": "Correlation ID"
+    },
+    "scheduledTime": {
+      "type": "integer",
+      "description": "Scheduled time"
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Start time"
+    },
+    "endTime": {
+      "type": "integer",
+      "description": "End time"
+    },
+    "updateTime": {
+      "type": "integer",
+      "description": "Last update time"
+    },
+    "retryCount": {
+      "type": "integer",
+      "description": "Current retry count"
+    },
+    "pollCount": {
+      "type": "integer",
+      "description": "Number of times this task was polled"
+    },
+    "callbackAfterSeconds": {
+      "type": "integer",
+      "description": "Callback delay in seconds"
+    },
+    "workerId": {
+      "type": "string",
+      "description": "ID of the worker that polled this task"
+    },
+    "inputData": {
+      "type": "object",
+      "description": "Task input data"
+    },
+    "outputData": {
+      "type": "object",
+      "description": "Task output data"
+    },
+    "reasonForIncompletion": {
+      "type": "string",
+      "description": "Reason for failure"
+    },
+    "logs": {
+      "type": "array",
+      "description": "Task execution logs"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Task domain"
+    },
+    "seq": {
+      "type": "integer",
+      "description": "Sequence number"
+    },
+    "taskDefName": {
+      "type": "string",
+      "description": "Task definition name"
+    },
+    "responseTimeoutSeconds": {
+      "type": "integer",
+      "description": "Response timeout"
+    },
+    "queueWaitTime": {
+      "type": "integer",
+      "description": "Time spent waiting in queue"
+    }
+  }
+}

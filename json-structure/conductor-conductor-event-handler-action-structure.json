@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EventHandlerAction",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string"
+    },
+    "start_workflow": {
+      "type": "object"
+    },
+    "complete_task": {
+      "type": "object"
+    },
+    "fail_task": {
+      "type": "object"
+    },
+    "expandInlineJSON": {
+      "type": "boolean"
+    }
+  }
+}

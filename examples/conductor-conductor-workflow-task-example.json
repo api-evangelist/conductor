@@ -1,0 +1,19 @@
+{
+  "name": "Example Title",
+  "taskReferenceName": "example_value",
+  "type": "example_value",
+  "description": "A sample description.",
+  "inputParameters": "example_value",
+  "optional": true,
+  "startDelay": 10,
+  "asyncComplete": true,
+  "retryCount": 10,
+  "sink": "example_value",
+  "subWorkflowParam": "example_value",
+  "joinOn": [],
+  "forkTasks": [],
+  "decisionCases": "example_value",
+  "defaultCase": [],
+  "loopCondition": "example_value",
+  "loopOver": []
+}

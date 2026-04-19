@@ -21,31 +21,31 @@ externalDocs:
   description: Conductor API Documentation
   url: https://conductor-oss.github.io/conductor/documentation/api/index.html
 servers:
-  - url: https://localhost:8080/api
-    description: Local Conductor Server
-  - url: https://play.orkes.io/api
-    description: Orkes Conductor Playground
+- url: https://localhost:8080/api
+  description: Local Conductor Server
+- url: https://play.orkes.io/api
+  description: Orkes Conductor Playground
 tags:
-  - name: Admin
-    description: Administrative and health check APIs
-  - name: Event
-    description: APIs for managing event handlers
-  - name: Metadata - Task
-    description: APIs for managing task definitions
-  - name: Metadata - Workflow
-    description: APIs for managing workflow definitions
-  - name: Task
-    description: APIs for polling and updating tasks
-  - name: Workflow
-    description: APIs for managing workflow executions
+- name: Admin
+  description: Administrative and health check APIs
+- name: Event
+  description: APIs for managing event handlers
+- name: Metadata - Task
+  description: APIs for managing task definitions
+- name: Metadata - Workflow
+  description: APIs for managing workflow definitions
+- name: Task
+  description: APIs for polling and updating tasks
+- name: Workflow
+  description: APIs for managing workflow executions
 paths:
   /metadata/workflow:
     post:
       operationId: createWorkflowDefinition
-      summary: Conductor Create a new workflow definition
+      summary: Conductor Create a New Workflow Definition
       description: Registers a new workflow definition with Conductor.
       tags:
-        - Metadata - Workflow
+      - Metadata - Workflow
       requestBody:
         required: true
         content:
@@ -59,12 +59,15 @@ paths:
           description: Invalid workflow definition
         '409':
           description: Workflow definition already exists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateWorkflowDefinitions
-      summary: Conductor Update workflow definitions
+      summary: Conductor Update Workflow Definitions
       description: Updates one or more existing workflow definitions.
       tags:
-        - Metadata - Workflow
+      - Metadata - Workflow
       requestBody:
         required: true
         content:
@@ -78,12 +81,15 @@ paths:
           description: Workflow definitions updated successfully
         '400':
           description: Invalid workflow definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: getAllWorkflowDefinitions
-      summary: Conductor Get all workflow definitions
+      summary: Conductor Get All Workflow Definitions
       description: Retrieves all registered workflow definitions.
       tags:
-        - Metadata - Workflow
+      - Metadata - Workflow
       responses:
         '200':
           description: Successful operation
@@ -93,26 +99,29 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/WorkflowDef'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/workflow/{name}:
     get:
       operationId: getWorkflowDefinition
-      summary: Conductor Get a workflow definition
+      summary: Conductor Get a Workflow Definition
       description: Retrieves a workflow definition by name and optionally by version.
       tags:
-        - Metadata - Workflow
+      - Metadata - Workflow
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The name of the workflow definition
-          schema:
-            type: string
-        - name: version
-          in: query
-          required: false
-          description: The version of the workflow definition
-          schema:
-            type: integer
+      - name: name
+        in: path
+        required: true
+        description: The name of the workflow definition
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: The version of the workflow definition
+        schema:
+          type: integer
       responses:
         '200':
           description: Successful operation
@@ -122,37 +131,43 @@ paths:
                 $ref: '#/components/schemas/WorkflowDef'
         '404':
           description: Workflow definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteWorkflowDefinition
-      summary: Conductor Delete a workflow definition
+      summary: Conductor Delete a Workflow Definition
       description: Removes a workflow definition by name and version.
       tags:
-        - Metadata - Workflow
+      - Metadata - Workflow
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The name of the workflow definition
-          schema:
-            type: string
-        - name: version
-          in: query
-          required: false
-          description: The version of the workflow definition
-          schema:
-            type: integer
+      - name: name
+        in: path
+        required: true
+        description: The name of the workflow definition
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: The version of the workflow definition
+        schema:
+          type: integer
       responses:
         '204':
           description: Workflow definition deleted successfully
         '404':
           description: Workflow definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/taskdefs:
     post:
       operationId: createTaskDefinitions
-      summary: Conductor Create new task definitions
+      summary: Conductor Create New Task Definitions
       description: Registers new task definitions with Conductor.
       tags:
-        - Metadata - Task
+      - Metadata - Task
       requestBody:
         required: true
         content:
@@ -166,12 +181,15 @@ paths:
           description: Task definitions created successfully
         '400':
           description: Invalid task definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: getAllTaskDefinitions
-      summary: Conductor Get all task definitions
+      summary: Conductor Get All Task Definitions
       description: Retrieves all registered task definitions.
       tags:
-        - Metadata - Task
+      - Metadata - Task
       responses:
         '200':
           description: Successful operation
@@ -181,12 +199,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskDef'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateTaskDefinition
-      summary: Conductor Update a task definition
+      summary: Conductor Update a Task Definition
       description: Updates an existing task definition.
       tags:
-        - Metadata - Task
+      - Metadata - Task
       requestBody:
         required: true
         content:
@@ -198,20 +219,23 @@ paths:
           description: Task definition updated successfully
         '400':
           description: Invalid task definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/taskdefs/{taskType}:
     get:
       operationId: getTaskDefinition
-      summary: Conductor Get a task definition
+      summary: Conductor Get a Task Definition
       description: Retrieves a task definition by its type name.
       tags:
-        - Metadata - Task
+      - Metadata - Task
       parameters:
-        - name: taskType
-          in: path
-          required: true
-          description: The task type name
-          schema:
-            type: string
+      - name: taskType
+        in: path
+        required: true
+        description: The task type name
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -221,31 +245,37 @@ paths:
                 $ref: '#/components/schemas/TaskDef'
         '404':
           description: Task definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteTaskDefinition
-      summary: Conductor Delete a task definition
+      summary: Conductor Delete a Task Definition
       description: Removes a task definition by its type name.
       tags:
-        - Metadata - Task
+      - Metadata - Task
       parameters:
-        - name: taskType
-          in: path
-          required: true
-          description: The task type name
-          schema:
-            type: string
+      - name: taskType
+        in: path
+        required: true
+        description: The task type name
+        schema:
+          type: string
       responses:
         '204':
           description: Task definition deleted successfully
         '404':
           description: Task definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow:
     post:
       operationId: startWorkflow
-      summary: Conductor Start a new workflow
+      summary: Conductor Start a New Workflow
       description: Starts a new workflow execution based on a registered workflow definition.
       tags:
-        - Workflow
+      - Workflow
       requestBody:
         required: true
         content:
@@ -262,29 +292,32 @@ paths:
                 description: The workflow instance ID
         '404':
           description: Workflow definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}:
     get:
       operationId: getWorkflowExecution
-      summary: Conductor Get workflow execution status
+      summary: Conductor Get Workflow Execution Status
       description: >-
         Retrieves the current status and details of a running or completed
         workflow execution.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
-        - name: includeTasks
-          in: query
-          required: false
-          description: Whether to include task details in the response
-          schema:
-            type: boolean
-            default: true
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      - name: includeTasks
+        in: query
+        required: false
+        description: Whether to include task details in the response
+        schema:
+          type: boolean
+          default: true
       responses:
         '200':
           description: Successful operation
@@ -294,170 +327,191 @@ paths:
                 $ref: '#/components/schemas/Workflow'
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteWorkflowExecution
-      summary: Conductor Delete a workflow execution
+      summary: Conductor Delete a Workflow Execution
       description: Removes a workflow execution and its associated data.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
-        - name: archiveWorkflow
-          in: query
-          required: false
-          description: Whether to archive the workflow before deletion
-          schema:
-            type: boolean
-            default: true
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      - name: archiveWorkflow
+        in: query
+        required: false
+        description: Whether to archive the workflow before deletion
+        schema:
+          type: boolean
+          default: true
       responses:
         '204':
           description: Workflow execution deleted successfully
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}/pause:
     put:
       operationId: pauseWorkflow
-      summary: Conductor Pause a running workflow
+      summary: Conductor Pause a Running Workflow
       description: Pauses a currently running workflow execution.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
       responses:
         '200':
           description: Workflow paused successfully
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}/resume:
     put:
       operationId: resumeWorkflow
-      summary: Conductor Resume a paused workflow
+      summary: Conductor Resume a Paused Workflow
       description: Resumes a previously paused workflow execution.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
       responses:
         '200':
           description: Workflow resumed successfully
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}/restart:
     post:
       operationId: restartWorkflow
-      summary: Conductor Restart a completed workflow
+      summary: Conductor Restart a Completed Workflow
       description: >-
         Restarts a completed workflow from the beginning with the same input.
         If useLatestDefinitions is set, the workflow uses the latest definition.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
-        - name: useLatestDefinitions
-          in: query
-          required: false
-          description: Whether to use the latest workflow and task definitions
-          schema:
-            type: boolean
-            default: false
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      - name: useLatestDefinitions
+        in: query
+        required: false
+        description: Whether to use the latest workflow and task definitions
+        schema:
+          type: boolean
+          default: false
       responses:
         '204':
           description: Workflow restarted successfully
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}/retry:
     post:
       operationId: retryWorkflow
-      summary: Conductor Retry a failed workflow
+      summary: Conductor Retry a Failed Workflow
       description: Retries the last failed task in a workflow execution.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
-        - name: resumeSubworkflowTasks
-          in: query
-          required: false
-          description: Whether to resume subworkflow tasks
-          schema:
-            type: boolean
-            default: false
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      - name: resumeSubworkflowTasks
+        in: query
+        required: false
+        description: Whether to resume subworkflow tasks
+        schema:
+          type: boolean
+          default: false
       responses:
         '204':
           description: Workflow retry initiated successfully
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}/terminate:
     delete:
       operationId: terminateWorkflow
-      summary: Conductor Terminate a running workflow
+      summary: Conductor Terminate a Running Workflow
       description: Terminates a running workflow execution with an optional reason.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
-        - name: reason
-          in: query
-          required: false
-          description: Reason for termination
-          schema:
-            type: string
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      - name: reason
+        in: query
+        required: false
+        description: Reason for termination
+        schema:
+          type: string
       responses:
         '200':
           description: Workflow terminated successfully
         '404':
           description: Workflow execution not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/{workflowId}/skiptask/{taskReferenceName}:
     put:
       operationId: skipTaskFromWorkflow
-      summary: Conductor Skip a task in a running workflow
+      summary: Conductor Skip a Task in a Running Workflow
       description: >-
         Skips a given task from a running workflow and moves to the next task.
         The skipped task will be marked as completed with the provided output.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
-        - name: taskReferenceName
-          in: path
-          required: true
-          description: The reference name of the task to skip
-          schema:
-            type: string
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      - name: taskReferenceName
+        in: path
+        required: true
+        description: The reference name of the task to skip
+        schema:
+          type: string
       requestBody:
         required: false
         content:
@@ -469,49 +523,52 @@ paths:
           description: Task skipped successfully
         '404':
           description: Workflow or task not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/search:
     get:
       operationId: searchWorkflows
-      summary: Conductor Search for workflow executions
+      summary: Conductor Search for Workflow Executions
       description: >-
         Searches for workflow executions using Conductor's query language. Uses
         Elasticsearch for indexing workflow execution data.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: start
-          in: query
-          required: false
-          description: Start index for pagination
-          schema:
-            type: integer
-            default: 0
-        - name: size
-          in: query
-          required: false
-          description: Number of results to return
-          schema:
-            type: integer
-            default: 100
-        - name: sort
-          in: query
-          required: false
-          description: Sort field and order (e.g., createTime:DESC)
-          schema:
-            type: string
-        - name: freeText
-          in: query
-          required: false
-          description: Free text search across workflow data
-          schema:
-            type: string
-            default: '*'
-        - name: query
-          in: query
-          required: false
-          description: Query expression for filtering results
-          schema:
-            type: string
+      - name: start
+        in: query
+        required: false
+        description: Start index for pagination
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        required: false
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 100
+      - name: sort
+        in: query
+        required: false
+        description: Sort field and order (e.g., createTime:DESC)
+        schema:
+          type: string
+      - name: freeText
+        in: query
+        required: false
+        description: Free text search across workflow data
+        schema:
+          type: string
+          default: '*'
+      - name: query
+        in: query
+        required: false
+        description: Query expression for filtering results
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -519,42 +576,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultWorkflowSummary'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /workflow/running/{name}:
     get:
       operationId: getRunningWorkflows
-      summary: Conductor Get running workflow instances
+      summary: Conductor Get Running Workflow Instances
       description: >-
         Retrieves a list of running workflow instance IDs for a given workflow
         name and optionally filtered by version.
       tags:
-        - Workflow
+      - Workflow
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The workflow name
-          schema:
-            type: string
-        - name: version
-          in: query
-          required: false
-          description: The workflow version
-          schema:
-            type: integer
-        - name: startTime
-          in: query
-          required: false
-          description: Start time filter (epoch milliseconds)
-          schema:
-            type: integer
-            format: int64
-        - name: endTime
-          in: query
-          required: false
-          description: End time filter (epoch milliseconds)
-          schema:
-            type: integer
-            format: int64
+      - name: name
+        in: path
+        required: true
+        description: The workflow name
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: The workflow version
+        schema:
+          type: integer
+      - name: startTime
+        in: query
+        required: false
+        description: Start time filter (epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: false
+        description: End time filter (epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
       responses:
         '200':
           description: Successful operation
@@ -564,34 +624,37 @@ paths:
                 type: array
                 items:
                   type: string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/poll/{taskType}:
     get:
       operationId: pollForTask
-      summary: Conductor Poll for a task
+      summary: Conductor Poll for a Task
       description: >-
         Polls for a task of the specified type. Used by workers to get tasks to
         execute. Returns a single task if available.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskType
-          in: path
-          required: true
-          description: The task type to poll for
-          schema:
-            type: string
-        - name: workerId
-          in: query
-          required: false
-          description: ID of the worker polling for the task
-          schema:
-            type: string
-        - name: domain
-          in: query
-          required: false
-          description: Domain for task routing
-          schema:
-            type: string
+      - name: taskType
+        in: path
+        required: true
+        description: The task type to poll for
+        schema:
+          type: string
+      - name: workerId
+        in: query
+        required: false
+        description: ID of the worker polling for the task
+        schema:
+          type: string
+      - name: domain
+        in: query
+        required: false
+        description: Domain for task routing
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -601,48 +664,51 @@ paths:
                 $ref: '#/components/schemas/Task'
         '204':
           description: No tasks available for polling
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/poll/batch/{taskType}:
     get:
       operationId: batchPollForTasks
-      summary: Conductor Batch poll for tasks
+      summary: Conductor Batch Poll for Tasks
       description: >-
         Polls for multiple tasks of the specified type in a single request.
         Returns up to the specified count of tasks.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskType
-          in: path
-          required: true
-          description: The task type to poll for
-          schema:
-            type: string
-        - name: workerId
-          in: query
-          required: false
-          description: ID of the worker polling for tasks
-          schema:
-            type: string
-        - name: count
-          in: query
-          required: false
-          description: Number of tasks to poll for
-          schema:
-            type: integer
-            default: 1
-        - name: timeout
-          in: query
-          required: false
-          description: Long poll timeout in milliseconds
-          schema:
-            type: integer
-            default: 100
-        - name: domain
-          in: query
-          required: false
-          description: Domain for task routing
-          schema:
-            type: string
+      - name: taskType
+        in: path
+        required: true
+        description: The task type to poll for
+        schema:
+          type: string
+      - name: workerId
+        in: query
+        required: false
+        description: ID of the worker polling for tasks
+        schema:
+          type: string
+      - name: count
+        in: query
+        required: false
+        description: Number of tasks to poll for
+        schema:
+          type: integer
+          default: 1
+      - name: timeout
+        in: query
+        required: false
+        description: Long poll timeout in milliseconds
+        schema:
+          type: integer
+          default: 100
+      - name: domain
+        in: query
+        required: false
+        description: Domain for task routing
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -652,15 +718,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Task'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks:
     post:
       operationId: updateTask
-      summary: Conductor Update task status
+      summary: Conductor Update Task Status
       description: >-
         Updates the status and result of a task. Used by workers to report task
         completion, failure, or progress.
       tags:
-        - Task
+      - Task
       requestBody:
         required: true
         content:
@@ -677,20 +746,23 @@ paths:
                 description: The task ID
         '400':
           description: Invalid task result
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/{taskId}:
     get:
       operationId: getTask
-      summary: Conductor Get task details
+      summary: Conductor Get Task Details
       description: Retrieves the details of a specific task by its ID.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskId
-          in: path
-          required: true
-          description: The task ID
-          schema:
-            type: string
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -700,28 +772,31 @@ paths:
                 $ref: '#/components/schemas/Task'
         '404':
           description: Task not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/{taskId}/ack:
     post:
       operationId: acknowledgeTask
-      summary: Conductor Acknowledge a task
+      summary: Conductor Acknowledge a Task
       description: >-
         Acknowledges that a task has been received by a worker. This prevents the
         task from being sent to another worker.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskId
-          in: path
-          required: true
-          description: The task ID to acknowledge
-          schema:
-            type: string
-        - name: workerId
-          in: query
-          required: false
-          description: ID of the worker acknowledging the task
-          schema:
-            type: string
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID to acknowledge
+        schema:
+          type: string
+      - name: workerId
+        in: query
+        required: false
+        description: ID of the worker acknowledging the task
+        schema:
+          type: string
       responses:
         '200':
           description: Task acknowledged successfully
@@ -731,20 +806,23 @@ paths:
                 type: boolean
         '404':
           description: Task not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/{taskId}/log:
     post:
       operationId: addTaskLog
-      summary: Conductor Add a log entry to a task
+      summary: Conductor Add a Log Entry to a Task
       description: Adds a log message to a task execution for debugging or auditing.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskId
-          in: path
-          required: true
-          description: The task ID
-          schema:
-            type: string
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -755,19 +833,22 @@ paths:
       responses:
         '200':
           description: Log entry added successfully
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: getTaskLogs
-      summary: Conductor Get task execution logs
+      summary: Conductor Get Task Execution Logs
       description: Retrieves the log entries for a specific task execution.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskId
-          in: path
-          required: true
-          description: The task ID
-          schema:
-            type: string
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -777,23 +858,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskExecLog'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/queue/sizes:
     get:
       operationId: getTaskQueueSizes
-      summary: Conductor Get task queue sizes
+      summary: Conductor Get Task Queue Sizes
       description: >-
         Returns the number of pending tasks for each task type in the queue.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: taskType
-          in: query
-          required: false
-          description: >-
-            Comma-separated list of task types. If not specified, returns sizes
-            for all task types.
-          schema:
-            type: string
+      - name: taskType
+        in: query
+        required: false
+        description: >-
+          Comma-separated list of task types. If not specified, returns sizes
+          for all task types.
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -803,47 +887,50 @@ paths:
                 type: object
                 additionalProperties:
                   type: integer
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tasks/search:
     get:
       operationId: searchTasks
-      summary: Conductor Search for tasks
+      summary: Conductor Search for Tasks
       description: Searches for task executions based on query parameters.
       tags:
-        - Task
+      - Task
       parameters:
-        - name: start
-          in: query
-          required: false
-          description: Start index for pagination
-          schema:
-            type: integer
-            default: 0
-        - name: size
-          in: query
-          required: false
-          description: Number of results to return
-          schema:
-            type: integer
-            default: 100
-        - name: sort
-          in: query
-          required: false
-          description: Sort field and order
-          schema:
-            type: string
-        - name: freeText
-          in: query
-          required: false
-          description: Free text search
-          schema:
-            type: string
-            default: '*'
-        - name: query
-          in: query
-          required: false
-          description: Query expression for filtering results
-          schema:
-            type: string
+      - name: start
+        in: query
+        required: false
+        description: Start index for pagination
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        required: false
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 100
+      - name: sort
+        in: query
+        required: false
+        description: Sort field and order
+        schema:
+          type: string
+      - name: freeText
+        in: query
+        required: false
+        description: Free text search
+        schema:
+          type: string
+          default: '*'
+      - name: query
+        in: query
+        required: false
+        description: Query expression for filtering results
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -851,15 +938,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResultTaskSummary'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /event:
     post:
       operationId: createEventHandler
-      summary: Conductor Create an event handler
+      summary: Conductor Create an Event Handler
       description: >-
         Creates a new event handler definition for processing events from
         external systems.
       tags:
-        - Event
+      - Event
       requestBody:
         required: true
         content:
@@ -871,12 +961,15 @@ paths:
           description: Event handler created successfully
         '400':
           description: Invalid event handler definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateEventHandler
-      summary: Conductor Update an event handler
+      summary: Conductor Update an Event Handler
       description: Updates an existing event handler definition.
       tags:
-        - Event
+      - Event
       requestBody:
         required: true
         content:
@@ -888,12 +981,15 @@ paths:
           description: Event handler updated successfully
         '400':
           description: Invalid event handler definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: getAllEventHandlers
-      summary: Conductor Get all event handlers
+      summary: Conductor Get All Event Handlers
       description: Retrieves all registered event handler definitions.
       tags:
-        - Event
+      - Event
       responses:
         '200':
           description: Successful operation
@@ -903,45 +999,51 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventHandler'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /event/{name}:
     delete:
       operationId: deleteEventHandler
-      summary: Conductor Delete an event handler
+      summary: Conductor Delete an Event Handler
       description: Removes an event handler by name.
       tags:
-        - Event
+      - Event
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The event handler name
-          schema:
-            type: string
+      - name: name
+        in: path
+        required: true
+        description: The event handler name
+        schema:
+          type: string
       responses:
         '204':
           description: Event handler deleted successfully
         '404':
           description: Event handler not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: getEventHandlersForEvent
-      summary: Conductor Get event handlers for an event
+      summary: Conductor Get Event Handlers for an Event
       description: Retrieves all event handlers registered for a specific event.
       tags:
-        - Event
+      - Event
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The event name
-          schema:
-            type: string
-        - name: activeOnly
-          in: query
-          required: false
-          description: Whether to return only active event handlers
-          schema:
-            type: boolean
-            default: true
+      - name: name
+        in: path
+        required: true
+        description: The event name
+        schema:
+          type: string
+      - name: activeOnly
+        in: query
+        required: false
+        description: Whether to return only active event handlers
+        schema:
+          type: boolean
+          default: true
       responses:
         '200':
           description: Successful operation
@@ -951,13 +1053,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventHandler'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/config:
     get:
       operationId: getConfiguration
-      summary: Conductor Get server configuration
+      summary: Conductor Get Server Configuration
       description: Retrieves the current Conductor server configuration.
       tags:
-        - Admin
+      - Admin
       responses:
         '200':
           description: Successful operation
@@ -966,20 +1071,23 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/task/{taskType}:
     get:
       operationId: getTaskQueueInfo
-      summary: Conductor Get task queue information
+      summary: Conductor Get Task Queue Information
       description: Retrieves information about a specific task type's queue.
       tags:
-        - Admin
+      - Admin
       parameters:
-        - name: taskType
-          in: path
-          required: true
-          description: The task type
-          schema:
-            type: string
+      - name: taskType
+        in: path
+        required: true
+        description: The task type
+        schema:
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -987,30 +1095,36 @@ paths:
             application/json:
               schema:
                 type: object
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/sweep/requeue/{workflowId}:
     post:
       operationId: requeueSweep
-      summary: Conductor Requeue a workflow for sweep
+      summary: Conductor Requeue a Workflow for Sweep
       description: Requeues a workflow for the sweep operation to re-evaluate its state.
       tags:
-        - Admin
+      - Admin
       parameters:
-        - name: workflowId
-          in: path
-          required: true
-          description: The workflow instance ID
-          schema:
-            type: string
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
       responses:
         '200':
           description: Workflow requeued successfully
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /health:
     get:
       operationId: healthCheck
-      summary: Conductor Health check
+      summary: Conductor Health Check
       description: Returns the health status of the Conductor server.
       tags:
-        - Admin
+      - Admin
       responses:
         '200':
           description: Server is healthy
@@ -1021,138 +1135,166 @@ paths:
                 properties:
                   healthy:
                     type: boolean
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     WorkflowDef:
       type: object
       required:
-        - name
-        - tasks
+      - name
+      - tasks
       properties:
         name:
           type: string
           description: The name of the workflow definition
+          example: Example Title
         description:
           type: string
           description: Description of the workflow
+          example: A sample description.
         version:
           type: integer
           description: The version of the workflow definition
           default: 1
+          example: 10
         tasks:
           type: array
           description: The list of tasks in the workflow
           items:
             $ref: '#/components/schemas/WorkflowTask'
+          example: []
         inputParameters:
           type: array
           description: List of input parameter names for the workflow
           items:
             type: string
+          example: []
         outputParameters:
           type: object
           description: Mapping of output parameters
           additionalProperties: true
+          example: example_value
         failureWorkflow:
           type: string
           description: >-
             Name of the workflow to execute when this workflow fails
+          example: example_value
         schemaVersion:
           type: integer
           description: Schema version (currently 2)
           default: 2
+          example: 10
         restartable:
           type: boolean
           description: Whether the workflow is restartable
           default: true
+          example: true
         workflowStatusListenerEnabled:
           type: boolean
           description: Whether to enable workflow status listener
           default: false
+          example: true
         ownerEmail:
           type: string
           description: Email of the workflow definition owner
+          example: user@example.com
         timeoutPolicy:
           type: string
           description: Timeout policy for the workflow
           enum:
-            - TIME_OUT_WF
-            - ALERT_ONLY
+          - TIME_OUT_WF
+          - ALERT_ONLY
+          example: TIME_OUT_WF
         timeoutSeconds:
           type: integer
           format: int64
           description: Timeout in seconds for the workflow
           default: 0
+          example: 10
         variables:
           type: object
           description: Workflow level variables
           additionalProperties: true
+          example: example_value
         inputTemplate:
           type: object
           description: Default input template
           additionalProperties: true
+          example: example_value
     WorkflowTask:
       type: object
       required:
-        - name
-        - taskReferenceName
-        - type
+      - name
+      - taskReferenceName
+      - type
       properties:
         name:
           type: string
           description: Name of the task
+          example: Example Title
         taskReferenceName:
           type: string
           description: Unique reference name for the task within the workflow
+          example: example_value
         type:
           type: string
           description: The type of task
           enum:
-            - SIMPLE
-            - DYNAMIC
-            - FORK_JOIN
-            - FORK_JOIN_DYNAMIC
-            - DECISION
-            - SWITCH
-            - JOIN
-            - DO_WHILE
-            - SUB_WORKFLOW
-            - START_WORKFLOW
-            - EVENT
-            - WAIT
-            - HUMAN
-            - HTTP
-            - INLINE
-            - JSON_JQ_TRANSFORM
-            - LAMBDA
-            - SET_VARIABLE
-            - TERMINATE
-            - KAFKA_PUBLISH
+          - SIMPLE
+          - DYNAMIC
+          - FORK_JOIN
+          - FORK_JOIN_DYNAMIC
+          - DECISION
+          - SWITCH
+          - JOIN
+          - DO_WHILE
+          - SUB_WORKFLOW
+          - START_WORKFLOW
+          - EVENT
+          - WAIT
+          - HUMAN
+          - HTTP
+          - INLINE
+          - JSON_JQ_TRANSFORM
+          - LAMBDA
+          - SET_VARIABLE
+          - TERMINATE
+          - KAFKA_PUBLISH
+          example: SIMPLE
         description:
           type: string
           description: Task description
+          example: A sample description.
         inputParameters:
           type: object
           description: Input parameter mappings
           additionalProperties: true
+          example: example_value
         optional:
           type: boolean
           description: Whether this task is optional
           default: false
+          example: true
         startDelay:
           type: integer
           description: Delay in seconds before starting the task
           default: 0
+          example: 10
         asyncComplete:
           type: boolean
           description: Whether the task is completed asynchronously
           default: false
+          example: true
         retryCount:
           type: integer
           description: Number of retries
+          example: 10
         sink:
           type: string
           description: Sink for EVENT tasks
+          example: example_value
         subWorkflowParam:
           type: object
           description: Sub workflow parameters
@@ -1161,11 +1303,13 @@ components:
               type: string
             version:
               type: integer
+          example: example_value
         joinOn:
           type: array
           description: List of task reference names to join on
           items:
             type: string
+          example: []
         forkTasks:
           type: array
           description: List of forked task lists
@@ -1173,6 +1317,7 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/WorkflowTask'
+          example: []
         decisionCases:
           type: object
           description: Decision cases for SWITCH/DECISION tasks
@@ -1180,373 +1325,460 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/WorkflowTask'
+          example: example_value
         defaultCase:
           type: array
           description: Default case tasks for SWITCH/DECISION
           items:
             $ref: '#/components/schemas/WorkflowTask'
+          example: []
         loopCondition:
           type: string
           description: Loop condition for DO_WHILE tasks
+          example: example_value
         loopOver:
           type: array
           description: Tasks to loop over in DO_WHILE
           items:
             $ref: '#/components/schemas/WorkflowTask'
+          example: []
     TaskDef:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
           description: The name of the task definition
+          example: Example Title
         description:
           type: string
           description: Description of the task
+          example: A sample description.
         retryCount:
           type: integer
           description: Number of retries
           default: 3
+          example: 10
         retryLogic:
           type: string
           description: Retry logic
           enum:
-            - FIXED
-            - EXPONENTIAL_BACKOFF
-            - LINEAR_BACKOFF
+          - FIXED
+          - EXPONENTIAL_BACKOFF
+          - LINEAR_BACKOFF
+          example: FIXED
         retryDelaySeconds:
           type: integer
           description: Delay between retries in seconds
           default: 60
+          example: 10
         timeoutSeconds:
           type: integer
           format: int64
           description: Task execution timeout in seconds
           default: 0
+          example: 10
         timeoutPolicy:
           type: string
           description: Timeout policy
           enum:
-            - RETRY
-            - TIME_OUT_WF
-            - ALERT_ONLY
+          - RETRY
+          - TIME_OUT_WF
+          - ALERT_ONLY
+          example: RETRY
         responseTimeoutSeconds:
           type: integer
           format: int64
           description: Time to wait for worker to respond after polling
           default: 3600
+          example: 10
         pollTimeoutSeconds:
           type: integer
           description: Time to wait when polling for task
+          example: 10
         concurrentExecLimit:
           type: integer
           description: Concurrent execution limit for the task
+          example: 10
         rateLimitPerFrequency:
           type: integer
           description: Rate limit per frequency
+          example: 10
         rateLimitFrequencyInSeconds:
           type: integer
           description: Rate limit frequency window in seconds
+          example: 10
         ownerEmail:
           type: string
           description: Email of the task definition owner
+          example: user@example.com
         inputKeys:
           type: array
           description: Expected input keys
           items:
             type: string
+          example: []
         outputKeys:
           type: array
           description: Expected output keys
           items:
             type: string
+          example: []
         inputTemplate:
           type: object
           description: Default input template
           additionalProperties: true
+          example: example_value
         createdBy:
           type: string
           description: Creator of the task definition
+          example: example_value
         createTime:
           type: integer
           format: int64
           description: Creation timestamp
+          example: 10
         updatedBy:
           type: string
           description: Last updater
+          example: example_value
         updateTime:
           type: integer
           format: int64
           description: Last update timestamp
+          example: 10
     StartWorkflowRequest:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
           description: Name of the workflow to start
+          example: Example Title
         version:
           type: integer
           description: Version of the workflow
+          example: 10
         correlationId:
           type: string
           description: Correlation ID for the workflow instance
+          example: '500123'
         priority:
           type: integer
           description: Priority of the workflow (0-99)
           default: 0
+          example: 10
         input:
           type: object
           description: Input parameters for the workflow
           additionalProperties: true
+          example: example_value
         taskToDomain:
           type: object
           description: Task to domain mapping for routing
           additionalProperties:
             type: string
+          example: example_value
         workflowDef:
           $ref: '#/components/schemas/WorkflowDef'
         externalInputPayloadStoragePath:
           type: string
           description: Path to externally stored input payload
+          example: example_value
     Workflow:
       type: object
       properties:
         workflowId:
           type: string
           description: Unique workflow instance ID
+          example: '500123'
         workflowName:
           type: string
           description: Name of the workflow definition
+          example: example_value
         workflowVersion:
           type: integer
           description: Version of the workflow definition
+          example: 10
         correlationId:
           type: string
           description: Correlation ID
+          example: '500123'
         status:
           type: string
           description: Current status of the workflow
           enum:
-            - RUNNING
-            - COMPLETED
-            - FAILED
-            - TIMED_OUT
-            - TERMINATED
-            - PAUSED
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - TIMED_OUT
+          - TERMINATED
+          - PAUSED
+          example: RUNNING
         startTime:
           type: integer
           format: int64
           description: Start time in epoch milliseconds
+          example: 10
         endTime:
           type: integer
           format: int64
           description: End time in epoch milliseconds
+          example: 10
         updateTime:
           type: integer
           format: int64
           description: Last update time
+          example: 10
         input:
           type: object
           description: Workflow input
           additionalProperties: true
+          example: example_value
         output:
           type: object
           description: Workflow output
           additionalProperties: true
+          example: example_value
         tasks:
           type: array
           description: List of tasks in the workflow execution
           items:
             $ref: '#/components/schemas/Task'
+          example: []
         reasonForIncompletion:
           type: string
           description: Reason for failure or termination
+          example: example_value
         failedReferenceTaskNames:
           type: array
           description: List of failed task reference names
           items:
             type: string
+          example: []
         workflowDefinition:
           $ref: '#/components/schemas/WorkflowDef'
         priority:
           type: integer
           description: Workflow priority
+          example: 10
         variables:
           type: object
           description: Workflow variables
           additionalProperties: true
+          example: example_value
         lastRetriedTime:
           type: integer
           format: int64
           description: Last retry timestamp
+          example: 10
         ownerApp:
           type: string
           description: Owner application
+          example: example_value
         createTime:
           type: integer
           format: int64
           description: Creation timestamp
+          example: 10
         createdBy:
           type: string
           description: Created by
+          example: example_value
         parentWorkflowId:
           type: string
           description: Parent workflow ID if this is a sub-workflow
+          example: '500123'
     Task:
       type: object
       properties:
         taskId:
           type: string
           description: Unique task instance ID
+          example: '500123'
         taskType:
           type: string
           description: The type of the task
+          example: example_value
         status:
           type: string
           description: Current status of the task
           enum:
-            - IN_PROGRESS
-            - CANCELED
-            - FAILED
-            - FAILED_WITH_TERMINAL_ERROR
-            - COMPLETED
-            - COMPLETED_WITH_ERRORS
-            - SCHEDULED
-            - TIMED_OUT
-            - SKIPPED
+          - IN_PROGRESS
+          - CANCELED
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          - COMPLETED_WITH_ERRORS
+          - SCHEDULED
+          - TIMED_OUT
+          - SKIPPED
+          example: IN_PROGRESS
         referenceTaskName:
           type: string
           description: Reference name of the task in the workflow
+          example: example_value
         workflowInstanceId:
           type: string
           description: ID of the workflow instance this task belongs to
+          example: '500123'
         workflowType:
           type: string
           description: Type/name of the workflow
+          example: example_value
         correlationId:
           type: string
           description: Correlation ID
+          example: '500123'
         scheduledTime:
           type: integer
           format: int64
           description: Scheduled time
+          example: 10
         startTime:
           type: integer
           format: int64
           description: Start time
+          example: 10
         endTime:
           type: integer
           format: int64
           description: End time
+          example: 10
         updateTime:
           type: integer
           format: int64
           description: Last update time
+          example: 10
         retryCount:
           type: integer
           description: Current retry count
+          example: 10
         pollCount:
           type: integer
           description: Number of times this task was polled
+          example: 10
         callbackAfterSeconds:
           type: integer
           format: int64
           description: Callback delay in seconds
+          example: 10
         workerId:
           type: string
           description: ID of the worker that polled this task
+          example: '500123'
         inputData:
           type: object
           description: Task input data
           additionalProperties: true
+          example: example_value
         outputData:
           type: object
           description: Task output data
           additionalProperties: true
+          example: example_value
         reasonForIncompletion:
           type: string
           description: Reason for failure
+          example: example_value
         logs:
           type: array
           description: Task execution logs
           items:
             $ref: '#/components/schemas/TaskExecLog'
+          example: []
         domain:
           type: string
           description: Task domain
+          example: example_value
         seq:
           type: integer
           description: Sequence number
+          example: 10
         taskDefName:
           type: string
           description: Task definition name
+          example: example_value
         responseTimeoutSeconds:
           type: integer
           format: int64
           description: Response timeout
+          example: 10
         queueWaitTime:
           type: integer
           format: int64
           description: Time spent waiting in queue
+          example: 10
     TaskResult:
       type: object
       required:
-        - workflowInstanceId
-        - taskId
-        - status
+      - workflowInstanceId
+      - taskId
+      - status
       properties:
         workflowInstanceId:
           type: string
           description: The workflow instance ID
+          example: '500123'
         taskId:
           type: string
           description: The task ID
+          example: '500123'
         status:
           type: string
           description: Task execution status
           enum:
-            - IN_PROGRESS
-            - FAILED
-            - FAILED_WITH_TERMINAL_ERROR
-            - COMPLETED
+          - IN_PROGRESS
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          example: IN_PROGRESS
         outputData:
           type: object
           description: Task output data
           additionalProperties: true
+          example: example_value
         reasonForIncompletion:
           type: string
           description: Reason for failure
+          example: example_value
         callbackAfterSeconds:
           type: integer
           format: int64
           description: Callback delay for IN_PROGRESS tasks
+          example: 10
         workerId:
           type: string
           description: ID of the worker updating the task
+          example: '500123'
         logs:
           type: array
           description: Task execution logs
           items:
             $ref: '#/components/schemas/TaskExecLog'
+          example: []
         externalOutputPayloadStoragePath:
           type: string
           description: Path to externally stored output payload
+          example: example_value
     TaskExecLog:
       type: object
       properties:
         log:
           type: string
           description: Log message
+          example: example_value
         taskId:
           type: string
           description: Associated task ID
+          example: '500123'
         createdTime:
           type: integer
           format: int64
           description: Timestamp of the log entry
+          example: 10
     SkipTaskRequest:
       type: object
       properties:
@@ -1554,40 +1786,48 @@ components:
           type: object
           description: Input for the skipped task
           additionalProperties: true
+          example: example_value
         taskOutput:
           type: object
           description: Output to set for the skipped task
           additionalProperties: true
+          example: example_value
     EventHandler:
       type: object
       required:
-        - name
-        - event
-        - actions
+      - name
+      - event
+      - actions
       properties:
         name:
           type: string
           description: Name of the event handler
+          example: Example Title
         event:
           type: string
           description: >-
             Event identifier in the format source:sink:subject
             (e.g., conductor:workflow_completed:myWorkflow)
+          example: example_value
         condition:
           type: string
           description: Condition expression to evaluate
+          example: example_value
         actions:
           type: array
           description: List of actions to perform when the event is received
           items:
             $ref: '#/components/schemas/EventHandlerAction'
+          example: []
         active:
           type: boolean
           description: Whether the event handler is active
           default: true
+          example: true
         evaluatorType:
           type: string
           description: Type of evaluator for the condition
+          example: example_value
     EventHandlerAction:
       type: object
       properties:
@@ -1595,9 +1835,10 @@ components:
           type: string
           description: The action type
           enum:
-            - start_workflow
-            - complete_task
-            - fail_task
+          - start_workflow
+          - complete_task
+          - fail_task
+          example: start_workflow
         start_workflow:
           type: object
           description: Start workflow action parameters
@@ -1611,6 +1852,7 @@ components:
             input:
               type: object
               additionalProperties: true
+          example: example_value
         complete_task:
           type: object
           description: Complete task action parameters
@@ -1622,6 +1864,7 @@ components:
             output:
               type: object
               additionalProperties: true
+          example: example_value
         fail_task:
           type: object
           description: Fail task action parameters
@@ -1633,10 +1876,12 @@ components:
             output:
               type: object
               additionalProperties: true
+          example: example_value
         expandInlineJSON:
           type: boolean
           description: Whether to expand inline JSON strings
           default: false
+          example: true
     SearchResultWorkflowSummary:
       type: object
       properties:
@@ -1644,52 +1889,69 @@ components:
           type: integer
           format: int64
           description: Total number of matching results
+          example: 10
         results:
           type: array
           description: List of workflow summaries
           items:
             $ref: '#/components/schemas/WorkflowSummary'
+          example: []
     WorkflowSummary:
       type: object
       properties:
         workflowId:
           type: string
+          example: '500123'
         workflowType:
           type: string
+          example: example_value
         version:
           type: integer
+          example: 10
         correlationId:
           type: string
+          example: '500123'
         startTime:
           type: string
+          example: example_value
         updateTime:
           type: string
+          example: example_value
         endTime:
           type: string
+          example: example_value
         status:
           type: string
           enum:
-            - RUNNING
-            - COMPLETED
-            - FAILED
-            - TIMED_OUT
-            - TERMINATED
-            - PAUSED
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - TIMED_OUT
+          - TERMINATED
+          - PAUSED
+          example: RUNNING
         input:
           type: string
+          example: example_value
         output:
           type: string
+          example: example_value
         reasonForIncompletion:
           type: string
+          example: example_value
         executionTime:
           type: integer
           format: int64
+          example: 10
         event:
           type: string
+          example: example_value
         failedReferenceTaskNames:
           type: string
+          example: example_value
         priority:
           type: integer
+          example: 10
     SearchResultTaskSummary:
       type: object
       properties:
@@ -1697,54 +1959,72 @@ components:
           type: integer
           format: int64
           description: Total number of matching results
+          example: 10
         results:
           type: array
           description: List of task summaries
           items:
             $ref: '#/components/schemas/TaskSummary'
+          example: []
     TaskSummary:
       type: object
       properties:
         taskId:
           type: string
+          example: '500123'
         taskType:
           type: string
+          example: example_value
         taskDefName:
           type: string
+          example: example_value
         status:
           type: string
           enum:
-            - IN_PROGRESS
-            - CANCELED
-            - FAILED
-            - FAILED_WITH_TERMINAL_ERROR
-            - COMPLETED
-            - COMPLETED_WITH_ERRORS
-            - SCHEDULED
-            - TIMED_OUT
-            - SKIPPED
+          - IN_PROGRESS
+          - CANCELED
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          - COMPLETED_WITH_ERRORS
+          - SCHEDULED
+          - TIMED_OUT
+          - SKIPPED
+          example: IN_PROGRESS
         workflowId:
           type: string
+          example: '500123'
         workflowType:
           type: string
+          example: example_value
         correlationId:
           type: string
+          example: '500123'
         scheduledTime:
           type: string
+          example: example_value
         startTime:
           type: string
+          example: example_value
         updateTime:
           type: string
+          example: example_value
         endTime:
           type: string
+          example: example_value
         input:
           type: string
+          example: example_value
         output:
           type: string
+          example: example_value
         reasonForIncompletion:
           type: string
+          example: example_value
         queueWaitTime:
           type: integer
           format: int64
+          example: 10
         domain:
           type: string
+          example: example_value

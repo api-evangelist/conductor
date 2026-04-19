@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TaskDef",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "retryCount": {
+      "type": "integer"
+    },
+    "retryLogic": {
+      "type": "string"
+    },
+    "retryDelaySeconds": {
+      "type": "integer"
+    },
+    "timeoutSeconds": {
+      "type": "integer"
+    },
+    "timeoutPolicy": {
+      "type": "string"
+    },
+    "responseTimeoutSeconds": {
+      "type": "integer"
+    },
+    "pollTimeoutSeconds": {
+      "type": "integer"
+    },
+    "concurrentExecLimit": {
+      "type": "integer"
+    },
+    "rateLimitPerFrequency": {
+      "type": "integer"
+    },
+    "rateLimitFrequencyInSeconds": {
+      "type": "integer"
+    },
+    "ownerEmail": {
+      "type": "string"
+    },
+    "inputKeys": {
+      "type": "array"
+    },
+    "outputKeys": {
+      "type": "array"
+    },
+    "inputTemplate": {
+      "type": "object"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "integer"
+    },
+    "updatedBy": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "integer"
+    }
+  }
+}

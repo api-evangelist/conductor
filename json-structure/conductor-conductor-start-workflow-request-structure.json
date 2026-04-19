@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "StartWorkflowRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "input": {
+      "type": "object"
+    },
+    "taskToDomain": {
+      "type": "object"
+    },
+    "externalInputPayloadStoragePath": {
+      "type": "string"
+    }
+  }
+}

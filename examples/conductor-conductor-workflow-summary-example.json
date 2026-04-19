@@ -1,0 +1,17 @@
+{
+  "workflowId": "500123",
+  "workflowType": "example_value",
+  "version": 10,
+  "correlationId": "500123",
+  "startTime": "example_value",
+  "updateTime": "example_value",
+  "endTime": "example_value",
+  "status": "example_value",
+  "input": "example_value",
+  "output": "example_value",
+  "reasonForIncompletion": "example_value",
+  "executionTime": 10,
+  "event": "example_value",
+  "failedReferenceTaskNames": "example_value",
+  "priority": 10
+}

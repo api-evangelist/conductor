@@ -1,0 +1,17 @@
+{
+  "name": "Example Title",
+  "description": "A sample description.",
+  "version": 10,
+  "tasks": [],
+  "inputParameters": [],
+  "outputParameters": "example_value",
+  "failureWorkflow": "example_value",
+  "schemaVersion": 10,
+  "restartable": true,
+  "workflowStatusListenerEnabled": true,
+  "ownerEmail": "user@example.com",
+  "timeoutPolicy": "example_value",
+  "timeoutSeconds": 10,
+  "variables": "example_value",
+  "inputTemplate": "example_value"
+}

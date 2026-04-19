@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorkflowSummary",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string"
+    },
+    "workflowType": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "input": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "reasonForIncompletion": {
+      "type": "string"
+    },
+    "executionTime": {
+      "type": "integer"
+    },
+    "event": {
+      "type": "string"
+    },
+    "failedReferenceTaskNames": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer"
+    }
+  }
+}
