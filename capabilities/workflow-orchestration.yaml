@@ -1,289 +1,579 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Conductor Workflow Orchestration"
-  description: "Unified workflow for managing workflow definitions, task definitions, workflow executions, and event handlers. Used by backend developers and DevOps engineers."
+  label: Conductor Workflow Orchestration
+  description: Unified workflow for managing workflow definitions, task definitions, workflow executions, and event handlers.
+    Used by backend developers and DevOps engineers.
   tags:
-    - Conductor
-    - Workflow Orchestration
-    - Task Management
-    - Automation
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Conductor
+  - Workflow Orchestration
+  - Task Management
+  - Automation
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      CONDUCTOR_API_TOKEN: CONDUCTOR_API_TOKEN
-
+- namespace: env
+  keys:
+    CONDUCTOR_API_TOKEN: CONDUCTOR_API_TOKEN
 capability:
   consumes:
-    - import: conductor
-      location: ./shared/conductor.yaml
-
+  - type: http
+    namespace: conductor
+    baseUri: https://play.orkes.io/api
+    description: Conductor API for workflow and task orchestration.
+    authentication:
+      type: bearer
+      token: '{{CONDUCTOR_API_TOKEN}}'
+    resources:
+    - name: workflow-definitions
+      path: /metadata/workflow
+      description: Workflow definition management.
+      operations:
+      - name: create-workflow-definition
+        method: POST
+        description: Create a new workflow definition.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+      - name: get-all-workflow-definitions
+        method: GET
+        description: Get all workflow definitions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-workflow-definitions
+        method: PUT
+        description: Update workflow definitions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflow-definition-details
+      path: /metadata/workflow/{name}
+      description: Individual workflow definition management.
+      operations:
+      - name: get-workflow-definition
+        method: GET
+        description: Get a workflow definition by name.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Workflow name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-workflow-definition
+        method: DELETE
+        description: Delete a workflow definition.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Workflow name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: task-definitions
+      path: /metadata/taskdefs
+      description: Task definition management.
+      operations:
+      - name: create-task-definitions
+        method: POST
+        description: Create new task definitions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-all-task-definitions
+        method: GET
+        description: Get all task definitions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-task-definition
+        method: PUT
+        description: Update a task definition.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: task-definition-details
+      path: /metadata/taskdefs/{taskType}
+      description: Individual task definition management.
+      operations:
+      - name: get-task-definition
+        method: GET
+        description: Get a task definition.
+        inputParameters:
+        - name: taskType
+          in: path
+          type: string
+          required: true
+          description: Task type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-task-definition
+        method: DELETE
+        description: Delete a task definition.
+        inputParameters:
+        - name: taskType
+          in: path
+          type: string
+          required: true
+          description: Task type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflow-executions
+      path: /workflow
+      description: Workflow execution management.
+      operations:
+      - name: start-workflow
+        method: POST
+        description: Start a new workflow.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+    - name: workflow-execution-details
+      path: /workflow/{workflowId}
+      description: Individual workflow execution management.
+      operations:
+      - name: get-workflow-execution
+        method: GET
+        description: Get workflow execution status.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          required: true
+          description: Workflow ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-workflow-execution
+        method: DELETE
+        description: Delete a workflow execution.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          required: true
+          description: Workflow ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflow-lifecycle
+      path: /workflow/{workflowId}
+      description: Workflow lifecycle operations.
+      operations:
+      - name: pause-workflow
+        method: PUT
+        description: Pause a running workflow.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          required: true
+          description: Workflow ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: resume-workflow
+        method: PUT
+        description: Resume a paused workflow.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          required: true
+          description: Workflow ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: terminate-workflow
+        method: DELETE
+        description: Terminate a running workflow.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          required: true
+          description: Workflow ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflow-search
+      path: /workflow/search
+      description: Workflow search.
+      operations:
+      - name: search-workflows
+        method: GET
+        description: Search for workflow executions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tasks
+      path: /tasks
+      description: Task operations.
+      operations:
+      - name: update-task
+        method: POST
+        description: Update task status.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: task-polling
+      path: /tasks/poll/{taskType}
+      description: Task polling.
+      operations:
+      - name: poll-for-task
+        method: GET
+        description: Poll for a task.
+        inputParameters:
+        - name: taskType
+          in: path
+          type: string
+          required: true
+          description: Task type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: event-handlers
+      path: /event
+      description: Event handler management.
+      operations:
+      - name: create-event-handler
+        method: POST
+        description: Create an event handler.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-all-event-handlers
+        method: GET
+        description: Get all event handlers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-event-handler
+        method: PUT
+        description: Update an event handler.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: workflow-orchestration-api
-      description: "Unified REST API for Conductor workflow orchestration."
-      resources:
-        - path: /v1/workflow-definitions
-          name: workflow-definitions
-          description: "Workflow definition management."
-          operations:
-            - method: GET
-              name: list-workflow-definitions
-              description: "List all workflow definitions."
-              call: "conductor.get-all-workflow-definitions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-workflow-definition
-              description: "Create a workflow definition."
-              call: "conductor.create-workflow-definition"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/workflow-definitions/{id}
-          name: workflow-definition-details
-          description: "Individual workflow definition."
-          operations:
-            - method: GET
-              name: get-workflow-definition
-              description: "Get a workflow definition."
-              call: "conductor.get-workflow-definition"
-              with:
-                name: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-workflow-definition
-              description: "Delete a workflow definition."
-              call: "conductor.delete-workflow-definition"
-              with:
-                name: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/task-definitions
-          name: task-definitions
-          description: "Task definition management."
-          operations:
-            - method: GET
-              name: list-task-definitions
-              description: "List all task definitions."
-              call: "conductor.get-all-task-definitions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-task-definitions
-              description: "Create task definitions."
-              call: "conductor.create-task-definitions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/workflows
-          name: workflows
-          description: "Workflow execution management."
-          operations:
-            - method: POST
-              name: start-workflow
-              description: "Start a new workflow."
-              call: "conductor.start-workflow"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/workflows/{id}
-          name: workflow-details
-          description: "Individual workflow execution."
-          operations:
-            - method: GET
-              name: get-workflow-execution
-              description: "Get workflow execution status."
-              call: "conductor.get-workflow-execution"
-              with:
-                workflowId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-workflow-execution
-              description: "Delete a workflow execution."
-              call: "conductor.delete-workflow-execution"
-              with:
-                workflowId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: workflow-orchestration-mcp
-      transport: http
-      description: "MCP server for AI-assisted workflow orchestration."
-      tools:
-        - name: list-workflow-definitions
-          description: "List all workflow definitions."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "conductor.get-all-workflow-definitions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-workflow-definition
-          description: "Get a workflow definition by name."
-          hints:
-            readOnly: true
-          call: "conductor.get-workflow-definition"
-          with:
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-workflow-definition
-          description: "Create a new workflow definition."
-          hints:
-            readOnly: false
-          call: "conductor.create-workflow-definition"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-workflow-definition
-          description: "Delete a workflow definition."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "conductor.delete-workflow-definition"
-          with:
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-task-definitions
-          description: "List all task definitions."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "conductor.get-all-task-definitions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-task-definition
-          description: "Get a task definition."
-          hints:
-            readOnly: true
-          call: "conductor.get-task-definition"
-          with:
-            taskType: "tools.taskType"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-task-definitions
-          description: "Create new task definitions."
-          hints:
-            readOnly: false
-          call: "conductor.create-task-definitions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: start-workflow
-          description: "Start a new workflow execution."
-          hints:
-            readOnly: false
-          call: "conductor.start-workflow"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-workflow-execution
-          description: "Get workflow execution status."
-          hints:
-            readOnly: true
-          call: "conductor.get-workflow-execution"
-          with:
-            workflowId: "tools.workflowId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: pause-workflow
-          description: "Pause a running workflow."
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "conductor.pause-workflow"
-          with:
-            workflowId: "tools.workflowId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: resume-workflow
-          description: "Resume a paused workflow."
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "conductor.resume-workflow"
-          with:
-            workflowId: "tools.workflowId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: terminate-workflow
-          description: "Terminate a running workflow."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "conductor.terminate-workflow"
-          with:
-            workflowId: "tools.workflowId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: search-workflows
-          description: "Search for workflow executions."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "conductor.search-workflows"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: poll-for-task
-          description: "Poll for a task to execute."
-          hints:
-            readOnly: true
-          call: "conductor.poll-for-task"
-          with:
-            taskType: "tools.taskType"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-task
-          description: "Update task execution status."
-          hints:
-            readOnly: false
-          call: "conductor.update-task"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-event-handlers
-          description: "List all event handlers."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "conductor.get-all-event-handlers"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-event-handler
-          description: "Create an event handler."
-          hints:
-            readOnly: false
-          call: "conductor.create-event-handler"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: workflow-orchestration-api
+    description: Unified REST API for Conductor workflow orchestration.
+    resources:
+    - path: /v1/workflow-definitions
+      name: workflow-definitions
+      description: Workflow definition management.
+      operations:
+      - method: GET
+        name: list-workflow-definitions
+        description: List all workflow definitions.
+        call: conductor.get-all-workflow-definitions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-workflow-definition
+        description: Create a workflow definition.
+        call: conductor.create-workflow-definition
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow-definitions/{id}
+      name: workflow-definition-details
+      description: Individual workflow definition.
+      operations:
+      - method: GET
+        name: get-workflow-definition
+        description: Get a workflow definition.
+        call: conductor.get-workflow-definition
+        with:
+          name: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-workflow-definition
+        description: Delete a workflow definition.
+        call: conductor.delete-workflow-definition
+        with:
+          name: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/task-definitions
+      name: task-definitions
+      description: Task definition management.
+      operations:
+      - method: GET
+        name: list-task-definitions
+        description: List all task definitions.
+        call: conductor.get-all-task-definitions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-task-definitions
+        description: Create task definitions.
+        call: conductor.create-task-definitions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflows
+      name: workflows
+      description: Workflow execution management.
+      operations:
+      - method: POST
+        name: start-workflow
+        description: Start a new workflow.
+        call: conductor.start-workflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflows/{id}
+      name: workflow-details
+      description: Individual workflow execution.
+      operations:
+      - method: GET
+        name: get-workflow-execution
+        description: Get workflow execution status.
+        call: conductor.get-workflow-execution
+        with:
+          workflowId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-workflow-execution
+        description: Delete a workflow execution.
+        call: conductor.delete-workflow-execution
+        with:
+          workflowId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: workflow-orchestration-mcp
+    transport: http
+    description: MCP server for AI-assisted workflow orchestration.
+    tools:
+    - name: list-workflow-definitions
+      description: List all workflow definitions.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: conductor.get-all-workflow-definitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workflow-definition
+      description: Get a workflow definition by name.
+      hints:
+        readOnly: true
+      call: conductor.get-workflow-definition
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-workflow-definition
+      description: Create a new workflow definition.
+      hints:
+        readOnly: false
+      call: conductor.create-workflow-definition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-workflow-definition
+      description: Delete a workflow definition.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conductor.delete-workflow-definition
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-task-definitions
+      description: List all task definitions.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: conductor.get-all-task-definitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-task-definition
+      description: Get a task definition.
+      hints:
+        readOnly: true
+      call: conductor.get-task-definition
+      with:
+        taskType: tools.taskType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-task-definitions
+      description: Create new task definitions.
+      hints:
+        readOnly: false
+      call: conductor.create-task-definitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-workflow
+      description: Start a new workflow execution.
+      hints:
+        readOnly: false
+      call: conductor.start-workflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workflow-execution
+      description: Get workflow execution status.
+      hints:
+        readOnly: true
+      call: conductor.get-workflow-execution
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: pause-workflow
+      description: Pause a running workflow.
+      hints:
+        readOnly: false
+        idempotent: true
+      call: conductor.pause-workflow
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-workflow
+      description: Resume a paused workflow.
+      hints:
+        readOnly: false
+        idempotent: true
+      call: conductor.resume-workflow
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-workflow
+      description: Terminate a running workflow.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conductor.terminate-workflow
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-workflows
+      description: Search for workflow executions.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: conductor.search-workflows
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: poll-for-task
+      description: Poll for a task to execute.
+      hints:
+        readOnly: true
+      call: conductor.poll-for-task
+      with:
+        taskType: tools.taskType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-task
+      description: Update task execution status.
+      hints:
+        readOnly: false
+      call: conductor.update-task
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-event-handlers
+      description: List all event handlers.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: conductor.get-all-event-handlers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-event-handler
+      description: Create an event handler.
+      hints:
+        readOnly: false
+      call: conductor.create-event-handler
+      outputParameters:
+      - type: object
+        mapping: $.
