@@ -16,7 +16,7 @@ tags:
   - State
   - Tasks
   - Workflows
-type: Contract
+kind: contract
 access: 3rd-Party
 created: '2025-01-08'
 modified: '2026-04-18'
