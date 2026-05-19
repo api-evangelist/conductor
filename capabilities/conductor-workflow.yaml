@@ -1,0 +1,575 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conductor API — Workflow
+  description: 'Conductor API — Workflow. 11 operations. Lead operation: Conductor Start a New Workflow. Self-contained Naftiko
+    capability covering one Conductor business surface.'
+  tags:
+  - Conductor
+  - Workflow
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONDUCTOR_API_KEY: CONDUCTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conductor-workflow
+    baseUri: https://localhost:8080/api
+    description: Conductor API — Workflow business capability. Self-contained, no shared references.
+    resources:
+    - name: workflow
+      path: /workflow
+      operations:
+      - name: startworkflow
+        method: POST
+        description: Conductor Start a New Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workflow-running-name
+      path: /workflow/running/{name}
+      operations:
+      - name: getrunningworkflows
+        method: GET
+        description: Conductor Get Running Workflow Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The workflow name
+          required: true
+        - name: version
+          in: query
+          type: integer
+          description: The workflow version
+        - name: startTime
+          in: query
+          type: integer
+          description: Start time filter (epoch milliseconds)
+        - name: endTime
+          in: query
+          type: integer
+          description: End time filter (epoch milliseconds)
+    - name: workflow-search
+      path: /workflow/search
+      operations:
+      - name: searchworkflows
+        method: GET
+        description: Conductor Search for Workflow Executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start
+          in: query
+          type: integer
+          description: Start index for pagination
+        - name: size
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: sort
+          in: query
+          type: string
+          description: Sort field and order (e.g., createTime:DESC)
+        - name: freeText
+          in: query
+          type: string
+          description: Free text search across workflow data
+        - name: query
+          in: query
+          type: string
+          description: Query expression for filtering results
+    - name: workflow-workflowId
+      path: /workflow/{workflowId}
+      operations:
+      - name: getworkflowexecution
+        method: GET
+        description: Conductor Get Workflow Execution Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+        - name: includeTasks
+          in: query
+          type: boolean
+          description: Whether to include task details in the response
+      - name: deleteworkflowexecution
+        method: DELETE
+        description: Conductor Delete a Workflow Execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+        - name: archiveWorkflow
+          in: query
+          type: boolean
+          description: Whether to archive the workflow before deletion
+    - name: workflow-workflowId-pause
+      path: /workflow/{workflowId}/pause
+      operations:
+      - name: pauseworkflow
+        method: PUT
+        description: Conductor Pause a Running Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+    - name: workflow-workflowId-restart
+      path: /workflow/{workflowId}/restart
+      operations:
+      - name: restartworkflow
+        method: POST
+        description: Conductor Restart a Completed Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+        - name: useLatestDefinitions
+          in: query
+          type: boolean
+          description: Whether to use the latest workflow and task definitions
+    - name: workflow-workflowId-resume
+      path: /workflow/{workflowId}/resume
+      operations:
+      - name: resumeworkflow
+        method: PUT
+        description: Conductor Resume a Paused Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+    - name: workflow-workflowId-retry
+      path: /workflow/{workflowId}/retry
+      operations:
+      - name: retryworkflow
+        method: POST
+        description: Conductor Retry a Failed Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+        - name: resumeSubworkflowTasks
+          in: query
+          type: boolean
+          description: Whether to resume subworkflow tasks
+    - name: workflow-workflowId-skiptask-taskReferenceName
+      path: /workflow/{workflowId}/skiptask/{taskReferenceName}
+      operations:
+      - name: skiptaskfromworkflow
+        method: PUT
+        description: Conductor Skip a Task in a Running Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+        - name: taskReferenceName
+          in: path
+          type: string
+          description: The reference name of the task to skip
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: workflow-workflowId-terminate
+      path: /workflow/{workflowId}/terminate
+      operations:
+      - name: terminateworkflow
+        method: DELETE
+        description: Conductor Terminate a Running Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+        - name: reason
+          in: query
+          type: string
+          description: Reason for termination
+  exposes:
+  - type: rest
+    namespace: conductor-workflow-rest
+    port: 8080
+    description: REST adapter for Conductor API — Workflow. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/workflow
+      name: workflow
+      description: REST surface for workflow.
+      operations:
+      - method: POST
+        name: startworkflow
+        description: Conductor Start a New Workflow
+        call: conductor-workflow.startworkflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/running/{name}
+      name: workflow-running-name
+      description: REST surface for workflow-running-name.
+      operations:
+      - method: GET
+        name: getrunningworkflows
+        description: Conductor Get Running Workflow Instances
+        call: conductor-workflow.getrunningworkflows
+        with:
+          name: rest.name
+          version: rest.version
+          startTime: rest.startTime
+          endTime: rest.endTime
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/search
+      name: workflow-search
+      description: REST surface for workflow-search.
+      operations:
+      - method: GET
+        name: searchworkflows
+        description: Conductor Search for Workflow Executions
+        call: conductor-workflow.searchworkflows
+        with:
+          start: rest.start
+          size: rest.size
+          sort: rest.sort
+          freeText: rest.freeText
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}
+      name: workflow-workflowid
+      description: REST surface for workflow-workflowId.
+      operations:
+      - method: GET
+        name: getworkflowexecution
+        description: Conductor Get Workflow Execution Status
+        call: conductor-workflow.getworkflowexecution
+        with:
+          workflowId: rest.workflowId
+          includeTasks: rest.includeTasks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkflowexecution
+        description: Conductor Delete a Workflow Execution
+        call: conductor-workflow.deleteworkflowexecution
+        with:
+          workflowId: rest.workflowId
+          archiveWorkflow: rest.archiveWorkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}/pause
+      name: workflow-workflowid-pause
+      description: REST surface for workflow-workflowId-pause.
+      operations:
+      - method: PUT
+        name: pauseworkflow
+        description: Conductor Pause a Running Workflow
+        call: conductor-workflow.pauseworkflow
+        with:
+          workflowId: rest.workflowId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}/restart
+      name: workflow-workflowid-restart
+      description: REST surface for workflow-workflowId-restart.
+      operations:
+      - method: POST
+        name: restartworkflow
+        description: Conductor Restart a Completed Workflow
+        call: conductor-workflow.restartworkflow
+        with:
+          workflowId: rest.workflowId
+          useLatestDefinitions: rest.useLatestDefinitions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}/resume
+      name: workflow-workflowid-resume
+      description: REST surface for workflow-workflowId-resume.
+      operations:
+      - method: PUT
+        name: resumeworkflow
+        description: Conductor Resume a Paused Workflow
+        call: conductor-workflow.resumeworkflow
+        with:
+          workflowId: rest.workflowId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}/retry
+      name: workflow-workflowid-retry
+      description: REST surface for workflow-workflowId-retry.
+      operations:
+      - method: POST
+        name: retryworkflow
+        description: Conductor Retry a Failed Workflow
+        call: conductor-workflow.retryworkflow
+        with:
+          workflowId: rest.workflowId
+          resumeSubworkflowTasks: rest.resumeSubworkflowTasks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}/skiptask/{taskreferencename}
+      name: workflow-workflowid-skiptask-taskreferencename
+      description: REST surface for workflow-workflowId-skiptask-taskReferenceName.
+      operations:
+      - method: PUT
+        name: skiptaskfromworkflow
+        description: Conductor Skip a Task in a Running Workflow
+        call: conductor-workflow.skiptaskfromworkflow
+        with:
+          workflowId: rest.workflowId
+          taskReferenceName: rest.taskReferenceName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/{workflowid}/terminate
+      name: workflow-workflowid-terminate
+      description: REST surface for workflow-workflowId-terminate.
+      operations:
+      - method: DELETE
+        name: terminateworkflow
+        description: Conductor Terminate a Running Workflow
+        call: conductor-workflow.terminateworkflow
+        with:
+          workflowId: rest.workflowId
+          reason: rest.reason
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conductor-workflow-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Conductor API — Workflow. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: conductor-start-new-workflow
+      description: Conductor Start a New Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-workflow.startworkflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-running-workflow-instances
+      description: Conductor Get Running Workflow Instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-workflow.getrunningworkflows
+      with:
+        name: tools.name
+        version: tools.version
+        startTime: tools.startTime
+        endTime: tools.endTime
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-search-workflow-executions
+      description: Conductor Search for Workflow Executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-workflow.searchworkflows
+      with:
+        start: tools.start
+        size: tools.size
+        sort: tools.sort
+        freeText: tools.freeText
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-workflow-execution-status
+      description: Conductor Get Workflow Execution Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-workflow.getworkflowexecution
+      with:
+        workflowId: tools.workflowId
+        includeTasks: tools.includeTasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-delete-workflow-execution
+      description: Conductor Delete a Workflow Execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conductor-workflow.deleteworkflowexecution
+      with:
+        workflowId: tools.workflowId
+        archiveWorkflow: tools.archiveWorkflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-pause-running-workflow
+      description: Conductor Pause a Running Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: conductor-workflow.pauseworkflow
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-restart-completed-workflow
+      description: Conductor Restart a Completed Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-workflow.restartworkflow
+      with:
+        workflowId: tools.workflowId
+        useLatestDefinitions: tools.useLatestDefinitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-resume-paused-workflow
+      description: Conductor Resume a Paused Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: conductor-workflow.resumeworkflow
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-retry-failed-workflow
+      description: Conductor Retry a Failed Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-workflow.retryworkflow
+      with:
+        workflowId: tools.workflowId
+        resumeSubworkflowTasks: tools.resumeSubworkflowTasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-skip-task-running-workflow
+      description: Conductor Skip a Task in a Running Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: conductor-workflow.skiptaskfromworkflow
+      with:
+        workflowId: tools.workflowId
+        taskReferenceName: tools.taskReferenceName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-terminate-running-workflow
+      description: Conductor Terminate a Running Workflow
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conductor-workflow.terminateworkflow
+      with:
+        workflowId: tools.workflowId
+        reason: tools.reason
+      outputParameters:
+      - type: object
+        mapping: $.

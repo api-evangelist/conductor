@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conductor API — Admin
+  description: 'Conductor API — Admin. 4 operations. Lead operation: Conductor Get Server Configuration. Self-contained Naftiko
+    capability covering one Conductor business surface.'
+  tags:
+  - Conductor
+  - Admin
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONDUCTOR_API_KEY: CONDUCTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conductor-admin
+    baseUri: https://localhost:8080/api
+    description: Conductor API — Admin business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-config
+      path: /admin/config
+      operations:
+      - name: getconfiguration
+        method: GET
+        description: Conductor Get Server Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-sweep-requeue-workflowId
+      path: /admin/sweep/requeue/{workflowId}
+      operations:
+      - name: requeuesweep
+        method: POST
+        description: Conductor Requeue a Workflow for Sweep
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          description: The workflow instance ID
+          required: true
+    - name: admin-task-taskType
+      path: /admin/task/{taskType}
+      operations:
+      - name: gettaskqueueinfo
+        method: GET
+        description: Conductor Get Task Queue Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskType
+          in: path
+          type: string
+          description: The task type
+          required: true
+    - name: health
+      path: /health
+      operations:
+      - name: healthcheck
+        method: GET
+        description: Conductor Health Check
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: conductor-admin-rest
+    port: 8080
+    description: REST adapter for Conductor API — Admin. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/config
+      name: admin-config
+      description: REST surface for admin-config.
+      operations:
+      - method: GET
+        name: getconfiguration
+        description: Conductor Get Server Configuration
+        call: conductor-admin.getconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/sweep/requeue/{workflowid}
+      name: admin-sweep-requeue-workflowid
+      description: REST surface for admin-sweep-requeue-workflowId.
+      operations:
+      - method: POST
+        name: requeuesweep
+        description: Conductor Requeue a Workflow for Sweep
+        call: conductor-admin.requeuesweep
+        with:
+          workflowId: rest.workflowId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/task/{tasktype}
+      name: admin-task-tasktype
+      description: REST surface for admin-task-taskType.
+      operations:
+      - method: GET
+        name: gettaskqueueinfo
+        description: Conductor Get Task Queue Information
+        call: conductor-admin.gettaskqueueinfo
+        with:
+          taskType: rest.taskType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/health
+      name: health
+      description: REST surface for health.
+      operations:
+      - method: GET
+        name: healthcheck
+        description: Conductor Health Check
+        call: conductor-admin.healthcheck
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conductor-admin-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Conductor API — Admin. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: conductor-get-server-configuration
+      description: Conductor Get Server Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-admin.getconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-requeue-workflow-sweep
+      description: Conductor Requeue a Workflow for Sweep
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-admin.requeuesweep
+      with:
+        workflowId: tools.workflowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-task-queue-information
+      description: Conductor Get Task Queue Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-admin.gettaskqueueinfo
+      with:
+        taskType: tools.taskType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-health-check
+      description: Conductor Health Check
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-admin.healthcheck
+      outputParameters:
+      - type: object
+        mapping: $.

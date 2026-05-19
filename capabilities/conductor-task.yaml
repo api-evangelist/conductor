@@ -1,0 +1,477 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conductor API — Task
+  description: 'Conductor API — Task. 9 operations. Lead operation: Conductor Update Task Status. Self-contained Naftiko capability
+    covering one Conductor business surface.'
+  tags:
+  - Conductor
+  - Task
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONDUCTOR_API_KEY: CONDUCTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conductor-task
+    baseUri: https://localhost:8080/api
+    description: Conductor API — Task business capability. Self-contained, no shared references.
+    resources:
+    - name: tasks
+      path: /tasks
+      operations:
+      - name: updatetask
+        method: POST
+        description: Conductor Update Task Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tasks-poll-batch-taskType
+      path: /tasks/poll/batch/{taskType}
+      operations:
+      - name: batchpollfortasks
+        method: GET
+        description: Conductor Batch Poll for Tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskType
+          in: path
+          type: string
+          description: The task type to poll for
+          required: true
+        - name: workerId
+          in: query
+          type: string
+          description: ID of the worker polling for tasks
+        - name: count
+          in: query
+          type: integer
+          description: Number of tasks to poll for
+        - name: timeout
+          in: query
+          type: integer
+          description: Long poll timeout in milliseconds
+        - name: domain
+          in: query
+          type: string
+          description: Domain for task routing
+    - name: tasks-poll-taskType
+      path: /tasks/poll/{taskType}
+      operations:
+      - name: pollfortask
+        method: GET
+        description: Conductor Poll for a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskType
+          in: path
+          type: string
+          description: The task type to poll for
+          required: true
+        - name: workerId
+          in: query
+          type: string
+          description: ID of the worker polling for the task
+        - name: domain
+          in: query
+          type: string
+          description: Domain for task routing
+    - name: tasks-queue-sizes
+      path: /tasks/queue/sizes
+      operations:
+      - name: gettaskqueuesizes
+        method: GET
+        description: Conductor Get Task Queue Sizes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskType
+          in: query
+          type: string
+          description: Comma-separated list of task types. If not specified, returns sizes for all task types.
+    - name: tasks-search
+      path: /tasks/search
+      operations:
+      - name: searchtasks
+        method: GET
+        description: Conductor Search for Tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start
+          in: query
+          type: integer
+          description: Start index for pagination
+        - name: size
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: sort
+          in: query
+          type: string
+          description: Sort field and order
+        - name: freeText
+          in: query
+          type: string
+          description: Free text search
+        - name: query
+          in: query
+          type: string
+          description: Query expression for filtering results
+    - name: tasks-taskId
+      path: /tasks/{taskId}
+      operations:
+      - name: gettask
+        method: GET
+        description: Conductor Get Task Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task ID
+          required: true
+    - name: tasks-taskId-ack
+      path: /tasks/{taskId}/ack
+      operations:
+      - name: acknowledgetask
+        method: POST
+        description: Conductor Acknowledge a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task ID to acknowledge
+          required: true
+        - name: workerId
+          in: query
+          type: string
+          description: ID of the worker acknowledging the task
+    - name: tasks-taskId-log
+      path: /tasks/{taskId}/log
+      operations:
+      - name: addtasklog
+        method: POST
+        description: Conductor Add a Log Entry to a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: gettasklogs
+        method: GET
+        description: Conductor Get Task Execution Logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task ID
+          required: true
+  exposes:
+  - type: rest
+    namespace: conductor-task-rest
+    port: 8080
+    description: REST adapter for Conductor API — Task. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/tasks
+      name: tasks
+      description: REST surface for tasks.
+      operations:
+      - method: POST
+        name: updatetask
+        description: Conductor Update Task Status
+        call: conductor-task.updatetask
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/poll/batch/{tasktype}
+      name: tasks-poll-batch-tasktype
+      description: REST surface for tasks-poll-batch-taskType.
+      operations:
+      - method: GET
+        name: batchpollfortasks
+        description: Conductor Batch Poll for Tasks
+        call: conductor-task.batchpollfortasks
+        with:
+          taskType: rest.taskType
+          workerId: rest.workerId
+          count: rest.count
+          timeout: rest.timeout
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/poll/{tasktype}
+      name: tasks-poll-tasktype
+      description: REST surface for tasks-poll-taskType.
+      operations:
+      - method: GET
+        name: pollfortask
+        description: Conductor Poll for a Task
+        call: conductor-task.pollfortask
+        with:
+          taskType: rest.taskType
+          workerId: rest.workerId
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/queue/sizes
+      name: tasks-queue-sizes
+      description: REST surface for tasks-queue-sizes.
+      operations:
+      - method: GET
+        name: gettaskqueuesizes
+        description: Conductor Get Task Queue Sizes
+        call: conductor-task.gettaskqueuesizes
+        with:
+          taskType: rest.taskType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/search
+      name: tasks-search
+      description: REST surface for tasks-search.
+      operations:
+      - method: GET
+        name: searchtasks
+        description: Conductor Search for Tasks
+        call: conductor-task.searchtasks
+        with:
+          start: rest.start
+          size: rest.size
+          sort: rest.sort
+          freeText: rest.freeText
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/{taskid}
+      name: tasks-taskid
+      description: REST surface for tasks-taskId.
+      operations:
+      - method: GET
+        name: gettask
+        description: Conductor Get Task Details
+        call: conductor-task.gettask
+        with:
+          taskId: rest.taskId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/{taskid}/ack
+      name: tasks-taskid-ack
+      description: REST surface for tasks-taskId-ack.
+      operations:
+      - method: POST
+        name: acknowledgetask
+        description: Conductor Acknowledge a Task
+        call: conductor-task.acknowledgetask
+        with:
+          taskId: rest.taskId
+          workerId: rest.workerId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/{taskid}/log
+      name: tasks-taskid-log
+      description: REST surface for tasks-taskId-log.
+      operations:
+      - method: POST
+        name: addtasklog
+        description: Conductor Add a Log Entry to a Task
+        call: conductor-task.addtasklog
+        with:
+          taskId: rest.taskId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: gettasklogs
+        description: Conductor Get Task Execution Logs
+        call: conductor-task.gettasklogs
+        with:
+          taskId: rest.taskId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conductor-task-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Conductor API — Task. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: conductor-update-task-status
+      description: Conductor Update Task Status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-task.updatetask
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-batch-poll-tasks
+      description: Conductor Batch Poll for Tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-task.batchpollfortasks
+      with:
+        taskType: tools.taskType
+        workerId: tools.workerId
+        count: tools.count
+        timeout: tools.timeout
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-poll-task
+      description: Conductor Poll for a Task
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-task.pollfortask
+      with:
+        taskType: tools.taskType
+        workerId: tools.workerId
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-task-queue-sizes
+      description: Conductor Get Task Queue Sizes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-task.gettaskqueuesizes
+      with:
+        taskType: tools.taskType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-search-tasks
+      description: Conductor Search for Tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-task.searchtasks
+      with:
+        start: tools.start
+        size: tools.size
+        sort: tools.sort
+        freeText: tools.freeText
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-task-details
+      description: Conductor Get Task Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-task.gettask
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-acknowledge-task
+      description: Conductor Acknowledge a Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-task.acknowledgetask
+      with:
+        taskId: tools.taskId
+        workerId: tools.workerId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-add-log-entry-task
+      description: Conductor Add a Log Entry to a Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-task.addtasklog
+      with:
+        taskId: tools.taskId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-task-execution-logs
+      description: Conductor Get Task Execution Logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-task.gettasklogs
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.

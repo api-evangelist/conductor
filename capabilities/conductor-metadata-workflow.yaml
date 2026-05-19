@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conductor API — Metadata - Workflow
+  description: 'Conductor API — Metadata - Workflow. 5 operations. Lead operation: Conductor Create a New Workflow Definition.
+    Self-contained Naftiko capability covering one Conductor business surface.'
+  tags:
+  - Conductor
+  - Metadata - Workflow
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONDUCTOR_API_KEY: CONDUCTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conductor-metadata-workflow
+    baseUri: https://localhost:8080/api
+    description: Conductor API — Metadata - Workflow business capability. Self-contained, no shared references.
+    resources:
+    - name: metadata-workflow
+      path: /metadata/workflow
+      operations:
+      - name: createworkflowdefinition
+        method: POST
+        description: Conductor Create a New Workflow Definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateworkflowdefinitions
+        method: PUT
+        description: Conductor Update Workflow Definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getallworkflowdefinitions
+        method: GET
+        description: Conductor Get All Workflow Definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: metadata-workflow-name
+      path: /metadata/workflow/{name}
+      operations:
+      - name: getworkflowdefinition
+        method: GET
+        description: Conductor Get a Workflow Definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The name of the workflow definition
+          required: true
+        - name: version
+          in: query
+          type: integer
+          description: The version of the workflow definition
+      - name: deleteworkflowdefinition
+        method: DELETE
+        description: Conductor Delete a Workflow Definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The name of the workflow definition
+          required: true
+        - name: version
+          in: query
+          type: integer
+          description: The version of the workflow definition
+  exposes:
+  - type: rest
+    namespace: conductor-metadata-workflow-rest
+    port: 8080
+    description: REST adapter for Conductor API — Metadata - Workflow. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/metadata/workflow
+      name: metadata-workflow
+      description: REST surface for metadata-workflow.
+      operations:
+      - method: POST
+        name: createworkflowdefinition
+        description: Conductor Create a New Workflow Definition
+        call: conductor-metadata-workflow.createworkflowdefinition
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateworkflowdefinitions
+        description: Conductor Update Workflow Definitions
+        call: conductor-metadata-workflow.updateworkflowdefinitions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getallworkflowdefinitions
+        description: Conductor Get All Workflow Definitions
+        call: conductor-metadata-workflow.getallworkflowdefinitions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata/workflow/{name}
+      name: metadata-workflow-name
+      description: REST surface for metadata-workflow-name.
+      operations:
+      - method: GET
+        name: getworkflowdefinition
+        description: Conductor Get a Workflow Definition
+        call: conductor-metadata-workflow.getworkflowdefinition
+        with:
+          name: rest.name
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkflowdefinition
+        description: Conductor Delete a Workflow Definition
+        call: conductor-metadata-workflow.deleteworkflowdefinition
+        with:
+          name: rest.name
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conductor-metadata-workflow-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Conductor API — Metadata - Workflow. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: conductor-create-new-workflow-definition
+      description: Conductor Create a New Workflow Definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-metadata-workflow.createworkflowdefinition
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-update-workflow-definitions
+      description: Conductor Update Workflow Definitions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: conductor-metadata-workflow.updateworkflowdefinitions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-all-workflow-definitions
+      description: Conductor Get All Workflow Definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-metadata-workflow.getallworkflowdefinitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-workflow-definition
+      description: Conductor Get a Workflow Definition
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-metadata-workflow.getworkflowdefinition
+      with:
+        name: tools.name
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-delete-workflow-definition
+      description: Conductor Delete a Workflow Definition
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conductor-metadata-workflow.deleteworkflowdefinition
+      with:
+        name: tools.name
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.

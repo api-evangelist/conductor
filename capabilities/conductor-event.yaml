@@ -1,0 +1,220 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conductor API — Event
+  description: 'Conductor API — Event. 5 operations. Lead operation: Conductor Create an Event Handler. Self-contained Naftiko
+    capability covering one Conductor business surface.'
+  tags:
+  - Conductor
+  - Event
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CONDUCTOR_API_KEY: CONDUCTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conductor-event
+    baseUri: https://localhost:8080/api
+    description: Conductor API — Event business capability. Self-contained, no shared references.
+    resources:
+    - name: event
+      path: /event
+      operations:
+      - name: createeventhandler
+        method: POST
+        description: Conductor Create an Event Handler
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateeventhandler
+        method: PUT
+        description: Conductor Update an Event Handler
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getalleventhandlers
+        method: GET
+        description: Conductor Get All Event Handlers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: event-name
+      path: /event/{name}
+      operations:
+      - name: deleteeventhandler
+        method: DELETE
+        description: Conductor Delete an Event Handler
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The event handler name
+          required: true
+      - name: geteventhandlersforevent
+        method: GET
+        description: Conductor Get Event Handlers for an Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The event name
+          required: true
+        - name: activeOnly
+          in: query
+          type: boolean
+          description: Whether to return only active event handlers
+  exposes:
+  - type: rest
+    namespace: conductor-event-rest
+    port: 8080
+    description: REST adapter for Conductor API — Event. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/event
+      name: event
+      description: REST surface for event.
+      operations:
+      - method: POST
+        name: createeventhandler
+        description: Conductor Create an Event Handler
+        call: conductor-event.createeventhandler
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateeventhandler
+        description: Conductor Update an Event Handler
+        call: conductor-event.updateeventhandler
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getalleventhandlers
+        description: Conductor Get All Event Handlers
+        call: conductor-event.getalleventhandlers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/event/{name}
+      name: event-name
+      description: REST surface for event-name.
+      operations:
+      - method: DELETE
+        name: deleteeventhandler
+        description: Conductor Delete an Event Handler
+        call: conductor-event.deleteeventhandler
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: geteventhandlersforevent
+        description: Conductor Get Event Handlers for an Event
+        call: conductor-event.geteventhandlersforevent
+        with:
+          name: rest.name
+          activeOnly: rest.activeOnly
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conductor-event-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Conductor API — Event. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: conductor-create-event-handler
+      description: Conductor Create an Event Handler
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conductor-event.createeventhandler
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-update-event-handler
+      description: Conductor Update an Event Handler
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: conductor-event.updateeventhandler
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-all-event-handlers
+      description: Conductor Get All Event Handlers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-event.getalleventhandlers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-delete-event-handler
+      description: Conductor Delete an Event Handler
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conductor-event.deleteeventhandler
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: conductor-get-event-handlers-event
+      description: Conductor Get Event Handlers for an Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conductor-event.geteventhandlersforevent
+      with:
+        name: tools.name
+        activeOnly: tools.activeOnly
+      outputParameters:
+      - type: object
+        mapping: $.
