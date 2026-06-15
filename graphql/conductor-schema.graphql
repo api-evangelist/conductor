@@ -1,0 +1,866 @@
+"""
+Conductor GraphQL Schema
+Conceptual schema derived from the Conductor workflow orchestration REST API.
+Conductor enables building complex applications with simple, granular tasks
+managing state, retries, and execution flow automatically.
+"""
+
+scalar JSON
+scalar DateTime
+scalar Long
+scalar URL
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum WorkflowStatus {
+  RUNNING
+  COMPLETED
+  FAILED
+  TIMED_OUT
+  TERMINATED
+  PAUSED
+}
+
+enum TaskStatus {
+  IN_PROGRESS
+  CANCELED
+  FAILED
+  FAILED_WITH_TERMINAL_ERROR
+  COMPLETED
+  COMPLETED_WITH_ERRORS
+  SCHEDULED
+  TIMED_OUT
+  SKIPPED
+}
+
+enum TaskType {
+  SIMPLE
+  DYNAMIC
+  FORK_JOIN
+  FORK_JOIN_DYNAMIC
+  DECISION
+  SWITCH
+  JOIN
+  DO_WHILE
+  SUB_WORKFLOW
+  START_WORKFLOW
+  EVENT
+  WAIT
+  HUMAN
+  USER_DEFINED
+  HTTP
+  LAMBDA
+  INLINE
+  EXCLUSIVE_JOIN
+  TERMINATE
+  KAFKA_PUBLISH
+  JSON_JQ_TRANSFORM
+  SET_VARIABLE
+}
+
+enum RetryLogic {
+  FIXED
+  EXPONENTIAL_BACKOFF
+  LINEAR_BACKOFF
+}
+
+enum TimeoutPolicy {
+  RETRY
+  TIME_OUT_WF
+  ALERT_ONLY
+}
+
+enum WorkflowTimeoutPolicy {
+  TIME_OUT_WF
+  ALERT_ONLY
+}
+
+enum EventHandlerAction {
+  start_workflow
+  complete_task
+  fail_task
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum TaskResultStatus {
+  COMPLETED
+  FAILED
+  FAILED_WITH_TERMINAL_ERROR
+  IN_PROGRESS
+}
+
+enum WorkflowAccessLevel {
+  READ
+  WRITE
+  EXECUTE
+  DELETE
+}
+
+enum PermissionSubjectType {
+  USER
+  ROLE
+  GROUP
+  APPLICATION
+}
+
+enum ExternalStorageType {
+  S3
+  GCS
+  AZURE_BLOB
+}
+
+enum WorkflowPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ScheduleStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  FAILED
+}
+
+# ─────────────────────────────────────────────
+# Core Workflow Types
+# ─────────────────────────────────────────────
+
+"""A definition of a workflow, including its tasks and configuration."""
+type WorkflowDef {
+  name: String!
+  description: String
+  version: Int
+  tasks: [WorkflowTask!]!
+  inputParameters: [String!]
+  outputParameters: JSON
+  failureWorkflow: String
+  schemaVersion: Int
+  restartable: Boolean
+  workflowStatusListenerEnabled: Boolean
+  ownerEmail: String
+  timeoutPolicy: WorkflowTimeoutPolicy
+  timeoutSeconds: Long!
+  variables: JSON
+  inputTemplate: JSON
+  createdBy: String
+  updatedBy: String
+  createTime: DateTime
+  updateTime: DateTime
+  accessPolicy: AccessPolicy
+}
+
+"""A running or completed instance of a workflow."""
+type WorkflowExecution {
+  workflowId: String!
+  workflowName: String!
+  workflowVersion: Int
+  workflowDefinition: WorkflowDef
+  correlationId: String
+  input: JSON
+  output: JSON
+  status: WorkflowStatus!
+  startTime: DateTime
+  endTime: DateTime
+  tasks: [TaskExecution!]
+  reasonForIncompletion: String
+  parentWorkflowId: String
+  parentWorkflowTaskId: String
+  event: String
+  failedReferenceTaskNames: [String!]
+  externalInputPayloadStoragePath: String
+  externalOutputPayloadStoragePath: String
+  priority: Int
+  variables: JSON
+  lastRetriedTime: DateTime
+  ownerApp: String
+  createdBy: String
+  updatedTime: DateTime
+  previousStatus: WorkflowStatus
+}
+
+"""A task definition within a workflow definition."""
+type WorkflowTask {
+  name: String!
+  taskReferenceName: String!
+  type: TaskType
+  description: String
+  optional: Boolean
+  inputParameters: JSON
+  asyncComplete: Boolean
+  loopCondition: String
+  loopOver: [WorkflowTask!]
+  retryCount: Int
+  startDelay: Int
+  subWorkflowParam: SubWorkflowParam
+  forkTasks: [[WorkflowTask!]!]
+  joinOn: [String!]
+  sink: String
+  taskDefinition: TaskDef
+  caseValueParam: String
+  caseExpression: String
+  decisionCases: JSON
+  defaultCase: [WorkflowTask!]
+  evaluatorType: String
+  expression: String
+  dynamicTaskNameParam: String
+  dynamicForkTasksParam: String
+  dynamicForkTasksInputParamName: String
+  defaultExclusiveJoinTask: [String!]
+  rateLimited: Boolean
+  scriptExpression: String
+}
+
+"""A definition of a reusable task type."""
+type TaskDef {
+  name: String!
+  description: String
+  retryCount: Int
+  timeoutSeconds: Long!
+  inputKeys: [String!]
+  outputKeys: [String!]
+  timeoutPolicy: TimeoutPolicy
+  retryLogic: RetryLogic
+  retryDelaySeconds: Int
+  responseTimeoutSeconds: Long
+  concurrentExecLimit: Int
+  inputTemplate: JSON
+  rateLimitPerFrequency: Int
+  rateLimitFrequencyInSeconds: Int
+  isolationGroupId: String
+  executionNameSpace: String
+  ownerEmail: String
+  pollTimeoutSeconds: Int
+  backoffScaleFactor: Int
+  createdBy: String
+  updatedBy: String
+  createTime: DateTime
+  updateTime: DateTime
+}
+
+"""An execution instance of a task within a workflow."""
+type TaskExecution {
+  taskId: String!
+  taskDefName: String!
+  taskType: String
+  referenceTaskName: String!
+  status: TaskStatus!
+  inputData: JSON
+  outputData: JSON
+  workflowInstanceId: String!
+  workflowType: String
+  workflowTask: WorkflowTask
+  reasonForIncompletion: String
+  callbackAfterSeconds: Long
+  workerId: String
+  scheduledTime: DateTime
+  startTime: DateTime
+  endTime: DateTime
+  updateTime: DateTime
+  startDelayInSeconds: Int
+  retried: Boolean
+  retryCount: Int
+  pollCount: Int
+  iteration: Int
+  subWorkflowId: String
+  externalInputPayloadStoragePath: String
+  externalOutputPayloadStoragePath: String
+  isolationGroupId: String
+  executionNameSpace: String
+  taskDefinition: TaskDef
+  queueWaitTime: Long
+  seq: Int
+  parentTaskId: String
+  rateLimitPerFrequency: Int
+  rateLimitFrequencyInSeconds: Int
+  correlationId: String
+  priority: Int
+}
+
+# ─────────────────────────────────────────────
+# Event Handling Types
+# ─────────────────────────────────────────────
+
+"""Configuration for handling external events that trigger workflow actions."""
+type EventHandler {
+  name: String!
+  event: String!
+  condition: String
+  actions: [EventHandlerActionDef!]!
+  active: Boolean
+  evaluatorType: String
+  createdBy: String
+  updatedBy: String
+  createTime: DateTime
+  updateTime: DateTime
+}
+
+"""An action to be performed when an event handler fires."""
+type EventHandlerActionDef {
+  action: EventHandlerAction!
+  startWorkflow: StartWorkflowAction
+  completeTask: TaskRefActionDef
+  failTask: TaskRefActionDef
+  expandInlineJSON: Boolean
+}
+
+"""Parameters for starting a workflow via an event handler."""
+type StartWorkflowAction {
+  name: String!
+  version: Int
+  correlationId: String
+  input: JSON
+  taskToDomain: JSON
+  idempotencyKey: String
+}
+
+"""Parameters for completing or failing a task via an event handler."""
+type TaskRefActionDef {
+  workflowId: String
+  taskRefName: String!
+  output: JSON
+  taskId: String
+}
+
+# ─────────────────────────────────────────────
+# Sub-Workflow and External Types
+# ─────────────────────────────────────────────
+
+"""Parameters for inline sub-workflow execution within a workflow task."""
+type SubWorkflowParam {
+  name: String!
+  version: Int
+  taskToDomain: JSON
+  workflowDefinition: WorkflowDef
+  idempotencyKey: String
+}
+
+"""Access policy controlling who can read, write, or execute a resource."""
+type AccessPolicy {
+  grantedPermissions: [PermissionGrant!]
+}
+
+"""A single permission grant for a subject on a resource."""
+type PermissionGrant {
+  subject: PermissionSubject!
+  access: [String!]!
+}
+
+"""Subject of a permission grant (user or role)."""
+type PermissionSubject {
+  type: String!
+  id: String!
+}
+
+# ─────────────────────────────────────────────
+# Search and Pagination Types
+# ─────────────────────────────────────────────
+
+"""Paginated result set for workflow executions."""
+type WorkflowExecutionPage {
+  results: [WorkflowExecution!]!
+  totalHits: Long!
+}
+
+"""Paginated result set for task executions."""
+type TaskExecutionPage {
+  results: [TaskExecution!]!
+  totalHits: Long!
+}
+
+"""Sort option for search queries."""
+input SortOption {
+  field: String!
+  direction: SortOrder!
+}
+
+"""Filter parameters for searching workflow executions."""
+input WorkflowSearchInput {
+  query: String
+  start: Int
+  size: Int
+  sort: [SortOption!]
+  freeText: String
+  skipCache: Boolean
+}
+
+"""Filter parameters for searching task executions."""
+input TaskSearchInput {
+  query: String
+  start: Int
+  size: Int
+  sort: [SortOption!]
+  freeText: String
+}
+
+# ─────────────────────────────────────────────
+# Mutation Input Types
+# ─────────────────────────────────────────────
+
+"""Input for starting a new workflow execution."""
+input StartWorkflowInput {
+  name: String!
+  version: Int
+  correlationId: String
+  input: JSON
+  taskToDomain: JSON
+  externalInputPayloadStoragePath: String
+  priority: Int
+  idempotencyKey: String
+}
+
+"""Input for defining or updating a task definition."""
+input TaskDefInput {
+  name: String!
+  description: String
+  retryCount: Int
+  timeoutSeconds: Long
+  inputKeys: [String!]
+  outputKeys: [String!]
+  timeoutPolicy: TimeoutPolicy
+  retryLogic: RetryLogic
+  retryDelaySeconds: Int
+  responseTimeoutSeconds: Long
+  concurrentExecLimit: Int
+  inputTemplate: JSON
+  rateLimitPerFrequency: Int
+  rateLimitFrequencyInSeconds: Int
+  ownerEmail: String
+  pollTimeoutSeconds: Int
+  backoffScaleFactor: Int
+}
+
+"""Input for updating a task's execution result."""
+input TaskResultInput {
+  workflowInstanceId: String!
+  taskId: String!
+  status: TaskResultStatus!
+  outputData: JSON
+  reasonForIncompletion: String
+  callbackAfterSeconds: Long
+  workerId: String
+  logs: [TaskExecLogInput!]
+  externalOutputPayloadStoragePath: String
+}
+
+"""Input for a single task execution log entry."""
+input TaskExecLogInput {
+  log: String!
+  taskId: String!
+  createdTime: DateTime
+}
+
+"""Input for registering or updating an event handler."""
+input EventHandlerInput {
+  name: String!
+  event: String!
+  condition: String
+  actions: [EventHandlerActionInput!]!
+  active: Boolean
+  evaluatorType: String
+}
+
+"""Input for an event handler action."""
+input EventHandlerActionInput {
+  action: EventHandlerAction!
+  startWorkflow: StartWorkflowActionInput
+  completeTask: TaskRefActionInput
+  failTask: TaskRefActionInput
+  expandInlineJSON: Boolean
+}
+
+"""Input for the start_workflow event handler action."""
+input StartWorkflowActionInput {
+  name: String!
+  version: Int
+  correlationId: String
+  input: JSON
+  taskToDomain: JSON
+}
+
+"""Input for complete_task or fail_task event handler actions."""
+input TaskRefActionInput {
+  workflowId: String
+  taskRefName: String!
+  output: JSON
+  taskId: String
+}
+
+"""Input for rerunning a workflow from a specific task."""
+input RerunWorkflowInput {
+  reRunFromWorkflowId: String!
+  workflowInput: JSON
+  reRunFromTaskId: String
+  taskInput: JSON
+  correlationId: String
+}
+
+# ─────────────────────────────────────────────
+# Auxiliary Types
+# ─────────────────────────────────────────────
+
+"""A log entry recorded during task execution."""
+type TaskExecLog {
+  log: String!
+  taskId: String!
+  createdTime: DateTime
+}
+
+"""Health status of a workflow queue."""
+type QueueInfo {
+  name: String!
+  size: Int!
+}
+
+"""Poll data for a task queue — which worker last polled and when."""
+type PollData {
+  queueName: String!
+  domain: String
+  workerId: String
+  lastPollTime: DateTime
+}
+
+"""Summary statistics for a set of workflow executions."""
+type WorkflowSummary {
+  workflowType: String!
+  version: Int
+  totalCount: Int!
+  completedCount: Int!
+  failedCount: Int!
+  runningCount: Int!
+  terminatedCount: Int!
+  pausedCount: Int!
+  timedOutCount: Int!
+  averageDurationMillis: Long
+}
+
+"""Summary statistics for a set of task executions."""
+type TaskSummary {
+  taskType: String!
+  taskDefName: String
+  totalCount: Int!
+  completedCount: Int!
+  failedCount: Int!
+  timedOutCount: Int!
+  scheduledCount: Int!
+  inProgressCount: Int!
+  averageExecutionTimeMillis: Long
+  averageQueueWaitTimeMillis: Long
+}
+
+"""Result of a batch operation on multiple workflow or task IDs."""
+type BulkResponse {
+  bulkErrorResults: JSON
+  bulkSuccessfulResults: [String!]
+}
+
+"""A scheduled trigger for recurring workflow executions."""
+type WorkflowSchedule {
+  name: String!
+  cronExpression: String!
+  workflowName: String!
+  workflowVersion: Int
+  workflowInput: JSON
+  correlationId: String
+  contextInfo: String
+  paused: Boolean
+  status: ScheduleStatus
+  startWorkflowRequest: StartWorkflowInput
+  createdBy: String
+  updatedBy: String
+  createTime: DateTime
+  updateTime: DateTime
+  nextExecTime: DateTime
+  lastExecTime: DateTime
+}
+
+"""A single execution record for a scheduled workflow trigger."""
+type ScheduleExecution {
+  scheduleId: String!
+  workflowId: String
+  scheduleName: String!
+  executionTime: DateTime
+  workflowStatus: WorkflowStatus
+  errorMessage: String
+  workflowDef: WorkflowDef
+}
+
+"""Rate limiting configuration for a task type."""
+type RateLimitConfig {
+  taskDefName: String!
+  rateLimitPerFrequency: Int!
+  rateLimitFrequencyInSeconds: Int!
+}
+
+"""A registered worker that polls and executes tasks."""
+type WorkerInfo {
+  workerId: String!
+  taskDefName: String!
+  domain: String
+  lastPollTime: DateTime
+  queueName: String!
+}
+
+"""Aggregate metrics for the Conductor server."""
+type ServerMetrics {
+  workflowsRunning: Int!
+  workflowsCompleted: Int!
+  workflowsFailed: Int!
+  tasksScheduled: Int!
+  tasksCompleted: Int!
+  tasksFailed: Int!
+  queueSize: Int!
+  serverTimestamp: DateTime!
+}
+
+"""An audit trail entry recording an operation on a workflow or task."""
+type AuditLog {
+  id: String!
+  entityType: String!
+  entityId: String!
+  operation: String!
+  performedBy: String
+  timestamp: DateTime!
+  details: JSON
+}
+
+"""A tag that can be applied to workflow or task definitions for categorization."""
+type Tag {
+  key: String!
+  value: String
+  type: String
+}
+
+"""A named, reusable variable resolved at workflow runtime."""
+type WorkflowVariable {
+  name: String!
+  value: JSON
+  description: String
+}
+
+"""Health check result for the Conductor server."""
+type HealthCheckResult {
+  healthy: Boolean!
+  details: JSON
+  errorMessage: String
+  suppressedExceptionMessage: String
+}
+
+"""Input for creating or updating a workflow schedule."""
+input WorkflowScheduleInput {
+  name: String!
+  cronExpression: String!
+  workflowName: String!
+  workflowVersion: Int
+  workflowInput: JSON
+  correlationId: String
+  contextInfo: String
+  paused: Boolean
+}
+
+"""Input for tagging a workflow or task definition."""
+input TagInput {
+  key: String!
+  value: String
+  type: String
+}
+
+"""Input for updating workflow schedule status."""
+input ScheduleStatusInput {
+  name: String!
+  paused: Boolean!
+}
+
+"""Input for external payload storage configuration."""
+input ExternalStorageInput {
+  type: ExternalStorageType!
+  path: String!
+  bucketName: String
+  credentials: JSON
+}
+
+# ─────────────────────────────────────────────
+# Queries
+# ─────────────────────────────────────────────
+
+type Query {
+  """Retrieve a workflow execution by its unique ID."""
+  workflow(workflowId: String!, includeTasks: Boolean): WorkflowExecution
+
+  """Search workflow executions using query syntax with optional free text."""
+  searchWorkflows(input: WorkflowSearchInput!): WorkflowExecutionPage!
+
+  """List all registered workflow definitions."""
+  workflowDefs: [WorkflowDef!]!
+
+  """Retrieve a specific workflow definition by name and version."""
+  workflowDef(name: String!, version: Int): WorkflowDef
+
+  """List all registered task definitions."""
+  taskDefs: [TaskDef!]!
+
+  """Retrieve a specific task definition by name."""
+  taskDef(taskType: String!): TaskDef
+
+  """Retrieve a specific task execution by ID."""
+  task(taskId: String!): TaskExecution
+
+  """Search task executions using query syntax."""
+  searchTasks(input: TaskSearchInput!): TaskExecutionPage!
+
+  """Retrieve execution logs for a specific task."""
+  taskLogs(taskId: String!): [TaskExecLog!]!
+
+  """List all registered event handlers, optionally filtered by event."""
+  eventHandlers(event: String, activeOnly: Boolean): [EventHandler!]!
+
+  """Retrieve queue sizes for all registered task types."""
+  queues: [QueueInfo!]!
+
+  """Retrieve poll data for all task queues."""
+  allPollData: [PollData!]!
+
+  """Retrieve poll data for a specific task type and domain."""
+  pollData(taskType: String!, domain: String): PollData
+
+  """Get workflow execution summary statistics."""
+  workflowSummary(workflowType: String, version: Int, startFrom: DateTime, startTo: DateTime): WorkflowSummary
+
+  """Get task execution summary statistics."""
+  taskSummary(taskType: String, startFrom: DateTime, startTo: DateTime): TaskSummary
+
+  """List all workflow schedules."""
+  workflowSchedules: [WorkflowSchedule!]!
+
+  """Retrieve a specific workflow schedule by name."""
+  workflowSchedule(name: String!): WorkflowSchedule
+
+  """List execution history for a workflow schedule."""
+  scheduleExecutions(scheduleName: String!, limit: Int, offset: Int): [ScheduleExecution!]!
+
+  """List all registered workers and their poll status."""
+  workers: [WorkerInfo!]!
+
+  """Get current server metrics."""
+  serverMetrics: ServerMetrics!
+
+  """Health check for the Conductor server."""
+  healthCheck: HealthCheckResult!
+
+  """Retrieve audit log entries for an entity."""
+  auditLogs(entityType: String!, entityId: String!, limit: Int, offset: Int): [AuditLog!]!
+
+  """List tags applied to a workflow definition."""
+  workflowDefTags(name: String!, version: Int): [Tag!]!
+
+  """List tags applied to a task definition."""
+  taskDefTags(name: String!): [Tag!]!
+}
+
+# ─────────────────────────────────────────────
+# Mutations
+# ─────────────────────────────────────────────
+
+type Mutation {
+  """Start a new workflow execution and return its ID."""
+  startWorkflow(input: StartWorkflowInput!): String!
+
+  """Start multiple workflow executions in a single call."""
+  startWorkflows(inputs: [StartWorkflowInput!]!): BulkResponse!
+
+  """Terminate a running workflow execution."""
+  terminateWorkflow(workflowId: String!, reason: String): Boolean!
+
+  """Terminate multiple workflow executions."""
+  terminateWorkflows(workflowIds: [String!]!, reason: String): BulkResponse!
+
+  """Pause a running workflow execution."""
+  pauseWorkflow(workflowId: String!): Boolean!
+
+  """Resume a paused workflow execution."""
+  resumeWorkflow(workflowId: String!): Boolean!
+
+  """Retry a failed workflow execution from the failed task."""
+  retryWorkflow(workflowId: String!, resumeSubworkflowTasks: Boolean): Boolean!
+
+  """Restart a terminal workflow from the beginning."""
+  restartWorkflow(workflowId: String!, useLatestDefinitions: Boolean): Boolean!
+
+  """Rerun a workflow from a specific task, optionally with new input."""
+  rerunWorkflow(input: RerunWorkflowInput!): String!
+
+  """Skip a task in a running workflow (mark it as skipped)."""
+  skipTaskFromWorkflow(workflowId: String!, taskReferenceName: String!): Boolean!
+
+  """Update a task result during or after execution."""
+  updateTask(result: TaskResultInput!): String!
+
+  """Register or update a task definition."""
+  registerTaskDef(taskDef: TaskDefInput!): TaskDef!
+
+  """Register or update multiple task definitions."""
+  registerTaskDefs(taskDefs: [TaskDefInput!]!): [TaskDef!]!
+
+  """Delete a task definition by name."""
+  deleteTaskDef(taskType: String!): Boolean!
+
+  """Register or update a workflow definition."""
+  registerWorkflowDef(workflowDef: JSON!): Boolean!
+
+  """Delete a workflow definition by name and version."""
+  deleteWorkflowDef(name: String!, version: Int!): Boolean!
+
+  """Register or update an event handler."""
+  registerEventHandler(eventHandler: EventHandlerInput!): Boolean!
+
+  """Update an existing event handler."""
+  updateEventHandler(eventHandler: EventHandlerInput!): Boolean!
+
+  """Delete an event handler by name."""
+  deleteEventHandler(name: String!): Boolean!
+
+  """Add or update variables on a running workflow."""
+  updateWorkflowVariables(workflowId: String!, variables: JSON!): WorkflowExecution!
+
+  """Delete a completed or terminated workflow execution."""
+  deleteWorkflow(workflowId: String!, archiveWorkflow: Boolean): Boolean!
+
+  """Delete multiple completed or terminated workflow executions."""
+  deleteWorkflows(workflowIds: [String!]!, archiveWorkflow: Boolean): BulkResponse!
+
+  """Create or update a workflow schedule."""
+  saveWorkflowSchedule(input: WorkflowScheduleInput!): WorkflowSchedule!
+
+  """Pause a workflow schedule (stop triggering new executions)."""
+  pauseWorkflowSchedule(name: String!): Boolean!
+
+  """Resume a paused workflow schedule."""
+  resumeWorkflowSchedule(name: String!): Boolean!
+
+  """Delete a workflow schedule by name."""
+  deleteWorkflowSchedule(name: String!): Boolean!
+
+  """Add or replace tags on a workflow definition."""
+  setWorkflowDefTags(name: String!, version: Int, tags: [TagInput!]!): Boolean!
+
+  """Add or replace tags on a task definition."""
+  setTaskDefTags(name: String!, tags: [TagInput!]!): Boolean!
+
+  """Delete tags from a workflow definition."""
+  deleteWorkflowDefTags(name: String!, version: Int, tags: [TagInput!]!): Boolean!
+
+  """Delete tags from a task definition."""
+  deleteTaskDefTags(name: String!, tags: [TagInput!]!): Boolean!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
