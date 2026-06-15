@@ -1,0 +1,897 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata - Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get All Workflow Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/workflow"
+          },
+          "docs": "Retrieves all registered workflow definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Create a New Workflow Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/metadata/workflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new workflow definition with Conductor."
+        },
+        {
+          "info": {
+            "name": "Conductor Update Workflow Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/metadata/workflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates one or more existing workflow definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Get a Workflow Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/workflow/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow definition"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version of the workflow definition"
+              }
+            ]
+          },
+          "docs": "Retrieves a workflow definition by name and optionally by version."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete a Workflow Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/metadata/workflow/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow definition"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version of the workflow definition"
+              }
+            ]
+          },
+          "docs": "Removes a workflow definition by name and version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata - Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get All Task Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/taskdefs"
+          },
+          "docs": "Retrieves all registered task definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Create New Task Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/metadata/taskdefs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers new task definitions with Conductor."
+        },
+        {
+          "info": {
+            "name": "Conductor Update a Task Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/metadata/taskdefs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing task definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Get a Task Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/taskdefs/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type name"
+              }
+            ]
+          },
+          "docs": "Retrieves a task definition by its type name."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete a Task Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/metadata/taskdefs/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type name"
+              }
+            ]
+          },
+          "docs": "Removes a task definition by its type name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Start a New Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/workflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new workflow execution based on a registered workflow definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Workflow Execution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/workflow/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "includeTasks",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include task details in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves the current status and details of a running or completed workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete a Workflow Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/workflow/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "archiveWorkflow",
+                "value": "",
+                "type": "query",
+                "description": "Whether to archive the workflow before deletion"
+              }
+            ]
+          },
+          "docs": "Removes a workflow execution and its associated data."
+        },
+        {
+          "info": {
+            "name": "Conductor Pause a Running Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/workflow/:workflowId/pause",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              }
+            ]
+          },
+          "docs": "Pauses a currently running workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Resume a Paused Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/workflow/:workflowId/resume",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              }
+            ]
+          },
+          "docs": "Resumes a previously paused workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Restart a Completed Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/workflow/:workflowId/restart",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "useLatestDefinitions",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use the latest workflow and task definitions"
+              }
+            ]
+          },
+          "docs": "Restarts a completed workflow from the beginning with the same input. If useLatestDefinitions is set, the workflow uses the latest definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Retry a Failed Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/workflow/:workflowId/retry",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "resumeSubworkflowTasks",
+                "value": "",
+                "type": "query",
+                "description": "Whether to resume subworkflow tasks"
+              }
+            ]
+          },
+          "docs": "Retries the last failed task in a workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Terminate a Running Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/workflow/:workflowId/terminate",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "reason",
+                "value": "",
+                "type": "query",
+                "description": "Reason for termination"
+              }
+            ]
+          },
+          "docs": "Terminates a running workflow execution with an optional reason."
+        },
+        {
+          "info": {
+            "name": "Conductor Skip a Task in a Running Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/workflow/:workflowId/skiptask/:taskReferenceName",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "taskReferenceName",
+                "value": "",
+                "type": "path",
+                "description": "The reference name of the task to skip"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Skips a given task from a running workflow and moves to the next task. The skipped task will be marked as completed with the provided output."
+        },
+        {
+          "info": {
+            "name": "Conductor Search for Workflow Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/workflow/search",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start index for pagination"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order (e.g., createTime:DESC)"
+              },
+              {
+                "name": "freeText",
+                "value": "",
+                "type": "query",
+                "description": "Free text search across workflow data"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query expression for filtering results"
+              }
+            ]
+          },
+          "docs": "Searches for workflow executions using Conductor's query language. Uses Elasticsearch for indexing workflow execution data."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Running Workflow Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/workflow/running/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The workflow version"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start time filter (epoch milliseconds)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End time filter (epoch milliseconds)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of running workflow instance IDs for a given workflow name and optionally filtered by version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Poll for a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/poll/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type to poll for"
+              },
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the worker polling for the task"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Domain for task routing"
+              }
+            ]
+          },
+          "docs": "Polls for a task of the specified type. Used by workers to get tasks to execute. Returns a single task if available."
+        },
+        {
+          "info": {
+            "name": "Conductor Batch Poll for Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/poll/batch/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type to poll for"
+              },
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the worker polling for tasks"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of tasks to poll for"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query",
+                "description": "Long poll timeout in milliseconds"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Domain for task routing"
+              }
+            ]
+          },
+          "docs": "Polls for multiple tasks of the specified type in a single request. Returns up to the specified count of tasks."
+        },
+        {
+          "info": {
+            "name": "Conductor Update Task Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status and result of a task. Used by workers to report task completion, failure, or progress."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific task by its ID."
+        },
+        {
+          "info": {
+            "name": "Conductor Acknowledge a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/tasks/:taskId/ack",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID to acknowledge"
+              },
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the worker acknowledging the task"
+              }
+            ]
+          },
+          "docs": "Acknowledges that a task has been received by a worker. This prevents the task from being sent to another worker."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Execution Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/:taskId/log",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ]
+          },
+          "docs": "Retrieves the log entries for a specific task execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Add a Log Entry to a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/tasks/:taskId/log",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a log message to a task execution for debugging or auditing."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Queue Sizes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/queue/sizes",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task types. If not specified, returns sizes for all task types."
+              }
+            ]
+          },
+          "docs": "Returns the number of pending tasks for each task type in the queue."
+        },
+        {
+          "info": {
+            "name": "Conductor Search for Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/search",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start index for pagination"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order"
+              },
+              {
+                "name": "freeText",
+                "value": "",
+                "type": "query",
+                "description": "Free text search"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query expression for filtering results"
+              }
+            ]
+          },
+          "docs": "Searches for task executions based on query parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get All Event Handlers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/event"
+          },
+          "docs": "Retrieves all registered event handler definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Create an Event Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new event handler definition for processing events from external systems."
+        },
+        {
+          "info": {
+            "name": "Conductor Update an Event Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing event handler definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Event Handlers for an Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/event/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The event name"
+              },
+              {
+                "name": "activeOnly",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return only active event handlers"
+              }
+            ]
+          },
+          "docs": "Retrieves all event handlers registered for a specific event."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete an Event Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/event/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The event handler name"
+              }
+            ]
+          },
+          "docs": "Removes an event handler by name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/admin/config"
+          },
+          "docs": "Retrieves the current Conductor server configuration."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Queue Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/admin/task/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type"
+              }
+            ]
+          },
+          "docs": "Retrieves information about a specific task type's queue."
+        },
+        {
+          "info": {
+            "name": "Conductor Requeue a Workflow for Sweep",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/admin/sweep/requeue/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              }
+            ]
+          },
+          "docs": "Requeues a workflow for the sweep operation to re-evaluate its state."
+        },
+        {
+          "info": {
+            "name": "Conductor Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/health"
+          },
+          "docs": "Returns the health status of the Conductor server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

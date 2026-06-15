@@ -1,0 +1,4662 @@
+{
+  "item": [
+    {
+      "id": "54b87c3f-d39c-4304-9398-e20e97d3bb1e",
+      "name": "Admin",
+      "description": {
+        "content": "Administrative and health check APIs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f19586cd-7595-4e75-b76d-24cb6667800a",
+          "name": "Conductor Get Server Configuration",
+          "request": {
+            "name": "Conductor Get Server Configuration",
+            "description": {
+              "content": "Retrieves the current Conductor server configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5175276-e61c-4cf6-aa36-4b0f759766c6",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5bda783-82b8-41f8-a527-a1cf8eb14b17",
+          "name": "Conductor Get Task Queue Information",
+          "request": {
+            "name": "Conductor Get Task Queue Information",
+            "description": {
+              "content": "Retrieves information about a specific task type's queue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "task",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0576f72-8b81-4916-9a87-f2f34c498aad",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "task",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e76744b-994b-40a5-9bf5-21641920b605",
+          "name": "Conductor Requeue a Workflow for Sweep",
+          "request": {
+            "name": "Conductor Requeue a Workflow for Sweep",
+            "description": {
+              "content": "Requeues a workflow for the sweep operation to re-evaluate its state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "sweep",
+                "requeue",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56822bdb-a946-4043-add9-c7d5723588fe",
+              "name": "Workflow requeued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sweep",
+                    "requeue",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1ad2c51-8059-4a2c-bfac-94e074c2d694",
+          "name": "Conductor Health Check",
+          "request": {
+            "name": "Conductor Health Check",
+            "description": {
+              "content": "Returns the health status of the Conductor server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad237f21-afe3-4e92-b237-78ca6b923cae",
+              "name": "Server is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"healthy\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bc601329-2975-4e49-bc3b-f6fa00f556e0",
+      "name": "Event",
+      "description": {
+        "content": "APIs for managing event handlers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e40eecf-8c9d-4a95-a8cf-9f4473f6ba41",
+          "name": "Conductor Create an Event Handler",
+          "request": {
+            "name": "Conductor Create an Event Handler",
+            "description": {
+              "content": "Creates a new event handler definition for processing events from external systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"event\": \"<string>\",\n  \"actions\": [\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": 6661,\n          \"key_1\": true,\n          \"key_2\": 9732\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": true\n        }\n      },\n      \"expandInlineJSON\": false\n    },\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": true\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": false\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": true,\n          \"key_1\": 3103\n        }\n      },\n      \"expandInlineJSON\": false\n    }\n  ],\n  \"condition\": \"<string>\",\n  \"active\": true,\n  \"evaluatorType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2421763f-2a99-45db-9a6f-33615e5e250f",
+              "name": "Event handler created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7490d670-ac30-4825-9c7f-5f04adf7f7f4",
+              "name": "Invalid event handler definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0616b9a4-a921-4c2d-8d7f-8aee0ec7bbc8",
+          "name": "Conductor Update an Event Handler",
+          "request": {
+            "name": "Conductor Update an Event Handler",
+            "description": {
+              "content": "Updates an existing event handler definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"event\": \"<string>\",\n  \"actions\": [\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": 6661,\n          \"key_1\": true,\n          \"key_2\": 9732\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": true\n        }\n      },\n      \"expandInlineJSON\": false\n    },\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": true\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": false\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": true,\n          \"key_1\": 3103\n        }\n      },\n      \"expandInlineJSON\": false\n    }\n  ],\n  \"condition\": \"<string>\",\n  \"active\": true,\n  \"evaluatorType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc499d87-05d0-40aa-8c7a-aca62765d29e",
+              "name": "Event handler updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87ba68ab-5ecc-4874-8b84-dbecd2b11800",
+              "name": "Invalid event handler definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "148fc47c-4a90-4bbb-9f47-9e708e6ed946",
+          "name": "Conductor Get All Event Handlers",
+          "request": {
+            "name": "Conductor Get All Event Handlers",
+            "description": {
+              "content": "Retrieves all registered event handler definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f585b09-adf6-4f77-9ae0-dc27254eae65",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  },\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d62ff8be-7cc7-4f97-a0bf-b680dab73dcf",
+          "name": "Conductor Delete an Event Handler",
+          "request": {
+            "name": "Conductor Delete an Event Handler",
+            "description": {
+              "content": "Removes an event handler by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The event handler name"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82a1ffc4-5dd2-48ed-981b-0f06d19738ff",
+              "name": "Event handler deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The event handler name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9176fc0b-0a98-4c01-bbac-efb1a6ac542f",
+              "name": "Event handler not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The event handler name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e48f1a89-2a3f-493f-ad88-17b5ccdefa0f",
+          "name": "Conductor Get Event Handlers for an Event",
+          "request": {
+            "name": "Conductor Get Event Handlers for an Event",
+            "description": {
+              "content": "Retrieves all event handlers registered for a specific event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "activeOnly",
+                  "value": "true",
+                  "description": "Whether to return only active event handlers"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The event name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bf234ef-37f7-4db7-a321-91856a52290e",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activeOnly",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The event name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  },\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "60b3ac86-0033-4d07-bd61-a2dd57bb42f2",
+      "name": "Metadata - Task",
+      "description": {
+        "content": "APIs for managing task definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1aca316-a3b0-4048-8683-22e93db64fd6",
+          "name": "Conductor Create New Task Definitions",
+          "request": {
+            "name": "Conductor Create New Task Definitions",
+            "description": {
+              "content": "Registers new task definitions with Conductor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"retryCount\": 3,\n    \"retryLogic\": \"<string>\",\n    \"retryDelaySeconds\": 60,\n    \"timeoutSeconds\": 0,\n    \"timeoutPolicy\": \"<string>\",\n    \"responseTimeoutSeconds\": 3600,\n    \"pollTimeoutSeconds\": \"<integer>\",\n    \"concurrentExecLimit\": \"<integer>\",\n    \"rateLimitPerFrequency\": \"<integer>\",\n    \"rateLimitFrequencyInSeconds\": \"<integer>\",\n    \"ownerEmail\": \"<string>\",\n    \"inputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": 5370.396866623566,\n      \"key_3\": \"string\"\n    },\n    \"createdBy\": \"<string>\",\n    \"createTime\": \"<long>\",\n    \"updatedBy\": \"<string>\",\n    \"updateTime\": \"<long>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"retryCount\": 3,\n    \"retryLogic\": \"<string>\",\n    \"retryDelaySeconds\": 60,\n    \"timeoutSeconds\": 0,\n    \"timeoutPolicy\": \"<string>\",\n    \"responseTimeoutSeconds\": 3600,\n    \"pollTimeoutSeconds\": \"<integer>\",\n    \"concurrentExecLimit\": \"<integer>\",\n    \"rateLimitPerFrequency\": \"<integer>\",\n    \"rateLimitFrequencyInSeconds\": \"<integer>\",\n    \"ownerEmail\": \"<string>\",\n    \"inputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"inputTemplate\": {\n      \"key_0\": 8617\n    },\n    \"createdBy\": \"<string>\",\n    \"createTime\": \"<long>\",\n    \"updatedBy\": \"<string>\",\n    \"updateTime\": \"<long>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "029cf955-ec6f-498e-91e9-12526666d244",
+              "name": "Task definitions created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": \"string\"\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": 9093\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33a401ef-3856-4f6c-b3c2-d3877320fc30",
+              "name": "Invalid task definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": \"string\"\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": 9093\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb9b89e8-9d39-4e11-afc9-facc6be74b79",
+          "name": "Conductor Get All Task Definitions",
+          "request": {
+            "name": "Conductor Get All Task Definitions",
+            "description": {
+              "content": "Retrieves all registered task definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3514729e-8674-48df-9189-26a4b04ec9b7",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": 1738.9281055292495,\n      \"key_2\": 4098.493757189478\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": 8507\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30499531-9f0f-4cb4-9faf-770113dbd1bc",
+          "name": "Conductor Update a Task Definition",
+          "request": {
+            "name": "Conductor Update a Task Definition",
+            "description": {
+              "content": "Updates an existing task definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryCount\": 3,\n  \"retryLogic\": \"<string>\",\n  \"retryDelaySeconds\": 60,\n  \"timeoutSeconds\": 0,\n  \"timeoutPolicy\": \"<string>\",\n  \"responseTimeoutSeconds\": 3600,\n  \"pollTimeoutSeconds\": \"<integer>\",\n  \"concurrentExecLimit\": \"<integer>\",\n  \"rateLimitPerFrequency\": \"<integer>\",\n  \"rateLimitFrequencyInSeconds\": \"<integer>\",\n  \"ownerEmail\": \"<string>\",\n  \"inputKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"outputKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"inputTemplate\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 1674.3647014226715,\n    \"key_3\": 8010\n  },\n  \"createdBy\": \"<string>\",\n  \"createTime\": \"<long>\",\n  \"updatedBy\": \"<string>\",\n  \"updateTime\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b9ad4f0-6ac8-4f82-9684-5f3edf50683c",
+              "name": "Task definition updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"retryCount\": 10,\n  \"retryLogic\": \"FIXED\",\n  \"retryDelaySeconds\": 10,\n  \"timeoutSeconds\": 10,\n  \"timeoutPolicy\": \"RETRY\",\n  \"responseTimeoutSeconds\": 10,\n  \"pollTimeoutSeconds\": 10,\n  \"concurrentExecLimit\": 10,\n  \"rateLimitPerFrequency\": 10,\n  \"rateLimitFrequencyInSeconds\": 10,\n  \"ownerEmail\": \"user@example.com\",\n  \"inputTemplate\": {\n    \"key_0\": \"string\"\n  },\n  \"createdBy\": \"example_value\",\n  \"createTime\": 10,\n  \"updatedBy\": \"example_value\",\n  \"updateTime\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "27222094-13db-472f-9782-8ae2e2b08224",
+              "name": "Invalid task definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"retryCount\": 10,\n  \"retryLogic\": \"FIXED\",\n  \"retryDelaySeconds\": 10,\n  \"timeoutSeconds\": 10,\n  \"timeoutPolicy\": \"RETRY\",\n  \"responseTimeoutSeconds\": 10,\n  \"pollTimeoutSeconds\": 10,\n  \"concurrentExecLimit\": 10,\n  \"rateLimitPerFrequency\": 10,\n  \"rateLimitFrequencyInSeconds\": 10,\n  \"ownerEmail\": \"user@example.com\",\n  \"inputTemplate\": {\n    \"key_0\": \"string\"\n  },\n  \"createdBy\": \"example_value\",\n  \"createTime\": 10,\n  \"updatedBy\": \"example_value\",\n  \"updateTime\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80ab1578-9cb7-49d9-a28b-a52dd0d030ab",
+          "name": "Conductor Get a Task Definition",
+          "request": {
+            "name": "Conductor Get a Task Definition",
+            "description": {
+              "content": "Retrieves a task definition by its type name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd9096d8-7364-4d8d-a73b-bf8980b0eba3",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"retryCount\": 10,\n  \"retryLogic\": \"FIXED\",\n  \"retryDelaySeconds\": 10,\n  \"timeoutSeconds\": 10,\n  \"timeoutPolicy\": \"RETRY\",\n  \"responseTimeoutSeconds\": 10,\n  \"pollTimeoutSeconds\": 10,\n  \"concurrentExecLimit\": 10,\n  \"rateLimitPerFrequency\": 10,\n  \"rateLimitFrequencyInSeconds\": 10,\n  \"ownerEmail\": \"user@example.com\",\n  \"inputTemplate\": {\n    \"key_0\": 1530.4573154625223,\n    \"key_1\": 9466.253924951252,\n    \"key_2\": 137.79378062840686,\n    \"key_3\": true\n  },\n  \"createdBy\": \"example_value\",\n  \"createTime\": 10,\n  \"updatedBy\": \"example_value\",\n  \"updateTime\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a4fc115-71c7-4b03-8abe-adc1ed757c27",
+              "name": "Task definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17a1246e-93fd-47a7-a8cf-09ca01d05c83",
+          "name": "Conductor Delete a Task Definition",
+          "request": {
+            "name": "Conductor Delete a Task Definition",
+            "description": {
+              "content": "Removes a task definition by its type name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type name"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7363e587-1e6c-4430-8417-2907a5e13f17",
+              "name": "Task definition deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "577909b1-b93f-43fb-a540-9bc4ef043691",
+              "name": "Task definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1508ef5a-999d-46c5-8146-d99b729da6d9",
+      "name": "Metadata - Workflow",
+      "description": {
+        "content": "APIs for managing workflow definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fdcd7c8f-f19e-4acd-87d9-412b6705ab21",
+          "name": "Conductor Create a New Workflow Definition",
+          "request": {
+            "name": "Conductor Create a New Workflow Definition",
+            "description": {
+              "content": "Registers a new workflow definition with Conductor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"tasks\": [\n    {\n      \"name\": \"<string>\",\n      \"taskReferenceName\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"inputParameters\": {\n        \"key_0\": \"string\",\n        \"key_1\": false,\n        \"key_2\": false\n      },\n      \"optional\": false,\n      \"startDelay\": 0,\n      \"asyncComplete\": false,\n      \"retryCount\": \"<integer>\",\n      \"sink\": \"<string>\",\n      \"subWorkflowParam\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\"\n      },\n      \"joinOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"forkTasks\": [\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      ],\n      \"decisionCases\": {\n        \"key_0\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"key_1\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"key_2\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      \"defaultCase\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ],\n      \"loopCondition\": \"<string>\",\n      \"loopOver\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"taskReferenceName\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"inputParameters\": {\n        \"key_0\": false,\n        \"key_1\": 6904.353133695171\n      },\n      \"optional\": false,\n      \"startDelay\": 0,\n      \"asyncComplete\": false,\n      \"retryCount\": \"<integer>\",\n      \"sink\": \"<string>\",\n      \"subWorkflowParam\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\"\n      },\n      \"joinOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"forkTasks\": [\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      ],\n      \"decisionCases\": {\n        \"key_0\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"key_1\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      \"defaultCase\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ],\n      \"loopCondition\": \"<string>\",\n      \"loopOver\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"version\": 1,\n  \"inputParameters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"outputParameters\": {\n    \"key_0\": \"string\"\n  },\n  \"failureWorkflow\": \"<string>\",\n  \"schemaVersion\": 2,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": false,\n  \"ownerEmail\": \"<string>\",\n  \"timeoutPolicy\": \"<string>\",\n  \"timeoutSeconds\": 0,\n  \"variables\": {\n    \"key_0\": false,\n    \"key_1\": 9813.740765889714\n  },\n  \"inputTemplate\": {\n    \"key_0\": 8438,\n    \"key_1\": 174.5699963885794\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69711ebe-fda2-46fa-b79b-f11958f773f9",
+              "name": "Workflow definition created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": 2588\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 7226,\n    \"key_1\": 2538.2771079330723\n  },\n  \"inputTemplate\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60c302c5-aa49-4cbf-a08d-c42d29d993fe",
+              "name": "Invalid workflow definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": 2588\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 7226,\n    \"key_1\": 2538.2771079330723\n  },\n  \"inputTemplate\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "979578eb-444a-4241-a4e2-96c5a091048b",
+              "name": "Workflow definition already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": 2588\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 7226,\n    \"key_1\": 2538.2771079330723\n  },\n  \"inputTemplate\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "370c1f2b-14f0-43f2-9f6a-bbb107ad08d6",
+          "name": "Conductor Update Workflow Definitions",
+          "request": {
+            "name": "Conductor Update Workflow Definitions",
+            "description": {
+              "content": "Updates one or more existing workflow definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"tasks\": [\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": 6825.701453162113,\n          \"key_1\": \"string\"\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": false,\n          \"key_1\": \"string\"\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      }\n    ],\n    \"description\": \"<string>\",\n    \"version\": 1,\n    \"inputParameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputParameters\": {\n      \"key_0\": 1150,\n      \"key_1\": 8112.297690166674,\n      \"key_2\": 5184.724094279088\n    },\n    \"failureWorkflow\": \"<string>\",\n    \"schemaVersion\": 2,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": false,\n    \"ownerEmail\": \"<string>\",\n    \"timeoutPolicy\": \"<string>\",\n    \"timeoutSeconds\": 0,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"name\": \"<string>\",\n    \"tasks\": [\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": \"string\",\n          \"key_1\": 2805,\n          \"key_2\": true\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": false,\n          \"key_1\": 2027,\n          \"key_2\": 8852.585620845999\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      }\n    ],\n    \"description\": \"<string>\",\n    \"version\": 1,\n    \"inputParameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputParameters\": {\n      \"key_0\": 2792.1298504915935\n    },\n    \"failureWorkflow\": \"<string>\",\n    \"schemaVersion\": 2,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": false,\n    \"ownerEmail\": \"<string>\",\n    \"timeoutPolicy\": \"<string>\",\n    \"timeoutSeconds\": 0,\n    \"variables\": {\n      \"key_0\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": 8501.896592706571\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "667d52e6-f2e3-472d-ad7e-1a5448cf82f7",
+              "name": "Workflow definitions updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": false\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": 570.8206789934667\n    },\n    \"inputTemplate\": {\n      \"key_0\": 3881.967743441197,\n      \"key_1\": 7198.850049100407,\n      \"key_2\": \"string\",\n      \"key_3\": 9341.416339663907\n    }\n  },\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 8103.272828522506,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": 4657,\n      \"key_2\": true,\n      \"key_3\": 1111.1809678006657,\n      \"key_4\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a1af93e-3703-4c39-b401-6667ea64a14c",
+              "name": "Invalid workflow definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": false\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": 570.8206789934667\n    },\n    \"inputTemplate\": {\n      \"key_0\": 3881.967743441197,\n      \"key_1\": 7198.850049100407,\n      \"key_2\": \"string\",\n      \"key_3\": 9341.416339663907\n    }\n  },\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 8103.272828522506,\n      \"key_1\": false,\n      \"key_2\": \"string\"\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": 4657,\n      \"key_2\": true,\n      \"key_3\": 1111.1809678006657,\n      \"key_4\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c4febea-7e45-4528-a160-94bb49a338d1",
+          "name": "Conductor Get All Workflow Definitions",
+          "request": {
+            "name": "Conductor Get All Workflow Definitions",
+            "description": {
+              "content": "Retrieves all registered workflow definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85cf3774-6e4d-4bbc-aef4-f83dc06eb7fb",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": true\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 8181,\n      \"key_1\": 9275.270656148663\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": 341.17163850134415,\n      \"key_1\": 9748\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": 6065\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10684c7a-9980-492c-85d4-29516deb1945",
+          "name": "Conductor Get a Workflow Definition",
+          "request": {
+            "name": "Conductor Get a Workflow Definition",
+            "description": {
+              "content": "Retrieves a workflow definition by name and optionally by version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "The version of the workflow definition"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the workflow definition"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86d27ba2-822f-42c1-9f18-3ffc9e16d318",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": true\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 7898.615073255784,\n    \"key_1\": \"string\"\n  },\n  \"inputTemplate\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3956b76-5e70-4a2e-951e-c1cb9cf22835",
+              "name": "Workflow definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43ecfb5d-33b0-4ce5-9d04-db031fabb6dd",
+          "name": "Conductor Delete a Workflow Definition",
+          "request": {
+            "name": "Conductor Delete a Workflow Definition",
+            "description": {
+              "content": "Removes a workflow definition by name and version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "The version of the workflow definition"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the workflow definition"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "364fa796-dcbf-4d54-a76f-2a190d5b23fa",
+              "name": "Workflow definition deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e5dfbf1-9ec7-4683-96a7-73eef6766fd2",
+              "name": "Workflow definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2dc3d010-6c4a-4fb5-b57f-fe652f1b6d82",
+      "name": "Task",
+      "description": {
+        "content": "APIs for polling and updating tasks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36f864f7-fb4a-4178-95a2-3d1bdd9df4a9",
+          "name": "Conductor Poll for a Task",
+          "request": {
+            "name": "Conductor Poll for a Task",
+            "description": {
+              "content": "Polls for a task of the specified type. Used by workers to get tasks to execute. Returns a single task if available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "poll",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workerId",
+                  "value": "<string>",
+                  "description": "ID of the worker polling for the task"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Domain for task routing"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type to poll for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad476ceb-cbd9-4d3a-a72d-59ea392a9a7e",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "poll",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type to poll for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": \"500123\",\n  \"taskType\": \"example_value\",\n  \"status\": \"IN_PROGRESS\",\n  \"referenceTaskName\": \"example_value\",\n  \"workflowInstanceId\": \"500123\",\n  \"workflowType\": \"example_value\",\n  \"correlationId\": \"500123\",\n  \"scheduledTime\": 10,\n  \"startTime\": 10,\n  \"endTime\": 10,\n  \"updateTime\": 10,\n  \"retryCount\": 10,\n  \"pollCount\": 10,\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"inputData\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"outputData\": {\n    \"key_0\": 3425,\n    \"key_1\": 8338\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"domain\": \"example_value\",\n  \"seq\": 10,\n  \"taskDefName\": \"example_value\",\n  \"responseTimeoutSeconds\": 10,\n  \"queueWaitTime\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed6fdbc7-0ccc-422e-8543-97e7abc53728",
+              "name": "No tasks available for polling",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "poll",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type to poll for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1af5bef8-c1c8-4d4c-a990-56e2757be617",
+          "name": "Conductor Batch Poll for Tasks",
+          "request": {
+            "name": "Conductor Batch Poll for Tasks",
+            "description": {
+              "content": "Polls for multiple tasks of the specified type in a single request. Returns up to the specified count of tasks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "poll",
+                "batch",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workerId",
+                  "value": "<string>",
+                  "description": "ID of the worker polling for tasks"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "1",
+                  "description": "Number of tasks to poll for"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "100",
+                  "description": "Long poll timeout in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Domain for task routing"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type to poll for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c31e808-2ef0-4e1a-836a-a516dc4331f2",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "poll",
+                    "batch",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "1"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "100"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type to poll for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"taskId\": \"500123\",\n    \"taskType\": \"example_value\",\n    \"status\": \"IN_PROGRESS\",\n    \"referenceTaskName\": \"example_value\",\n    \"workflowInstanceId\": \"500123\",\n    \"workflowType\": \"example_value\",\n    \"correlationId\": \"500123\",\n    \"scheduledTime\": 10,\n    \"startTime\": 10,\n    \"endTime\": 10,\n    \"updateTime\": 10,\n    \"retryCount\": 10,\n    \"pollCount\": 10,\n    \"callbackAfterSeconds\": 10,\n    \"workerId\": \"500123\",\n    \"inputData\": {\n      \"key_0\": true,\n      \"key_1\": 3779.4588596347244\n    },\n    \"outputData\": {\n      \"key_0\": false,\n      \"key_1\": 1368.041802114297\n    },\n    \"reasonForIncompletion\": \"example_value\",\n    \"domain\": \"example_value\",\n    \"seq\": 10,\n    \"taskDefName\": \"example_value\",\n    \"responseTimeoutSeconds\": 10,\n    \"queueWaitTime\": 10\n  },\n  {\n    \"taskId\": \"500123\",\n    \"taskType\": \"example_value\",\n    \"status\": \"IN_PROGRESS\",\n    \"referenceTaskName\": \"example_value\",\n    \"workflowInstanceId\": \"500123\",\n    \"workflowType\": \"example_value\",\n    \"correlationId\": \"500123\",\n    \"scheduledTime\": 10,\n    \"startTime\": 10,\n    \"endTime\": 10,\n    \"updateTime\": 10,\n    \"retryCount\": 10,\n    \"pollCount\": 10,\n    \"callbackAfterSeconds\": 10,\n    \"workerId\": \"500123\",\n    \"inputData\": {\n      \"key_0\": true\n    },\n    \"outputData\": {\n      \"key_0\": 2288\n    },\n    \"reasonForIncompletion\": \"example_value\",\n    \"domain\": \"example_value\",\n    \"seq\": 10,\n    \"taskDefName\": \"example_value\",\n    \"responseTimeoutSeconds\": 10,\n    \"queueWaitTime\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c73e4a3-9774-4c33-98f3-41b9c29df29f",
+          "name": "Conductor Update Task Status",
+          "request": {
+            "name": "Conductor Update Task Status",
+            "description": {
+              "content": "Updates the status and result of a task. Used by workers to report task completion, failure, or progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflowInstanceId\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"outputData\": {\n    \"key_0\": 5295.072817172411\n  },\n  \"reasonForIncompletion\": \"<string>\",\n  \"callbackAfterSeconds\": \"<long>\",\n  \"workerId\": \"<string>\",\n  \"logs\": [\n    {\n      \"log\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"createdTime\": \"<long>\"\n    },\n    {\n      \"log\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"createdTime\": \"<long>\"\n    }\n  ],\n  \"externalOutputPayloadStoragePath\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "767d63d9-5b87-4ff9-906a-f18d3a13052b",
+              "name": "Task updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowInstanceId\": \"500123\",\n  \"taskId\": \"500123\",\n  \"status\": \"IN_PROGRESS\",\n  \"outputData\": {\n    \"key_0\": 802,\n    \"key_1\": 2050\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"externalOutputPayloadStoragePath\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df3ca349-0c14-486b-b66a-83dc1324cce4",
+              "name": "Invalid task result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowInstanceId\": \"500123\",\n  \"taskId\": \"500123\",\n  \"status\": \"IN_PROGRESS\",\n  \"outputData\": {\n    \"key_0\": 802,\n    \"key_1\": 2050\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"externalOutputPayloadStoragePath\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94dcac6a-a736-49d0-a664-839a2c50b49c",
+          "name": "Conductor Get Task Details",
+          "request": {
+            "name": "Conductor Get Task Details",
+            "description": {
+              "content": "Retrieves the details of a specific task by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43c37dca-9a54-4653-8321-2b772b2546b5",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": \"500123\",\n  \"taskType\": \"example_value\",\n  \"status\": \"IN_PROGRESS\",\n  \"referenceTaskName\": \"example_value\",\n  \"workflowInstanceId\": \"500123\",\n  \"workflowType\": \"example_value\",\n  \"correlationId\": \"500123\",\n  \"scheduledTime\": 10,\n  \"startTime\": 10,\n  \"endTime\": 10,\n  \"updateTime\": 10,\n  \"retryCount\": 10,\n  \"pollCount\": 10,\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"inputData\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"outputData\": {\n    \"key_0\": 3425,\n    \"key_1\": 8338\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"domain\": \"example_value\",\n  \"seq\": 10,\n  \"taskDefName\": \"example_value\",\n  \"responseTimeoutSeconds\": 10,\n  \"queueWaitTime\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bcda5bd-4f42-48b9-b09b-a9bca5e6b24b",
+              "name": "Task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90ade9ec-a796-4ae8-916f-a4dbd6b2f8de",
+          "name": "Conductor Acknowledge a Task",
+          "request": {
+            "name": "Conductor Acknowledge a Task",
+            "description": {
+              "content": "Acknowledges that a task has been received by a worker. This prevents the task from being sent to another worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "ack"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workerId",
+                  "value": "<string>",
+                  "description": "ID of the worker acknowledging the task"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID to acknowledge"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6eb7ccce-50fc-4ad5-9d13-b40ed9fa5de3",
+              "name": "Task acknowledged successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID to acknowledge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "325fefc7-ef4f-4c16-8433-fdf237463010",
+              "name": "Task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID to acknowledge"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e0098d7-1838-4401-b3b2-79a0592a54bf",
+          "name": "Conductor Add a Log Entry to a Task",
+          "request": {
+            "name": "Conductor Add a Log Entry to a Task",
+            "description": {
+              "content": "Adds a log message to a task execution for debugging or auditing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b2c55f2-42ee-46d3-bb24-24235d2eb2a2",
+              "name": "Log entry added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8b4fe8c-a43a-4539-91c9-59237337450c",
+          "name": "Conductor Get Task Execution Logs",
+          "request": {
+            "name": "Conductor Get Task Execution Logs",
+            "description": {
+              "content": "Retrieves the log entries for a specific task execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b007a82-e036-450b-b589-dd02635ce5fe",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"log\": \"example_value\",\n    \"taskId\": \"500123\",\n    \"createdTime\": 10\n  },\n  {\n    \"log\": \"example_value\",\n    \"taskId\": \"500123\",\n    \"createdTime\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f59b9786-44c5-4daf-b10d-b4b77a0ecdd1",
+          "name": "Conductor Get Task Queue Sizes",
+          "request": {
+            "name": "Conductor Get Task Queue Sizes",
+            "description": {
+              "content": "Returns the number of pending tasks for each task type in the queue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "queue",
+                "sizes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "taskType",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task types. If not specified, returns sizes for all task types."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bee43e33-3d81-410f-83d2-0b489e0a7471",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "queue",
+                    "sizes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "taskType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3567\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9847880b-8b02-48ac-82a6-bb5c7a65624b",
+          "name": "Conductor Search for Tasks",
+          "request": {
+            "name": "Conductor Search for Tasks",
+            "description": {
+              "content": "Searches for task executions based on query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Start index for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field and order"
+                },
+                {
+                  "disabled": false,
+                  "key": "freeText",
+                  "value": "*",
+                  "description": "Free text search"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Query expression for filtering results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2575d5a4-666b-44c3-9c8d-0d9f5634645f",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeText",
+                      "value": "*"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalHits\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0d310a5c-c622-4f27-b589-3ea4501e8b86",
+      "name": "Workflow",
+      "description": {
+        "content": "APIs for managing workflow executions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3742eda-fd55-4925-99b3-a85a4fe4d91f",
+          "name": "Conductor Start a New Workflow",
+          "request": {
+            "name": "Conductor Start a New Workflow",
+            "description": {
+              "content": "Starts a new workflow execution based on a registered workflow definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"correlationId\": \"<string>\",\n  \"priority\": 0,\n  \"input\": {\n    \"key_0\": \"string\"\n  },\n  \"taskToDomain\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"workflowDef\": {\n    \"name\": \"<string>\",\n    \"tasks\": [\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": \"string\",\n          \"key_1\": false,\n          \"key_2\": 424.23479620467333\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": 6375.5283032109965,\n          \"key_1\": false,\n          \"key_2\": true,\n          \"key_3\": true\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      }\n    ],\n    \"description\": \"<string>\",\n    \"version\": 1,\n    \"inputParameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputParameters\": {\n      \"key_0\": true,\n      \"key_1\": \"string\"\n    },\n    \"failureWorkflow\": \"<string>\",\n    \"schemaVersion\": 2,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": false,\n    \"ownerEmail\": \"<string>\",\n    \"timeoutPolicy\": \"<string>\",\n    \"timeoutSeconds\": 0,\n    \"variables\": {\n      \"key_0\": 4226,\n      \"key_1\": 2497.6063355208767\n    },\n    \"inputTemplate\": {\n      \"key_0\": false\n    }\n  },\n  \"externalInputPayloadStoragePath\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c414002-2a87-4ea9-9fcf-b396eae16925",
+              "name": "Workflow started successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"version\": 10,\n  \"correlationId\": \"500123\",\n  \"priority\": 10,\n  \"input\": {\n    \"key_0\": 5791.655977533441\n  },\n  \"taskToDomain\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"workflowDef\": {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 4638\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": false\n    },\n    \"inputTemplate\": {\n      \"key_0\": true\n    }\n  },\n  \"externalInputPayloadStoragePath\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3871f1ec-5803-4911-ad8f-896899d6b146",
+              "name": "Workflow definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"version\": 10,\n  \"correlationId\": \"500123\",\n  \"priority\": 10,\n  \"input\": {\n    \"key_0\": 5791.655977533441\n  },\n  \"taskToDomain\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"workflowDef\": {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 4638\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": false\n    },\n    \"inputTemplate\": {\n      \"key_0\": true\n    }\n  },\n  \"externalInputPayloadStoragePath\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b6612a4-8d4d-4047-9227-10d91ca487d3",
+          "name": "Conductor Get Workflow Execution Status",
+          "request": {
+            "name": "Conductor Get Workflow Execution Status",
+            "description": {
+              "content": "Retrieves the current status and details of a running or completed workflow execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeTasks",
+                  "value": "true",
+                  "description": "Whether to include task details in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f7cf274-8436-4d6f-9a11-5215317048d7",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTasks",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowId\": \"500123\",\n  \"workflowName\": \"example_value\",\n  \"workflowVersion\": 10,\n  \"correlationId\": \"500123\",\n  \"status\": \"RUNNING\",\n  \"startTime\": 10,\n  \"endTime\": 10,\n  \"updateTime\": 10,\n  \"input\": {\n    \"key_0\": 1293\n  },\n  \"output\": {\n    \"key_0\": 8277.029934863114\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"workflowDefinition\": {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 9626.959074641794\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": 7460.144352265188\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": false\n    }\n  },\n  \"priority\": 10,\n  \"variables\": {\n    \"key_0\": 5156\n  },\n  \"lastRetriedTime\": 10,\n  \"ownerApp\": \"example_value\",\n  \"createTime\": 10,\n  \"createdBy\": \"example_value\",\n  \"parentWorkflowId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf9e43a1-9e80-4ebf-95c5-113a1a3d20d9",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTasks",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6464989c-89f1-43ec-a33e-85f10071db89",
+          "name": "Conductor Delete a Workflow Execution",
+          "request": {
+            "name": "Conductor Delete a Workflow Execution",
+            "description": {
+              "content": "Removes a workflow execution and its associated data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "archiveWorkflow",
+                  "value": "true",
+                  "description": "Whether to archive the workflow before deletion"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcb3b7b9-c2ef-4db8-96d3-855247a70366",
+              "name": "Workflow execution deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "archiveWorkflow",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ead2d87-1399-4595-a53e-7a6b36e9533a",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "archiveWorkflow",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd88c3fc-64df-45cb-862a-bad77b7a5c39",
+          "name": "Conductor Pause a Running Workflow",
+          "request": {
+            "name": "Conductor Pause a Running Workflow",
+            "description": {
+              "content": "Pauses a currently running workflow execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7607df64-e1a6-4f54-8538-27f65cff8374",
+              "name": "Workflow paused successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85c66e3f-5503-4dcc-aa9b-22cbc86ca87f",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c81186e8-24b8-4952-bf2d-c259b4857bf8",
+          "name": "Conductor Resume a Paused Workflow",
+          "request": {
+            "name": "Conductor Resume a Paused Workflow",
+            "description": {
+              "content": "Resumes a previously paused workflow execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8af1daa5-8363-411f-a571-f415f850908b",
+              "name": "Workflow resumed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad376512-b1e5-4148-8524-8d43b3832129",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d36c41f-327e-413d-b7dd-566acb650baf",
+          "name": "Conductor Restart a Completed Workflow",
+          "request": {
+            "name": "Conductor Restart a Completed Workflow",
+            "description": {
+              "content": "Restarts a completed workflow from the beginning with the same input. If useLatestDefinitions is set, the workflow uses the latest definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "restart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "useLatestDefinitions",
+                  "value": "false",
+                  "description": "Whether to use the latest workflow and task definitions"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34dc0343-8bf8-4e13-8452-016009f592da",
+              "name": "Workflow restarted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useLatestDefinitions",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42353d2a-13b7-4213-b585-5021ee6376d9",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useLatestDefinitions",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23f08cc6-37b5-4725-b914-78a7c51e401a",
+          "name": "Conductor Retry a Failed Workflow",
+          "request": {
+            "name": "Conductor Retry a Failed Workflow",
+            "description": {
+              "content": "Retries the last failed task in a workflow execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "retry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resumeSubworkflowTasks",
+                  "value": "false",
+                  "description": "Whether to resume subworkflow tasks"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e4fbb95-9fcd-42e8-8b9e-be7ce449c4c5",
+              "name": "Workflow retry initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resumeSubworkflowTasks",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98768c9f-5836-45be-9456-e0854796774f",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resumeSubworkflowTasks",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d830735-0f6d-44e3-a6bd-a4b9c48a05e7",
+          "name": "Conductor Terminate a Running Workflow",
+          "request": {
+            "name": "Conductor Terminate a Running Workflow",
+            "description": {
+              "content": "Terminates a running workflow execution with an optional reason.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reason",
+                  "value": "<string>",
+                  "description": "Reason for termination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7178caa0-1e8e-46c1-8c19-5634306412d5",
+              "name": "Workflow terminated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reason",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d8899e1-43cd-41fe-9933-452b62151eb9",
+              "name": "Workflow execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reason",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9522251-a780-4226-8863-c7f017a9b800",
+          "name": "Conductor Skip a Task in a Running Workflow",
+          "request": {
+            "name": "Conductor Skip a Task in a Running Workflow",
+            "description": {
+              "content": "Skips a given task from a running workflow and moves to the next task. The skipped task will be marked as completed with the provided output.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "skiptask",
+                ":taskReferenceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The workflow instance ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskReferenceName",
+                  "description": "(Required) The reference name of the task to skip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskInput\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  },\n  \"taskOutput\": {\n    \"key_0\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8f3f2fd-3600-4af3-b4e9-70a5202cae45",
+              "name": "Task skipped successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "skiptask",
+                    ":taskReferenceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskReferenceName",
+                      "description": "(Required) The reference name of the task to skip"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInput\": {\n    \"key_0\": 5382.358071109315\n  },\n  \"taskOutput\": {\n    \"key_0\": 9525.77799370882,\n    \"key_1\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "069122be-1719-42d1-8702-10032eb9f8cd",
+              "name": "Workflow or task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "skiptask",
+                    ":taskReferenceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The workflow instance ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskReferenceName",
+                      "description": "(Required) The reference name of the task to skip"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskInput\": {\n    \"key_0\": 5382.358071109315\n  },\n  \"taskOutput\": {\n    \"key_0\": 9525.77799370882,\n    \"key_1\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88aa1a1a-5e8a-4341-96fa-07c811e8edf2",
+          "name": "Conductor Search for Workflow Executions",
+          "request": {
+            "name": "Conductor Search for Workflow Executions",
+            "description": {
+              "content": "Searches for workflow executions using Conductor's query language. Uses Elasticsearch for indexing workflow execution data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Start index for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field and order (e.g., createTime:DESC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "freeText",
+                  "value": "*",
+                  "description": "Free text search across workflow data"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Query expression for filtering results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "899d7351-45a5-4fde-85df-23c7ecf68455",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeText",
+                      "value": "*"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalHits\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf6ce2f0-75a6-4e16-a093-db8272674f74",
+          "name": "Conductor Get Running Workflow Instances",
+          "request": {
+            "name": "Conductor Get Running Workflow Instances",
+            "description": {
+              "content": "Retrieves a list of running workflow instance IDs for a given workflow name and optionally filtered by version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "running",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "The workflow version"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "Start time filter (epoch milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "End time filter (epoch milliseconds)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The workflow name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "189fb2f6-c286-4b76-9953-00dafe2b3483",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "running",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The workflow name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:8080/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7f844680-32d0-487b-b32d-b70591a14981",
+    "name": "Conductor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.\n\nContact Support:\n Name: Conductor OSS",
+      "type": "text/plain"
+    }
+  }
+}
