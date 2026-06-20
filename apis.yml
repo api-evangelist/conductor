@@ -5,7 +5,7 @@ description: Conductor allows you to build a complex application using simple an
   application's execution flow. Conductor keeps track of the state, calls tasks in
   the right order (sequentially or in parallel, as defined by you), retry calls if
   needed, handle failure scenarios gracefully, and outputs the final result.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/apis.yml
 tags:
 - Automation
