@@ -55,6 +55,8 @@ apis:
   - url: graphql/conductor-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/conductor-agentic-access.yml
 - type: DomainSecurity
   url: security/conductor-domain-security.yml
 - type: LinkedIn
