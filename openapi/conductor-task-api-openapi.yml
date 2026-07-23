@@ -1,0 +1,592 @@
+openapi: 3.1.0
+info:
+  title: Conductor Admin Task API
+  description: Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.
+  version: 3.x
+  contact:
+    name: Conductor OSS
+    url: https://conductor-oss.github.io/conductor/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:8080/api
+  description: Local Conductor Server
+- url: https://play.orkes.io/api
+  description: Orkes Conductor Playground
+tags:
+- name: Task
+  description: APIs for polling and updating tasks
+paths:
+  /tasks/poll/{taskType}:
+    get:
+      operationId: pollForTask
+      summary: Conductor Poll for a Task
+      description: Polls for a task of the specified type. Used by workers to get tasks to execute. Returns a single task if available.
+      tags:
+      - Task
+      parameters:
+      - name: taskType
+        in: path
+        required: true
+        description: The task type to poll for
+        schema:
+          type: string
+      - name: workerId
+        in: query
+        required: false
+        description: ID of the worker polling for the task
+        schema:
+          type: string
+      - name: domain
+        in: query
+        required: false
+        description: Domain for task routing
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '204':
+          description: No tasks available for polling
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks/poll/batch/{taskType}:
+    get:
+      operationId: batchPollForTasks
+      summary: Conductor Batch Poll for Tasks
+      description: Polls for multiple tasks of the specified type in a single request. Returns up to the specified count of tasks.
+      tags:
+      - Task
+      parameters:
+      - name: taskType
+        in: path
+        required: true
+        description: The task type to poll for
+        schema:
+          type: string
+      - name: workerId
+        in: query
+        required: false
+        description: ID of the worker polling for tasks
+        schema:
+          type: string
+      - name: count
+        in: query
+        required: false
+        description: Number of tasks to poll for
+        schema:
+          type: integer
+          default: 1
+      - name: timeout
+        in: query
+        required: false
+        description: Long poll timeout in milliseconds
+        schema:
+          type: integer
+          default: 100
+      - name: domain
+        in: query
+        required: false
+        description: Domain for task routing
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks:
+    post:
+      operationId: updateTask
+      summary: Conductor Update Task Status
+      description: Updates the status and result of a task. Used by workers to report task completion, failure, or progress.
+      tags:
+      - Task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskResult'
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                description: The task ID
+        '400':
+          description: Invalid task result
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks/{taskId}:
+    get:
+      operationId: getTask
+      summary: Conductor Get Task Details
+      description: Retrieves the details of a specific task by its ID.
+      tags:
+      - Task
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks/{taskId}/ack:
+    post:
+      operationId: acknowledgeTask
+      summary: Conductor Acknowledge a Task
+      description: Acknowledges that a task has been received by a worker. This prevents the task from being sent to another worker.
+      tags:
+      - Task
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID to acknowledge
+        schema:
+          type: string
+      - name: workerId
+        in: query
+        required: false
+        description: ID of the worker acknowledging the task
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Task acknowledged successfully
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '404':
+          description: Task not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks/{taskId}/log:
+    post:
+      operationId: addTaskLog
+      summary: Conductor Add a Log Entry to a Task
+      description: Adds a log message to a task execution for debugging or auditing.
+      tags:
+      - Task
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              description: The log message to add
+      responses:
+        '200':
+          description: Log entry added successfully
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getTaskLogs
+      summary: Conductor Get Task Execution Logs
+      description: Retrieves the log entries for a specific task execution.
+      tags:
+      - Task
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The task ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskExecLog'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks/queue/sizes:
+    get:
+      operationId: getTaskQueueSizes
+      summary: Conductor Get Task Queue Sizes
+      description: Returns the number of pending tasks for each task type in the queue.
+      tags:
+      - Task
+      parameters:
+      - name: taskType
+        in: query
+        required: false
+        description: Comma-separated list of task types. If not specified, returns sizes for all task types.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tasks/search:
+    get:
+      operationId: searchTasks
+      summary: Conductor Search for Tasks
+      description: Searches for task executions based on query parameters.
+      tags:
+      - Task
+      parameters:
+      - name: start
+        in: query
+        required: false
+        description: Start index for pagination
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        required: false
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 100
+      - name: sort
+        in: query
+        required: false
+        description: Sort field and order
+        schema:
+          type: string
+      - name: freeText
+        in: query
+        required: false
+        description: Free text search
+        schema:
+          type: string
+          default: '*'
+      - name: query
+        in: query
+        required: false
+        description: Query expression for filtering results
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultTaskSummary'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TaskResult:
+      type: object
+      required:
+      - workflowInstanceId
+      - taskId
+      - status
+      properties:
+        workflowInstanceId:
+          type: string
+          description: The workflow instance ID
+          example: '500123'
+        taskId:
+          type: string
+          description: The task ID
+          example: '500123'
+        status:
+          type: string
+          description: Task execution status
+          enum:
+          - IN_PROGRESS
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          example: IN_PROGRESS
+        outputData:
+          type: object
+          description: Task output data
+          additionalProperties: true
+          example: example_value
+        reasonForIncompletion:
+          type: string
+          description: Reason for failure
+          example: example_value
+        callbackAfterSeconds:
+          type: integer
+          format: int64
+          description: Callback delay for IN_PROGRESS tasks
+          example: 10
+        workerId:
+          type: string
+          description: ID of the worker updating the task
+          example: '500123'
+        logs:
+          type: array
+          description: Task execution logs
+          items:
+            $ref: '#/components/schemas/TaskExecLog'
+          example: []
+        externalOutputPayloadStoragePath:
+          type: string
+          description: Path to externally stored output payload
+          example: example_value
+    SearchResultTaskSummary:
+      type: object
+      properties:
+        totalHits:
+          type: integer
+          format: int64
+          description: Total number of matching results
+          example: 10
+        results:
+          type: array
+          description: List of task summaries
+          items:
+            $ref: '#/components/schemas/TaskSummary'
+          example: []
+    Task:
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Unique task instance ID
+          example: '500123'
+        taskType:
+          type: string
+          description: The type of the task
+          example: example_value
+        status:
+          type: string
+          description: Current status of the task
+          enum:
+          - IN_PROGRESS
+          - CANCELED
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          - COMPLETED_WITH_ERRORS
+          - SCHEDULED
+          - TIMED_OUT
+          - SKIPPED
+          example: IN_PROGRESS
+        referenceTaskName:
+          type: string
+          description: Reference name of the task in the workflow
+          example: example_value
+        workflowInstanceId:
+          type: string
+          description: ID of the workflow instance this task belongs to
+          example: '500123'
+        workflowType:
+          type: string
+          description: Type/name of the workflow
+          example: example_value
+        correlationId:
+          type: string
+          description: Correlation ID
+          example: '500123'
+        scheduledTime:
+          type: integer
+          format: int64
+          description: Scheduled time
+          example: 10
+        startTime:
+          type: integer
+          format: int64
+          description: Start time
+          example: 10
+        endTime:
+          type: integer
+          format: int64
+          description: End time
+          example: 10
+        updateTime:
+          type: integer
+          format: int64
+          description: Last update time
+          example: 10
+        retryCount:
+          type: integer
+          description: Current retry count
+          example: 10
+        pollCount:
+          type: integer
+          description: Number of times this task was polled
+          example: 10
+        callbackAfterSeconds:
+          type: integer
+          format: int64
+          description: Callback delay in seconds
+          example: 10
+        workerId:
+          type: string
+          description: ID of the worker that polled this task
+          example: '500123'
+        inputData:
+          type: object
+          description: Task input data
+          additionalProperties: true
+          example: example_value
+        outputData:
+          type: object
+          description: Task output data
+          additionalProperties: true
+          example: example_value
+        reasonForIncompletion:
+          type: string
+          description: Reason for failure
+          example: example_value
+        logs:
+          type: array
+          description: Task execution logs
+          items:
+            $ref: '#/components/schemas/TaskExecLog'
+          example: []
+        domain:
+          type: string
+          description: Task domain
+          example: example_value
+        seq:
+          type: integer
+          description: Sequence number
+          example: 10
+        taskDefName:
+          type: string
+          description: Task definition name
+          example: example_value
+        responseTimeoutSeconds:
+          type: integer
+          format: int64
+          description: Response timeout
+          example: 10
+        queueWaitTime:
+          type: integer
+          format: int64
+          description: Time spent waiting in queue
+          example: 10
+    TaskExecLog:
+      type: object
+      properties:
+        log:
+          type: string
+          description: Log message
+          example: example_value
+        taskId:
+          type: string
+          description: Associated task ID
+          example: '500123'
+        createdTime:
+          type: integer
+          format: int64
+          description: Timestamp of the log entry
+          example: 10
+    TaskSummary:
+      type: object
+      properties:
+        taskId:
+          type: string
+          example: '500123'
+        taskType:
+          type: string
+          example: example_value
+        taskDefName:
+          type: string
+          example: example_value
+        status:
+          type: string
+          enum:
+          - IN_PROGRESS
+          - CANCELED
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          - COMPLETED_WITH_ERRORS
+          - SCHEDULED
+          - TIMED_OUT
+          - SKIPPED
+          example: IN_PROGRESS
+        workflowId:
+          type: string
+          example: '500123'
+        workflowType:
+          type: string
+          example: example_value
+        correlationId:
+          type: string
+          example: '500123'
+        scheduledTime:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          example: example_value
+        updateTime:
+          type: string
+          example: example_value
+        endTime:
+          type: string
+          example: example_value
+        input:
+          type: string
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        reasonForIncompletion:
+          type: string
+          example: example_value
+        queueWaitTime:
+          type: integer
+          format: int64
+          example: 10
+        domain:
+          type: string
+          example: example_value
+externalDocs:
+  description: Conductor API Documentation
+  url: https://conductor-oss.github.io/conductor/documentation/api/index.html

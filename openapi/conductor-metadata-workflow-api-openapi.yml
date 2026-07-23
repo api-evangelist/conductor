@@ -1,0 +1,348 @@
+openapi: 3.1.0
+info:
+  title: Conductor Admin Metadata - Workflow API
+  description: Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.
+  version: 3.x
+  contact:
+    name: Conductor OSS
+    url: https://conductor-oss.github.io/conductor/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:8080/api
+  description: Local Conductor Server
+- url: https://play.orkes.io/api
+  description: Orkes Conductor Playground
+tags:
+- name: Metadata - Workflow
+  description: APIs for managing workflow definitions
+paths:
+  /metadata/workflow:
+    post:
+      operationId: createWorkflowDefinition
+      summary: Conductor Create a New Workflow Definition
+      description: Registers a new workflow definition with Conductor.
+      tags:
+      - Metadata - Workflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowDef'
+      responses:
+        '200':
+          description: Workflow definition created successfully
+        '400':
+          description: Invalid workflow definition
+        '409':
+          description: Workflow definition already exists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateWorkflowDefinitions
+      summary: Conductor Update Workflow Definitions
+      description: Updates one or more existing workflow definitions.
+      tags:
+      - Metadata - Workflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/WorkflowDef'
+      responses:
+        '200':
+          description: Workflow definitions updated successfully
+        '400':
+          description: Invalid workflow definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getAllWorkflowDefinitions
+      summary: Conductor Get All Workflow Definitions
+      description: Retrieves all registered workflow definitions.
+      tags:
+      - Metadata - Workflow
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowDef'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /metadata/workflow/{name}:
+    get:
+      operationId: getWorkflowDefinition
+      summary: Conductor Get a Workflow Definition
+      description: Retrieves a workflow definition by name and optionally by version.
+      tags:
+      - Metadata - Workflow
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The name of the workflow definition
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: The version of the workflow definition
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowDef'
+        '404':
+          description: Workflow definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteWorkflowDefinition
+      summary: Conductor Delete a Workflow Definition
+      description: Removes a workflow definition by name and version.
+      tags:
+      - Metadata - Workflow
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The name of the workflow definition
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: The version of the workflow definition
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Workflow definition deleted successfully
+        '404':
+          description: Workflow definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    WorkflowTask:
+      type: object
+      required:
+      - name
+      - taskReferenceName
+      - type
+      properties:
+        name:
+          type: string
+          description: Name of the task
+          example: Example Title
+        taskReferenceName:
+          type: string
+          description: Unique reference name for the task within the workflow
+          example: example_value
+        type:
+          type: string
+          description: The type of task
+          enum:
+          - SIMPLE
+          - DYNAMIC
+          - FORK_JOIN
+          - FORK_JOIN_DYNAMIC
+          - DECISION
+          - SWITCH
+          - JOIN
+          - DO_WHILE
+          - SUB_WORKFLOW
+          - START_WORKFLOW
+          - EVENT
+          - WAIT
+          - HUMAN
+          - HTTP
+          - INLINE
+          - JSON_JQ_TRANSFORM
+          - LAMBDA
+          - SET_VARIABLE
+          - TERMINATE
+          - KAFKA_PUBLISH
+          example: SIMPLE
+        description:
+          type: string
+          description: Task description
+          example: A sample description.
+        inputParameters:
+          type: object
+          description: Input parameter mappings
+          additionalProperties: true
+          example: example_value
+        optional:
+          type: boolean
+          description: Whether this task is optional
+          default: false
+          example: true
+        startDelay:
+          type: integer
+          description: Delay in seconds before starting the task
+          default: 0
+          example: 10
+        asyncComplete:
+          type: boolean
+          description: Whether the task is completed asynchronously
+          default: false
+          example: true
+        retryCount:
+          type: integer
+          description: Number of retries
+          example: 10
+        sink:
+          type: string
+          description: Sink for EVENT tasks
+          example: example_value
+        subWorkflowParam:
+          type: object
+          description: Sub workflow parameters
+          properties:
+            name:
+              type: string
+            version:
+              type: integer
+          example: example_value
+        joinOn:
+          type: array
+          description: List of task reference names to join on
+          items:
+            type: string
+          example: []
+        forkTasks:
+          type: array
+          description: List of forked task lists
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowTask'
+          example: []
+        decisionCases:
+          type: object
+          description: Decision cases for SWITCH/DECISION tasks
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowTask'
+          example: example_value
+        defaultCase:
+          type: array
+          description: Default case tasks for SWITCH/DECISION
+          items:
+            $ref: '#/components/schemas/WorkflowTask'
+          example: []
+        loopCondition:
+          type: string
+          description: Loop condition for DO_WHILE tasks
+          example: example_value
+        loopOver:
+          type: array
+          description: Tasks to loop over in DO_WHILE
+          items:
+            $ref: '#/components/schemas/WorkflowTask'
+          example: []
+    WorkflowDef:
+      type: object
+      required:
+      - name
+      - tasks
+      properties:
+        name:
+          type: string
+          description: The name of the workflow definition
+          example: Example Title
+        description:
+          type: string
+          description: Description of the workflow
+          example: A sample description.
+        version:
+          type: integer
+          description: The version of the workflow definition
+          default: 1
+          example: 10
+        tasks:
+          type: array
+          description: The list of tasks in the workflow
+          items:
+            $ref: '#/components/schemas/WorkflowTask'
+          example: []
+        inputParameters:
+          type: array
+          description: List of input parameter names for the workflow
+          items:
+            type: string
+          example: []
+        outputParameters:
+          type: object
+          description: Mapping of output parameters
+          additionalProperties: true
+          example: example_value
+        failureWorkflow:
+          type: string
+          description: Name of the workflow to execute when this workflow fails
+          example: example_value
+        schemaVersion:
+          type: integer
+          description: Schema version (currently 2)
+          default: 2
+          example: 10
+        restartable:
+          type: boolean
+          description: Whether the workflow is restartable
+          default: true
+          example: true
+        workflowStatusListenerEnabled:
+          type: boolean
+          description: Whether to enable workflow status listener
+          default: false
+          example: true
+        ownerEmail:
+          type: string
+          description: Email of the workflow definition owner
+          example: user@example.com
+        timeoutPolicy:
+          type: string
+          description: Timeout policy for the workflow
+          enum:
+          - TIME_OUT_WF
+          - ALERT_ONLY
+          example: TIME_OUT_WF
+        timeoutSeconds:
+          type: integer
+          format: int64
+          description: Timeout in seconds for the workflow
+          default: 0
+          example: 10
+        variables:
+          type: object
+          description: Workflow level variables
+          additionalProperties: true
+          example: example_value
+        inputTemplate:
+          type: object
+          description: Default input template
+          additionalProperties: true
+          example: example_value
+externalDocs:
+  description: Conductor API Documentation
+  url: https://conductor-oss.github.io/conductor/documentation/api/index.html

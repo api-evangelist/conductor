@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  title: Conductor Admin Metadata - Task API
+  description: Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.
+  version: 3.x
+  contact:
+    name: Conductor OSS
+    url: https://conductor-oss.github.io/conductor/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:8080/api
+  description: Local Conductor Server
+- url: https://play.orkes.io/api
+  description: Orkes Conductor Playground
+tags:
+- name: Metadata - Task
+  description: APIs for managing task definitions
+paths:
+  /metadata/taskdefs:
+    post:
+      operationId: createTaskDefinitions
+      summary: Conductor Create New Task Definitions
+      description: Registers new task definitions with Conductor.
+      tags:
+      - Metadata - Task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaskDef'
+      responses:
+        '200':
+          description: Task definitions created successfully
+        '400':
+          description: Invalid task definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getAllTaskDefinitions
+      summary: Conductor Get All Task Definitions
+      description: Retrieves all registered task definitions.
+      tags:
+      - Metadata - Task
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDef'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateTaskDefinition
+      summary: Conductor Update a Task Definition
+      description: Updates an existing task definition.
+      tags:
+      - Metadata - Task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskDef'
+      responses:
+        '200':
+          description: Task definition updated successfully
+        '400':
+          description: Invalid task definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /metadata/taskdefs/{taskType}:
+    get:
+      operationId: getTaskDefinition
+      summary: Conductor Get a Task Definition
+      description: Retrieves a task definition by its type name.
+      tags:
+      - Metadata - Task
+      parameters:
+      - name: taskType
+        in: path
+        required: true
+        description: The task type name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDef'
+        '404':
+          description: Task definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteTaskDefinition
+      summary: Conductor Delete a Task Definition
+      description: Removes a task definition by its type name.
+      tags:
+      - Metadata - Task
+      parameters:
+      - name: taskType
+        in: path
+        required: true
+        description: The task type name
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Task definition deleted successfully
+        '404':
+          description: Task definition not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TaskDef:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the task definition
+          example: Example Title
+        description:
+          type: string
+          description: Description of the task
+          example: A sample description.
+        retryCount:
+          type: integer
+          description: Number of retries
+          default: 3
+          example: 10
+        retryLogic:
+          type: string
+          description: Retry logic
+          enum:
+          - FIXED
+          - EXPONENTIAL_BACKOFF
+          - LINEAR_BACKOFF
+          example: FIXED
+        retryDelaySeconds:
+          type: integer
+          description: Delay between retries in seconds
+          default: 60
+          example: 10
+        timeoutSeconds:
+          type: integer
+          format: int64
+          description: Task execution timeout in seconds
+          default: 0
+          example: 10
+        timeoutPolicy:
+          type: string
+          description: Timeout policy
+          enum:
+          - RETRY
+          - TIME_OUT_WF
+          - ALERT_ONLY
+          example: RETRY
+        responseTimeoutSeconds:
+          type: integer
+          format: int64
+          description: Time to wait for worker to respond after polling
+          default: 3600
+          example: 10
+        pollTimeoutSeconds:
+          type: integer
+          description: Time to wait when polling for task
+          example: 10
+        concurrentExecLimit:
+          type: integer
+          description: Concurrent execution limit for the task
+          example: 10
+        rateLimitPerFrequency:
+          type: integer
+          description: Rate limit per frequency
+          example: 10
+        rateLimitFrequencyInSeconds:
+          type: integer
+          description: Rate limit frequency window in seconds
+          example: 10
+        ownerEmail:
+          type: string
+          description: Email of the task definition owner
+          example: user@example.com
+        inputKeys:
+          type: array
+          description: Expected input keys
+          items:
+            type: string
+          example: []
+        outputKeys:
+          type: array
+          description: Expected output keys
+          items:
+            type: string
+          example: []
+        inputTemplate:
+          type: object
+          description: Default input template
+          additionalProperties: true
+          example: example_value
+        createdBy:
+          type: string
+          description: Creator of the task definition
+          example: example_value
+        createTime:
+          type: integer
+          format: int64
+          description: Creation timestamp
+          example: 10
+        updatedBy:
+          type: string
+          description: Last updater
+          example: example_value
+        updateTime:
+          type: integer
+          format: int64
+          description: Last update timestamp
+          example: 10
+externalDocs:
+  description: Conductor API Documentation
+  url: https://conductor-oss.github.io/conductor/documentation/api/index.html

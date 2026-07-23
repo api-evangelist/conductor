@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Conductor Admin API
+  description: Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.
+  version: 3.x
+  contact:
+    name: Conductor OSS
+    url: https://conductor-oss.github.io/conductor/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:8080/api
+  description: Local Conductor Server
+- url: https://play.orkes.io/api
+  description: Orkes Conductor Playground
+tags:
+- name: Admin
+  description: Administrative and health check APIs
+paths:
+  /admin/config:
+    get:
+      operationId: getConfiguration
+      summary: Conductor Get Server Configuration
+      description: Retrieves the current Conductor server configuration.
+      tags:
+      - Admin
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /admin/task/{taskType}:
+    get:
+      operationId: getTaskQueueInfo
+      summary: Conductor Get Task Queue Information
+      description: Retrieves information about a specific task type's queue.
+      tags:
+      - Admin
+      parameters:
+      - name: taskType
+        in: path
+        required: true
+        description: The task type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /admin/sweep/requeue/{workflowId}:
+    post:
+      operationId: requeueSweep
+      summary: Conductor Requeue a Workflow for Sweep
+      description: Requeues a workflow for the sweep operation to re-evaluate its state.
+      tags:
+      - Admin
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        description: The workflow instance ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Workflow requeued successfully
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Conductor Health Check
+      description: Returns the health status of the Conductor server.
+      tags:
+      - Admin
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  healthy:
+                    type: boolean
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+externalDocs:
+  description: Conductor API Documentation
+  url: https://conductor-oss.github.io/conductor/documentation/api/index.html

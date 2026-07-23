@@ -1,0 +1,226 @@
+openapi: 3.1.0
+info:
+  title: Conductor Admin Event API
+  description: Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.
+  version: 3.x
+  contact:
+    name: Conductor OSS
+    url: https://conductor-oss.github.io/conductor/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:8080/api
+  description: Local Conductor Server
+- url: https://play.orkes.io/api
+  description: Orkes Conductor Playground
+tags:
+- name: Event
+  description: APIs for managing event handlers
+paths:
+  /event:
+    post:
+      operationId: createEventHandler
+      summary: Conductor Create an Event Handler
+      description: Creates a new event handler definition for processing events from external systems.
+      tags:
+      - Event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventHandler'
+      responses:
+        '200':
+          description: Event handler created successfully
+        '400':
+          description: Invalid event handler definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateEventHandler
+      summary: Conductor Update an Event Handler
+      description: Updates an existing event handler definition.
+      tags:
+      - Event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventHandler'
+      responses:
+        '200':
+          description: Event handler updated successfully
+        '400':
+          description: Invalid event handler definition
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getAllEventHandlers
+      summary: Conductor Get All Event Handlers
+      description: Retrieves all registered event handler definitions.
+      tags:
+      - Event
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventHandler'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /event/{name}:
+    delete:
+      operationId: deleteEventHandler
+      summary: Conductor Delete an Event Handler
+      description: Removes an event handler by name.
+      tags:
+      - Event
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The event handler name
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Event handler deleted successfully
+        '404':
+          description: Event handler not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getEventHandlersForEvent
+      summary: Conductor Get Event Handlers for an Event
+      description: Retrieves all event handlers registered for a specific event.
+      tags:
+      - Event
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The event name
+        schema:
+          type: string
+      - name: activeOnly
+        in: query
+        required: false
+        description: Whether to return only active event handlers
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventHandler'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    EventHandler:
+      type: object
+      required:
+      - name
+      - event
+      - actions
+      properties:
+        name:
+          type: string
+          description: Name of the event handler
+          example: Example Title
+        event:
+          type: string
+          description: Event identifier in the format source:sink:subject (e.g., conductor:workflow_completed:myWorkflow)
+          example: example_value
+        condition:
+          type: string
+          description: Condition expression to evaluate
+          example: example_value
+        actions:
+          type: array
+          description: List of actions to perform when the event is received
+          items:
+            $ref: '#/components/schemas/EventHandlerAction'
+          example: []
+        active:
+          type: boolean
+          description: Whether the event handler is active
+          default: true
+          example: true
+        evaluatorType:
+          type: string
+          description: Type of evaluator for the condition
+          example: example_value
+    EventHandlerAction:
+      type: object
+      properties:
+        action:
+          type: string
+          description: The action type
+          enum:
+          - start_workflow
+          - complete_task
+          - fail_task
+          example: start_workflow
+        start_workflow:
+          type: object
+          description: Start workflow action parameters
+          properties:
+            name:
+              type: string
+            version:
+              type: integer
+            correlationId:
+              type: string
+            input:
+              type: object
+              additionalProperties: true
+          example: example_value
+        complete_task:
+          type: object
+          description: Complete task action parameters
+          properties:
+            workflowId:
+              type: string
+            taskRefName:
+              type: string
+            output:
+              type: object
+              additionalProperties: true
+          example: example_value
+        fail_task:
+          type: object
+          description: Fail task action parameters
+          properties:
+            workflowId:
+              type: string
+            taskRefName:
+              type: string
+            output:
+              type: object
+              additionalProperties: true
+          example: example_value
+        expandInlineJSON:
+          type: boolean
+          description: Whether to expand inline JSON strings
+          default: false
+          example: true
+externalDocs:
+  description: Conductor API Documentation
+  url: https://conductor-oss.github.io/conductor/documentation/api/index.html
