@@ -5,7 +5,19 @@ description: Conductor allows you to build a complex application using simple an
   application's execution flow. Conductor keeps track of the state, calls tasks in
   the right order (sequentially or in parallel, as defined by you), retry calls if
   needed, handle failure scenarios gracefully, and outputs the final result.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/conductor.png
 url: https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/apis.yml
 tags:
 - Automation
@@ -20,24 +32,17 @@ modified: '2026-05-19'
 specificationVersion: '0.19'
 position: Consuming
 apis:
-- aid: conductor:conductor
-  name: Conductor
-  description: Conductor allows you to build a complex application using simple and
-    granular tasks that do not need to be aware of or keep track of the state of your
-    application's execution flow. Conductor keeps track of the state, calls tasks
-    in the right order (sequentially or in parallel, as defined by you), retry calls
-    if needed, handle failure scenarios gracefully, and outputs the final result.
+- aid: conductor:conductor-admin-api
+  name: Conductor Admin API
+  description: Administrative and health check APIs
   humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
   tags:
-  - Automation
-  - Orchestration
-  - State
-  - Tasks
+  - Admin
   properties:
+  - type: OpenAPI
+    url: openapi/conductor-admin-api-openapi.yml
   - type: Documentation
     url: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
-  - type: OpenAPI
-    url: openapi/conductor-conductor-openapi.yml
   - type: AsyncAPI
     url: asyncapi/conductor-conductor-asyncapi.yml
   - type: JSONSchema
@@ -52,8 +57,143 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - url: graphql/conductor-graphql.md
-    type: GraphQL
+  - type: GraphQL
+    url: graphql/conductor-graphql.md
+- aid: conductor:conductor-event-api
+  name: Conductor Event API
+  description: APIs for managing event handlers
+  humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  tags:
+  - Event
+  properties:
+  - type: OpenAPI
+    url: openapi/conductor-event-api-openapi.yml
+  - type: Documentation
+    url: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  - type: AsyncAPI
+    url: asyncapi/conductor-conductor-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/workflow-def.json
+  - type: JSONSchema
+    url: json-schema/task-def.json
+  - type: JSONSchema
+    url: json-schema/workflow-execution.json
+  - type: JSONSchema
+    url: json-schema/event-handler.json
+  - type: JSONLD
+    url: json-ld/conductor-context.jsonld
+  - type: JSONLD
+    url: json-ld/conductor-conductor-context.jsonld
+  - type: GraphQL
+    url: graphql/conductor-graphql.md
+- aid: conductor:conductor-metadata-task-api
+  name: Conductor Metadata - Task API
+  description: APIs for managing task definitions
+  humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  tags:
+  - Metadata - Task
+  properties:
+  - type: OpenAPI
+    url: openapi/conductor-metadata-task-api-openapi.yml
+  - type: Documentation
+    url: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  - type: AsyncAPI
+    url: asyncapi/conductor-conductor-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/workflow-def.json
+  - type: JSONSchema
+    url: json-schema/task-def.json
+  - type: JSONSchema
+    url: json-schema/workflow-execution.json
+  - type: JSONSchema
+    url: json-schema/event-handler.json
+  - type: JSONLD
+    url: json-ld/conductor-context.jsonld
+  - type: JSONLD
+    url: json-ld/conductor-conductor-context.jsonld
+  - type: GraphQL
+    url: graphql/conductor-graphql.md
+- aid: conductor:conductor-metadata-workflow-api
+  name: Conductor Metadata - Workflow API
+  description: APIs for managing workflow definitions
+  humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  tags:
+  - Metadata - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/conductor-metadata-workflow-api-openapi.yml
+  - type: Documentation
+    url: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  - type: AsyncAPI
+    url: asyncapi/conductor-conductor-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/workflow-def.json
+  - type: JSONSchema
+    url: json-schema/task-def.json
+  - type: JSONSchema
+    url: json-schema/workflow-execution.json
+  - type: JSONSchema
+    url: json-schema/event-handler.json
+  - type: JSONLD
+    url: json-ld/conductor-context.jsonld
+  - type: JSONLD
+    url: json-ld/conductor-conductor-context.jsonld
+  - type: GraphQL
+    url: graphql/conductor-graphql.md
+- aid: conductor:conductor-task-api
+  name: Conductor Task API
+  description: APIs for polling and updating tasks
+  humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  tags:
+  - Task
+  properties:
+  - type: OpenAPI
+    url: openapi/conductor-task-api-openapi.yml
+  - type: Documentation
+    url: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  - type: AsyncAPI
+    url: asyncapi/conductor-conductor-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/workflow-def.json
+  - type: JSONSchema
+    url: json-schema/task-def.json
+  - type: JSONSchema
+    url: json-schema/workflow-execution.json
+  - type: JSONSchema
+    url: json-schema/event-handler.json
+  - type: JSONLD
+    url: json-ld/conductor-context.jsonld
+  - type: JSONLD
+    url: json-ld/conductor-conductor-context.jsonld
+  - type: GraphQL
+    url: graphql/conductor-graphql.md
+- aid: conductor:conductor-workflow-api
+  name: Conductor Workflow API
+  description: APIs for managing workflow executions
+  humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  tags:
+  - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/conductor-workflow-api-openapi.yml
+  - type: Documentation
+    url: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
+  - type: AsyncAPI
+    url: asyncapi/conductor-conductor-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/workflow-def.json
+  - type: JSONSchema
+    url: json-schema/task-def.json
+  - type: JSONSchema
+    url: json-schema/workflow-execution.json
+  - type: JSONSchema
+    url: json-schema/event-handler.json
+  - type: JSONLD
+    url: json-ld/conductor-context.jsonld
+  - type: JSONLD
+    url: json-ld/conductor-conductor-context.jsonld
+  - type: GraphQL
+    url: graphql/conductor-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/conductor-agentic-access.yml
