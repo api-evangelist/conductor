@@ -1,0 +1,24 @@
+{
+  "provider": "conductor",
+  "sources": [
+    "conductor-admin-api-openapi.yml",
+    "conductor-event-api-openapi.yml",
+    "conductor-metadata-task-api-openapi.yml",
+    "conductor-metadata-workflow-api-openapi.yml",
+    "conductor-task-api-openapi.yml",
+    "conductor-workflow-api-openapi.yml"
+  ],
+  "outputs": [
+    "conductor-admin-api-openapi.yml",
+    "conductor-event-api-openapi.yml",
+    "conductor-metadata-task-api-openapi.yml",
+    "conductor-metadata-workflow-api-openapi.yml",
+    "conductor-task-api-openapi.yml",
+    "conductor-workflow-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
