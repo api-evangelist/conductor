@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor Admin Metadata - Task API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata - Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get All Task Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/taskdefs"
+          },
+          "docs": "Retrieves all registered task definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Create New Task Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/metadata/taskdefs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers new task definitions with Conductor."
+        },
+        {
+          "info": {
+            "name": "Conductor Update a Task Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/metadata/taskdefs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing task definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Get a Task Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/taskdefs/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type name"
+              }
+            ]
+          },
+          "docs": "Retrieves a task definition by its type name."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete a Task Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/metadata/taskdefs/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type name"
+              }
+            ]
+          },
+          "docs": "Removes a task definition by its type name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor Admin Task API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Poll for a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/poll/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type to poll for"
+              },
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the worker polling for the task"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Domain for task routing"
+              }
+            ]
+          },
+          "docs": "Polls for a task of the specified type. Used by workers to get tasks to execute. Returns a single task if available."
+        },
+        {
+          "info": {
+            "name": "Conductor Batch Poll for Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/poll/batch/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type to poll for"
+              },
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the worker polling for tasks"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of tasks to poll for"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query",
+                "description": "Long poll timeout in milliseconds"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Domain for task routing"
+              }
+            ]
+          },
+          "docs": "Polls for multiple tasks of the specified type in a single request. Returns up to the specified count of tasks."
+        },
+        {
+          "info": {
+            "name": "Conductor Update Task Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status and result of a task. Used by workers to report task completion, failure, or progress."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific task by its ID."
+        },
+        {
+          "info": {
+            "name": "Conductor Acknowledge a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/tasks/:taskId/ack",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID to acknowledge"
+              },
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the worker acknowledging the task"
+              }
+            ]
+          },
+          "docs": "Acknowledges that a task has been received by a worker. This prevents the task from being sent to another worker."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Execution Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/:taskId/log",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ]
+          },
+          "docs": "Retrieves the log entries for a specific task execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Add a Log Entry to a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/tasks/:taskId/log",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a log message to a task execution for debugging or auditing."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Queue Sizes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/queue/sizes",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task types. If not specified, returns sizes for all task types."
+              }
+            ]
+          },
+          "docs": "Returns the number of pending tasks for each task type in the queue."
+        },
+        {
+          "info": {
+            "name": "Conductor Search for Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/tasks/search",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start index for pagination"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order"
+              },
+              {
+                "name": "freeText",
+                "value": "",
+                "type": "query",
+                "description": "Free text search"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query expression for filtering results"
+              }
+            ]
+          },
+          "docs": "Searches for task executions based on query parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

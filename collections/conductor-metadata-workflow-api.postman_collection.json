@@ -1,0 +1,664 @@
+{
+  "item": [
+    {
+      "id": "8d0ad3f2-c038-420a-a97f-7ca6cbdb025e",
+      "name": "Metadata - Workflow",
+      "description": {
+        "content": "APIs for managing workflow definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9f94e12-ee33-4e67-9dca-611d9678be83",
+          "name": "Conductor Create a New Workflow Definition",
+          "request": {
+            "name": "Conductor Create a New Workflow Definition",
+            "description": {
+              "content": "Registers a new workflow definition with Conductor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"tasks\": [\n    {\n      \"name\": \"<string>\",\n      \"taskReferenceName\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"inputParameters\": {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      },\n      \"optional\": false,\n      \"startDelay\": 0,\n      \"asyncComplete\": false,\n      \"retryCount\": \"<integer>\",\n      \"sink\": \"<string>\",\n      \"subWorkflowParam\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\"\n      },\n      \"joinOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"forkTasks\": [\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      ],\n      \"decisionCases\": {\n        \"key_0\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"key_1\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      \"defaultCase\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ],\n      \"loopCondition\": \"<string>\",\n      \"loopOver\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"taskReferenceName\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"inputParameters\": {\n        \"key_0\": \"string\",\n        \"key_1\": false,\n        \"key_2\": 8573,\n        \"key_3\": \"string\",\n        \"key_4\": true\n      },\n      \"optional\": false,\n      \"startDelay\": 0,\n      \"asyncComplete\": false,\n      \"retryCount\": \"<integer>\",\n      \"sink\": \"<string>\",\n      \"subWorkflowParam\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\"\n      },\n      \"joinOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"forkTasks\": [\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      ],\n      \"decisionCases\": {\n        \"key_0\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      \"defaultCase\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ],\n      \"loopCondition\": \"<string>\",\n      \"loopOver\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"version\": 1,\n  \"inputParameters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"outputParameters\": {\n    \"key_0\": \"string\"\n  },\n  \"failureWorkflow\": \"<string>\",\n  \"schemaVersion\": 2,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": false,\n  \"ownerEmail\": \"<string>\",\n  \"timeoutPolicy\": \"<string>\",\n  \"timeoutSeconds\": 0,\n  \"variables\": {\n    \"key_0\": \"string\"\n  },\n  \"inputTemplate\": {\n    \"key_0\": \"string\",\n    \"key_1\": 893\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dbb349df-ab8b-43cc-a2f6-55b2b4a2c598",
+              "name": "Workflow definition created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": false,\n    \"key_1\": 9039.420675073701,\n    \"key_2\": false\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 1530.9889407774635,\n    \"key_1\": 8954.355114177091,\n    \"key_2\": \"string\",\n    \"key_3\": 7289\n  },\n  \"inputTemplate\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f83f1d9f-f75d-49ed-895c-f541eaa9e791",
+              "name": "Invalid workflow definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": false,\n    \"key_1\": 9039.420675073701,\n    \"key_2\": false\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 1530.9889407774635,\n    \"key_1\": 8954.355114177091,\n    \"key_2\": \"string\",\n    \"key_3\": 7289\n  },\n  \"inputTemplate\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33728cc3-ecbf-402f-ad2c-262938d21e28",
+              "name": "Workflow definition already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": false,\n    \"key_1\": 9039.420675073701,\n    \"key_2\": false\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 1530.9889407774635,\n    \"key_1\": 8954.355114177091,\n    \"key_2\": \"string\",\n    \"key_3\": 7289\n  },\n  \"inputTemplate\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9571973-d711-438f-b466-7c9d1389b862",
+          "name": "Conductor Update Workflow Definitions",
+          "request": {
+            "name": "Conductor Update Workflow Definitions",
+            "description": {
+              "content": "Updates one or more existing workflow definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"tasks\": [\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": 7748.131347182589\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": 5282,\n          \"key_1\": 301.3619391835576,\n          \"key_2\": 8002.295562829803,\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      }\n    ],\n    \"description\": \"<string>\",\n    \"version\": 1,\n    \"inputParameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputParameters\": {\n      \"key_0\": false,\n      \"key_1\": 4356.709883824358\n    },\n    \"failureWorkflow\": \"<string>\",\n    \"schemaVersion\": 2,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": false,\n    \"ownerEmail\": \"<string>\",\n    \"timeoutPolicy\": \"<string>\",\n    \"timeoutSeconds\": 0,\n    \"variables\": {\n      \"key_0\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": 3004,\n      \"key_1\": 9486,\n      \"key_2\": 3258.7994229035553\n    }\n  },\n  {\n    \"name\": \"<string>\",\n    \"tasks\": [\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": 3734,\n          \"key_1\": false\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"taskReferenceName\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"inputParameters\": {\n          \"key_0\": true,\n          \"key_1\": true,\n          \"key_2\": \"string\",\n          \"key_3\": false,\n          \"key_4\": 7554\n        },\n        \"optional\": false,\n        \"startDelay\": 0,\n        \"asyncComplete\": false,\n        \"retryCount\": \"<integer>\",\n        \"sink\": \"<string>\",\n        \"subWorkflowParam\": {\n          \"name\": \"<string>\",\n          \"version\": \"<integer>\"\n        },\n        \"joinOn\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"forkTasks\": [\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        ],\n        \"decisionCases\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n            }\n          ]\n        },\n        \"defaultCase\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ],\n        \"loopCondition\": \"<string>\",\n        \"loopOver\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/WorkflowTask detected>\"\n          }\n        ]\n      }\n    ],\n    \"description\": \"<string>\",\n    \"version\": 1,\n    \"inputParameters\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputParameters\": {\n      \"key_0\": \"string\",\n      \"key_1\": 1458.3884052058982\n    },\n    \"failureWorkflow\": \"<string>\",\n    \"schemaVersion\": 2,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": false,\n    \"ownerEmail\": \"<string>\",\n    \"timeoutPolicy\": \"<string>\",\n    \"timeoutSeconds\": 0,\n    \"variables\": {\n      \"key_0\": true\n    },\n    \"inputTemplate\": {\n      \"key_0\": 6192.793017807321,\n      \"key_1\": 5794.634440505606\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a597acf5-3bb2-44b2-b69d-5c448600add7",
+              "name": "Workflow definitions updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 7269,\n      \"key_1\": \"string\",\n      \"key_2\": 8707.618937563628\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 8173\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    },\n    \"inputTemplate\": {\n      \"key_0\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b6d06f6-7469-405c-b902-ad02f55eb09c",
+              "name": "Invalid workflow definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 7269,\n      \"key_1\": \"string\",\n      \"key_2\": 8707.618937563628\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\"\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": 8173\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    },\n    \"inputTemplate\": {\n      \"key_0\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0469875-f8c9-434d-ad9e-a695d6c5e1b9",
+          "name": "Conductor Get All Workflow Definitions",
+          "request": {
+            "name": "Conductor Get All Workflow Definitions",
+            "description": {
+              "content": "Retrieves all registered workflow definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "193dbc75-673c-45b2-a750-47aad137584a",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": true,\n      \"key_1\": 8515\n    },\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": 80,\n      \"key_3\": \"string\"\n    }\n  },\n  {\n    \"name\": \"Example Title\",\n    \"tasks\": [],\n    \"description\": \"A sample description.\",\n    \"version\": 10,\n    \"outputParameters\": {\n      \"key_0\": false,\n      \"key_1\": 4478.862603946731\n    },\n    \"failureWorkflow\": \"example_value\",\n    \"schemaVersion\": 10,\n    \"restartable\": true,\n    \"workflowStatusListenerEnabled\": true,\n    \"ownerEmail\": \"user@example.com\",\n    \"timeoutPolicy\": \"TIME_OUT_WF\",\n    \"timeoutSeconds\": 10,\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": 8481\n    },\n    \"inputTemplate\": {\n      \"key_0\": 7250.01506122342,\n      \"key_1\": true,\n      \"key_2\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a78dfb12-2aa0-4834-9fcb-49e068449cc0",
+          "name": "Conductor Get a Workflow Definition",
+          "request": {
+            "name": "Conductor Get a Workflow Definition",
+            "description": {
+              "content": "Retrieves a workflow definition by name and optionally by version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "The version of the workflow definition"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the workflow definition"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "477f513b-2ab8-4845-90e7-f70b9b7fb7de",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"tasks\": [],\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"outputParameters\": {\n    \"key_0\": false\n  },\n  \"failureWorkflow\": \"example_value\",\n  \"schemaVersion\": 10,\n  \"restartable\": true,\n  \"workflowStatusListenerEnabled\": true,\n  \"ownerEmail\": \"user@example.com\",\n  \"timeoutPolicy\": \"TIME_OUT_WF\",\n  \"timeoutSeconds\": 10,\n  \"variables\": {\n    \"key_0\": 2405,\n    \"key_1\": 6821.298177758686\n  },\n  \"inputTemplate\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddda5f69-7445-40bd-987c-7f8fc08f4904",
+              "name": "Workflow definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4533b3c6-dfdd-49f6-b908-16a7e9f3e02d",
+          "name": "Conductor Delete a Workflow Definition",
+          "request": {
+            "name": "Conductor Delete a Workflow Definition",
+            "description": {
+              "content": "Removes a workflow definition by name and version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "workflow",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "The version of the workflow definition"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the workflow definition"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24b9bc19-99cc-447f-8a08-837cad41a1a0",
+              "name": "Workflow definition deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a8c6c97-bf20-4661-9600-4a8d610a748f",
+              "name": "Workflow definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "workflow",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the workflow definition"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:8080/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a5a4401b-9650-4eaa-bbbf-542c228809ef",
+    "name": "Conductor Admin Metadata - Workflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.\n\nContact Support:\n Name: Conductor OSS",
+      "type": "text/plain"
+    }
+  }
+}

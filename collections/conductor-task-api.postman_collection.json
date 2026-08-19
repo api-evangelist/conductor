@@ -1,0 +1,1127 @@
+{
+  "item": [
+    {
+      "id": "5808679f-56aa-4c00-b79d-7cb891cac676",
+      "name": "Task",
+      "description": {
+        "content": "APIs for polling and updating tasks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0bfd01f-9255-40b8-8535-621148bcfbc4",
+          "name": "Conductor Poll for a Task",
+          "request": {
+            "name": "Conductor Poll for a Task",
+            "description": {
+              "content": "Polls for a task of the specified type. Used by workers to get tasks to execute. Returns a single task if available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "poll",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workerId",
+                  "value": "<string>",
+                  "description": "ID of the worker polling for the task"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Domain for task routing"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type to poll for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd0ea53a-b8c9-41a3-a521-ba24fb5e46c0",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "poll",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type to poll for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": \"500123\",\n  \"taskType\": \"example_value\",\n  \"status\": \"IN_PROGRESS\",\n  \"referenceTaskName\": \"example_value\",\n  \"workflowInstanceId\": \"500123\",\n  \"workflowType\": \"example_value\",\n  \"correlationId\": \"500123\",\n  \"scheduledTime\": 10,\n  \"startTime\": 10,\n  \"endTime\": 10,\n  \"updateTime\": 10,\n  \"retryCount\": 10,\n  \"pollCount\": 10,\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"inputData\": {\n    \"key_0\": 3299,\n    \"key_1\": 1028,\n    \"key_2\": false,\n    \"key_3\": 9463.550831713046\n  },\n  \"outputData\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"domain\": \"example_value\",\n  \"seq\": 10,\n  \"taskDefName\": \"example_value\",\n  \"responseTimeoutSeconds\": 10,\n  \"queueWaitTime\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d951ee6-3215-43b4-9197-2bffd929e8d4",
+              "name": "No tasks available for polling",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "poll",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type to poll for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73181651-9f7b-4eb0-953a-8cf2dd57f966",
+          "name": "Conductor Batch Poll for Tasks",
+          "request": {
+            "name": "Conductor Batch Poll for Tasks",
+            "description": {
+              "content": "Polls for multiple tasks of the specified type in a single request. Returns up to the specified count of tasks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "poll",
+                "batch",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workerId",
+                  "value": "<string>",
+                  "description": "ID of the worker polling for tasks"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "1",
+                  "description": "Number of tasks to poll for"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "100",
+                  "description": "Long poll timeout in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Domain for task routing"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type to poll for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fb00bd0-22d0-409e-b8e0-a4f2dd6e5d78",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "poll",
+                    "batch",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "1"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "100"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type to poll for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"taskId\": \"500123\",\n    \"taskType\": \"example_value\",\n    \"status\": \"IN_PROGRESS\",\n    \"referenceTaskName\": \"example_value\",\n    \"workflowInstanceId\": \"500123\",\n    \"workflowType\": \"example_value\",\n    \"correlationId\": \"500123\",\n    \"scheduledTime\": 10,\n    \"startTime\": 10,\n    \"endTime\": 10,\n    \"updateTime\": 10,\n    \"retryCount\": 10,\n    \"pollCount\": 10,\n    \"callbackAfterSeconds\": 10,\n    \"workerId\": \"500123\",\n    \"inputData\": {\n      \"key_0\": 6289.508513770026,\n      \"key_1\": 2059.156361181349\n    },\n    \"outputData\": {\n      \"key_0\": 1814.0649790707198\n    },\n    \"reasonForIncompletion\": \"example_value\",\n    \"domain\": \"example_value\",\n    \"seq\": 10,\n    \"taskDefName\": \"example_value\",\n    \"responseTimeoutSeconds\": 10,\n    \"queueWaitTime\": 10\n  },\n  {\n    \"taskId\": \"500123\",\n    \"taskType\": \"example_value\",\n    \"status\": \"IN_PROGRESS\",\n    \"referenceTaskName\": \"example_value\",\n    \"workflowInstanceId\": \"500123\",\n    \"workflowType\": \"example_value\",\n    \"correlationId\": \"500123\",\n    \"scheduledTime\": 10,\n    \"startTime\": 10,\n    \"endTime\": 10,\n    \"updateTime\": 10,\n    \"retryCount\": 10,\n    \"pollCount\": 10,\n    \"callbackAfterSeconds\": 10,\n    \"workerId\": \"500123\",\n    \"inputData\": {\n      \"key_0\": 8904.545671640395,\n      \"key_1\": \"string\"\n    },\n    \"outputData\": {\n      \"key_0\": false,\n      \"key_1\": 5168.11704632948,\n      \"key_2\": 1495\n    },\n    \"reasonForIncompletion\": \"example_value\",\n    \"domain\": \"example_value\",\n    \"seq\": 10,\n    \"taskDefName\": \"example_value\",\n    \"responseTimeoutSeconds\": 10,\n    \"queueWaitTime\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b9757bd-6b38-48ef-a9fe-f1e82ecc7f19",
+          "name": "Conductor Update Task Status",
+          "request": {
+            "name": "Conductor Update Task Status",
+            "description": {
+              "content": "Updates the status and result of a task. Used by workers to report task completion, failure, or progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflowInstanceId\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"outputData\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"reasonForIncompletion\": \"<string>\",\n  \"callbackAfterSeconds\": \"<long>\",\n  \"workerId\": \"<string>\",\n  \"logs\": [\n    {\n      \"log\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"createdTime\": \"<long>\"\n    },\n    {\n      \"log\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"createdTime\": \"<long>\"\n    }\n  ],\n  \"externalOutputPayloadStoragePath\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1399d9b-9624-4846-94b2-f5eaa3b8d2bb",
+              "name": "Task updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowInstanceId\": \"500123\",\n  \"taskId\": \"500123\",\n  \"status\": \"IN_PROGRESS\",\n  \"outputData\": {\n    \"key_0\": 1440\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"externalOutputPayloadStoragePath\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca0020a7-a6fb-44df-b6bb-dcfdefd5125d",
+              "name": "Invalid task result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowInstanceId\": \"500123\",\n  \"taskId\": \"500123\",\n  \"status\": \"IN_PROGRESS\",\n  \"outputData\": {\n    \"key_0\": 1440\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"externalOutputPayloadStoragePath\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b655496f-144d-47a5-81a0-20d1e7a771b7",
+          "name": "Conductor Get Task Details",
+          "request": {
+            "name": "Conductor Get Task Details",
+            "description": {
+              "content": "Retrieves the details of a specific task by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b06d56a-9112-4d45-84e9-27c300895a01",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": \"500123\",\n  \"taskType\": \"example_value\",\n  \"status\": \"IN_PROGRESS\",\n  \"referenceTaskName\": \"example_value\",\n  \"workflowInstanceId\": \"500123\",\n  \"workflowType\": \"example_value\",\n  \"correlationId\": \"500123\",\n  \"scheduledTime\": 10,\n  \"startTime\": 10,\n  \"endTime\": 10,\n  \"updateTime\": 10,\n  \"retryCount\": 10,\n  \"pollCount\": 10,\n  \"callbackAfterSeconds\": 10,\n  \"workerId\": \"500123\",\n  \"inputData\": {\n    \"key_0\": 3299,\n    \"key_1\": 1028,\n    \"key_2\": false,\n    \"key_3\": 9463.550831713046\n  },\n  \"outputData\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"reasonForIncompletion\": \"example_value\",\n  \"domain\": \"example_value\",\n  \"seq\": 10,\n  \"taskDefName\": \"example_value\",\n  \"responseTimeoutSeconds\": 10,\n  \"queueWaitTime\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "260f1656-ef2d-454b-b068-b098bf08538a",
+              "name": "Task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "820b7202-ade0-4cb5-9ba1-7788f08bc810",
+          "name": "Conductor Acknowledge a Task",
+          "request": {
+            "name": "Conductor Acknowledge a Task",
+            "description": {
+              "content": "Acknowledges that a task has been received by a worker. This prevents the task from being sent to another worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "ack"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workerId",
+                  "value": "<string>",
+                  "description": "ID of the worker acknowledging the task"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID to acknowledge"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6dae4d1-0aaa-4d39-af6e-9f32c2eade37",
+              "name": "Task acknowledged successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID to acknowledge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d692eb91-4258-4bf1-acf2-643bc3814c10",
+              "name": "Task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID to acknowledge"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41d46d72-19fb-42eb-8b84-436c23944ed1",
+          "name": "Conductor Add a Log Entry to a Task",
+          "request": {
+            "name": "Conductor Add a Log Entry to a Task",
+            "description": {
+              "content": "Adds a log message to a task execution for debugging or auditing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e81f2e4-e32c-404a-a255-8cd191283f01",
+              "name": "Log entry added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eacdbc80-fc3d-4d0c-b867-4ed697aa3e69",
+          "name": "Conductor Get Task Execution Logs",
+          "request": {
+            "name": "Conductor Get Task Execution Logs",
+            "description": {
+              "content": "Retrieves the log entries for a specific task execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskId",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85b7671e-d612-4912-aedb-04a3a2410f4a",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"log\": \"example_value\",\n    \"taskId\": \"500123\",\n    \"createdTime\": 10\n  },\n  {\n    \"log\": \"example_value\",\n    \"taskId\": \"500123\",\n    \"createdTime\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c05ca933-88e3-41f2-bfba-2a8cfe634365",
+          "name": "Conductor Get Task Queue Sizes",
+          "request": {
+            "name": "Conductor Get Task Queue Sizes",
+            "description": {
+              "content": "Returns the number of pending tasks for each task type in the queue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "queue",
+                "sizes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "taskType",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task types. If not specified, returns sizes for all task types."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9773b40-a687-4fc1-9992-615f5ffcb0b6",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "queue",
+                    "sizes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "taskType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3426\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad9812a7-9263-4617-b4a5-080212139254",
+          "name": "Conductor Search for Tasks",
+          "request": {
+            "name": "Conductor Search for Tasks",
+            "description": {
+              "content": "Searches for task executions based on query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Start index for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field and order"
+                },
+                {
+                  "disabled": false,
+                  "key": "freeText",
+                  "value": "*",
+                  "description": "Free text search"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Query expression for filtering results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12f5d45e-4444-4222-b3c7-56f542168c08",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freeText",
+                      "value": "*"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalHits\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:8080/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3294ec37-25c4-4081-bd55-43dd44e01411",
+    "name": "Conductor Admin Task API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.\n\nContact Support:\n Name: Conductor OSS",
+      "type": "text/plain"
+    }
+  }
+}

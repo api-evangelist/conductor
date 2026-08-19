@@ -1,0 +1,552 @@
+{
+  "item": [
+    {
+      "id": "78b8120a-95e2-45f0-a27e-76449398e1c3",
+      "name": "Event",
+      "description": {
+        "content": "APIs for managing event handlers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f29f7c36-ec18-46a5-acc1-9609b50ea74e",
+          "name": "Conductor Create an Event Handler",
+          "request": {
+            "name": "Conductor Create an Event Handler",
+            "description": {
+              "content": "Creates a new event handler definition for processing events from external systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"event\": \"<string>\",\n  \"actions\": [\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": 6942.03683502637\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"expandInlineJSON\": false\n    },\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": 5228.278095668276,\n          \"key_1\": false,\n          \"key_2\": false\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": 425.4011713078432,\n          \"key_1\": true,\n          \"key_2\": true,\n          \"key_3\": \"string\"\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": 6725.35529430625,\n          \"key_1\": \"string\",\n          \"key_2\": 4955,\n          \"key_3\": 3825,\n          \"key_4\": \"string\"\n        }\n      },\n      \"expandInlineJSON\": false\n    }\n  ],\n  \"condition\": \"<string>\",\n  \"active\": true,\n  \"evaluatorType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75cad1fd-8d81-4dca-9b23-b83858ed7c14",
+              "name": "Event handler created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36226174-f597-4dfb-b467-88e5202d9017",
+              "name": "Invalid event handler definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84e1ac2d-469b-4a57-8e57-d66352fd2939",
+          "name": "Conductor Update an Event Handler",
+          "request": {
+            "name": "Conductor Update an Event Handler",
+            "description": {
+              "content": "Updates an existing event handler definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"event\": \"<string>\",\n  \"actions\": [\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": 6942.03683502637\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"expandInlineJSON\": false\n    },\n    {\n      \"action\": \"<string>\",\n      \"start_workflow\": {\n        \"name\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"correlationId\": \"<string>\",\n        \"input\": {\n          \"key_0\": 5228.278095668276,\n          \"key_1\": false,\n          \"key_2\": false\n        }\n      },\n      \"complete_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": 425.4011713078432,\n          \"key_1\": true,\n          \"key_2\": true,\n          \"key_3\": \"string\"\n        }\n      },\n      \"fail_task\": {\n        \"workflowId\": \"<string>\",\n        \"taskRefName\": \"<string>\",\n        \"output\": {\n          \"key_0\": 6725.35529430625,\n          \"key_1\": \"string\",\n          \"key_2\": 4955,\n          \"key_3\": 3825,\n          \"key_4\": \"string\"\n        }\n      },\n      \"expandInlineJSON\": false\n    }\n  ],\n  \"condition\": \"<string>\",\n  \"active\": true,\n  \"evaluatorType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36fa52e6-3e44-4e27-b66c-d32a0fb84f3b",
+              "name": "Event handler updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "519e849b-77ad-40cc-b18a-ca40f60d9e6e",
+              "name": "Invalid event handler definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"event\": \"example_value\",\n  \"actions\": [],\n  \"condition\": \"example_value\",\n  \"active\": true,\n  \"evaluatorType\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22f73775-1a8d-4cd2-88fe-b443021e2c4c",
+          "name": "Conductor Get All Event Handlers",
+          "request": {
+            "name": "Conductor Get All Event Handlers",
+            "description": {
+              "content": "Retrieves all registered event handler definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9cbddd9-13cd-4137-865e-cc3b6e927b54",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  },\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cd0f56d-be28-45ca-83ec-0f72b7223f64",
+          "name": "Conductor Delete an Event Handler",
+          "request": {
+            "name": "Conductor Delete an Event Handler",
+            "description": {
+              "content": "Removes an event handler by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The event handler name"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffae2a3f-5457-455f-8ab5-6cc94d95aea5",
+              "name": "Event handler deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The event handler name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f1505bc-c307-4114-8858-1f2ae8093d9d",
+              "name": "Event handler not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The event handler name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aba48360-9fb4-47ba-8b65-5ed790def96f",
+          "name": "Conductor Get Event Handlers for an Event",
+          "request": {
+            "name": "Conductor Get Event Handlers for an Event",
+            "description": {
+              "content": "Retrieves all event handlers registered for a specific event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "activeOnly",
+                  "value": "true",
+                  "description": "Whether to return only active event handlers"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The event name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7c4c7e2-5493-4cfb-afab-788d6482b8d0",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activeOnly",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The event name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  },\n  {\n    \"name\": \"Example Title\",\n    \"event\": \"example_value\",\n    \"actions\": [],\n    \"condition\": \"example_value\",\n    \"active\": true,\n    \"evaluatorType\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:8080/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2571f3c4-a3a6-42fe-b39b-9ccdd1ead2db",
+    "name": "Conductor Admin Event API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.\n\nContact Support:\n Name: Conductor OSS",
+      "type": "text/plain"
+    }
+  }
+}

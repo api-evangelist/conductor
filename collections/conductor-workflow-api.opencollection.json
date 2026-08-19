@@ -1,0 +1,305 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor Admin Workflow API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Start a New Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/workflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new workflow execution based on a registered workflow definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Workflow Execution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/workflow/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "includeTasks",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include task details in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves the current status and details of a running or completed workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete a Workflow Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/workflow/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "archiveWorkflow",
+                "value": "",
+                "type": "query",
+                "description": "Whether to archive the workflow before deletion"
+              }
+            ]
+          },
+          "docs": "Removes a workflow execution and its associated data."
+        },
+        {
+          "info": {
+            "name": "Conductor Pause a Running Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/workflow/:workflowId/pause",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              }
+            ]
+          },
+          "docs": "Pauses a currently running workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Resume a Paused Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/workflow/:workflowId/resume",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              }
+            ]
+          },
+          "docs": "Resumes a previously paused workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Restart a Completed Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/workflow/:workflowId/restart",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "useLatestDefinitions",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use the latest workflow and task definitions"
+              }
+            ]
+          },
+          "docs": "Restarts a completed workflow from the beginning with the same input. If useLatestDefinitions is set, the workflow uses the latest definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Retry a Failed Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/workflow/:workflowId/retry",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "resumeSubworkflowTasks",
+                "value": "",
+                "type": "query",
+                "description": "Whether to resume subworkflow tasks"
+              }
+            ]
+          },
+          "docs": "Retries the last failed task in a workflow execution."
+        },
+        {
+          "info": {
+            "name": "Conductor Terminate a Running Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/workflow/:workflowId/terminate",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "reason",
+                "value": "",
+                "type": "query",
+                "description": "Reason for termination"
+              }
+            ]
+          },
+          "docs": "Terminates a running workflow execution with an optional reason."
+        },
+        {
+          "info": {
+            "name": "Conductor Skip a Task in a Running Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/workflow/:workflowId/skiptask/:taskReferenceName",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              },
+              {
+                "name": "taskReferenceName",
+                "value": "",
+                "type": "path",
+                "description": "The reference name of the task to skip"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Skips a given task from a running workflow and moves to the next task. The skipped task will be marked as completed with the provided output."
+        },
+        {
+          "info": {
+            "name": "Conductor Search for Workflow Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/workflow/search",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start index for pagination"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order (e.g., createTime:DESC)"
+              },
+              {
+                "name": "freeText",
+                "value": "",
+                "type": "query",
+                "description": "Free text search across workflow data"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query expression for filtering results"
+              }
+            ]
+          },
+          "docs": "Searches for workflow executions using Conductor's query language. Uses Elasticsearch for indexing workflow execution data."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Running Workflow Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/workflow/running/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The workflow version"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start time filter (epoch milliseconds)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End time filter (epoch milliseconds)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of running workflow instance IDs for a given workflow name and optionally filtered by version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

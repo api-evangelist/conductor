@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor Admin Event API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get All Event Handlers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/event"
+          },
+          "docs": "Retrieves all registered event handler definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Create an Event Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new event handler definition for processing events from external systems."
+        },
+        {
+          "info": {
+            "name": "Conductor Update an Event Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing event handler definition."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Event Handlers for an Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/event/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The event name"
+              },
+              {
+                "name": "activeOnly",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return only active event handlers"
+              }
+            ]
+          },
+          "docs": "Retrieves all event handlers registered for a specific event."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete an Event Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/event/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The event handler name"
+              }
+            ]
+          },
+          "docs": "Removes an event handler by name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

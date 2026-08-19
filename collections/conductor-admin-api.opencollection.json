@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor Admin API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/admin/config"
+          },
+          "docs": "Retrieves the current Conductor server configuration."
+        },
+        {
+          "info": {
+            "name": "Conductor Get Task Queue Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/admin/task/:taskType",
+            "params": [
+              {
+                "name": "taskType",
+                "value": "",
+                "type": "path",
+                "description": "The task type"
+              }
+            ]
+          },
+          "docs": "Retrieves information about a specific task type's queue."
+        },
+        {
+          "info": {
+            "name": "Conductor Requeue a Workflow for Sweep",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/admin/sweep/requeue/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow instance ID"
+              }
+            ]
+          },
+          "docs": "Requeues a workflow for the sweep operation to re-evaluate its state."
+        },
+        {
+          "info": {
+            "name": "Conductor Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/health"
+          },
+          "docs": "Returns the health status of the Conductor server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

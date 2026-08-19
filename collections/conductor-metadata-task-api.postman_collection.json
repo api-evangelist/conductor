@@ -1,0 +1,592 @@
+{
+  "item": [
+    {
+      "id": "367e2a2d-87ac-486f-a5ca-68126f5d8ae0",
+      "name": "Metadata - Task",
+      "description": {
+        "content": "APIs for managing task definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7000650-07ef-4dcb-b62e-97b1c47e37c2",
+          "name": "Conductor Create New Task Definitions",
+          "request": {
+            "name": "Conductor Create New Task Definitions",
+            "description": {
+              "content": "Registers new task definitions with Conductor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"retryCount\": 3,\n    \"retryLogic\": \"<string>\",\n    \"retryDelaySeconds\": 60,\n    \"timeoutSeconds\": 0,\n    \"timeoutPolicy\": \"<string>\",\n    \"responseTimeoutSeconds\": 3600,\n    \"pollTimeoutSeconds\": \"<integer>\",\n    \"concurrentExecLimit\": \"<integer>\",\n    \"rateLimitPerFrequency\": \"<integer>\",\n    \"rateLimitFrequencyInSeconds\": \"<integer>\",\n    \"ownerEmail\": \"<string>\",\n    \"inputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"inputTemplate\": {\n      \"key_0\": \"string\"\n    },\n    \"createdBy\": \"<string>\",\n    \"createTime\": \"<long>\",\n    \"updatedBy\": \"<string>\",\n    \"updateTime\": \"<long>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"retryCount\": 3,\n    \"retryLogic\": \"<string>\",\n    \"retryDelaySeconds\": 60,\n    \"timeoutSeconds\": 0,\n    \"timeoutPolicy\": \"<string>\",\n    \"responseTimeoutSeconds\": 3600,\n    \"pollTimeoutSeconds\": \"<integer>\",\n    \"concurrentExecLimit\": \"<integer>\",\n    \"rateLimitPerFrequency\": \"<integer>\",\n    \"rateLimitFrequencyInSeconds\": \"<integer>\",\n    \"ownerEmail\": \"<string>\",\n    \"inputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"outputKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"inputTemplate\": {\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": true\n    },\n    \"createdBy\": \"<string>\",\n    \"createTime\": \"<long>\",\n    \"updatedBy\": \"<string>\",\n    \"updateTime\": \"<long>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "480c19a1-4748-461c-aa46-ad5ce609f6ee",
+              "name": "Task definitions created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": 5722.635529267406\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": false\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28e83eaf-885b-461d-9874-7b42db0decae",
+              "name": "Invalid task definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": 5722.635529267406\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": false\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fee6f7f-2751-4db7-a0dd-ea6cace264ff",
+          "name": "Conductor Get All Task Definitions",
+          "request": {
+            "name": "Conductor Get All Task Definitions",
+            "description": {
+              "content": "Retrieves all registered task definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "179c163c-fd4f-4770-8238-4cf1a632c104",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": false,\n      \"key_1\": 7710,\n      \"key_2\": 6419,\n      \"key_3\": 2719.4211078874687\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"retryCount\": 10,\n    \"retryLogic\": \"FIXED\",\n    \"retryDelaySeconds\": 10,\n    \"timeoutSeconds\": 10,\n    \"timeoutPolicy\": \"RETRY\",\n    \"responseTimeoutSeconds\": 10,\n    \"pollTimeoutSeconds\": 10,\n    \"concurrentExecLimit\": 10,\n    \"rateLimitPerFrequency\": 10,\n    \"rateLimitFrequencyInSeconds\": 10,\n    \"ownerEmail\": \"user@example.com\",\n    \"inputTemplate\": {\n      \"key_0\": 6508\n    },\n    \"createdBy\": \"example_value\",\n    \"createTime\": 10,\n    \"updatedBy\": \"example_value\",\n    \"updateTime\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bacc0cf3-4cd7-4010-9acd-4fb2f4f59b4a",
+          "name": "Conductor Update a Task Definition",
+          "request": {
+            "name": "Conductor Update a Task Definition",
+            "description": {
+              "content": "Updates an existing task definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"retryCount\": 3,\n  \"retryLogic\": \"<string>\",\n  \"retryDelaySeconds\": 60,\n  \"timeoutSeconds\": 0,\n  \"timeoutPolicy\": \"<string>\",\n  \"responseTimeoutSeconds\": 3600,\n  \"pollTimeoutSeconds\": \"<integer>\",\n  \"concurrentExecLimit\": \"<integer>\",\n  \"rateLimitPerFrequency\": \"<integer>\",\n  \"rateLimitFrequencyInSeconds\": \"<integer>\",\n  \"ownerEmail\": \"<string>\",\n  \"inputKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"outputKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"inputTemplate\": {\n    \"key_0\": 7280.383122168447\n  },\n  \"createdBy\": \"<string>\",\n  \"createTime\": \"<long>\",\n  \"updatedBy\": \"<string>\",\n  \"updateTime\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7679be2-b053-420b-b0e4-3708142dc0ab",
+              "name": "Task definition updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"retryCount\": 10,\n  \"retryLogic\": \"FIXED\",\n  \"retryDelaySeconds\": 10,\n  \"timeoutSeconds\": 10,\n  \"timeoutPolicy\": \"RETRY\",\n  \"responseTimeoutSeconds\": 10,\n  \"pollTimeoutSeconds\": 10,\n  \"concurrentExecLimit\": 10,\n  \"rateLimitPerFrequency\": 10,\n  \"rateLimitFrequencyInSeconds\": 10,\n  \"ownerEmail\": \"user@example.com\",\n  \"inputTemplate\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"createdBy\": \"example_value\",\n  \"createTime\": 10,\n  \"updatedBy\": \"example_value\",\n  \"updateTime\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98ea2386-cafc-43b8-8c1a-dda403dcb735",
+              "name": "Invalid task definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"retryCount\": 10,\n  \"retryLogic\": \"FIXED\",\n  \"retryDelaySeconds\": 10,\n  \"timeoutSeconds\": 10,\n  \"timeoutPolicy\": \"RETRY\",\n  \"responseTimeoutSeconds\": 10,\n  \"pollTimeoutSeconds\": 10,\n  \"concurrentExecLimit\": 10,\n  \"rateLimitPerFrequency\": 10,\n  \"rateLimitFrequencyInSeconds\": 10,\n  \"ownerEmail\": \"user@example.com\",\n  \"inputTemplate\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"createdBy\": \"example_value\",\n  \"createTime\": 10,\n  \"updatedBy\": \"example_value\",\n  \"updateTime\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbf47718-74c0-4820-870a-a9aaaf39de44",
+          "name": "Conductor Get a Task Definition",
+          "request": {
+            "name": "Conductor Get a Task Definition",
+            "description": {
+              "content": "Retrieves a task definition by its type name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0c8a474-0990-4a03-9ec6-4c9c22958771",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"retryCount\": 10,\n  \"retryLogic\": \"FIXED\",\n  \"retryDelaySeconds\": 10,\n  \"timeoutSeconds\": 10,\n  \"timeoutPolicy\": \"RETRY\",\n  \"responseTimeoutSeconds\": 10,\n  \"pollTimeoutSeconds\": 10,\n  \"concurrentExecLimit\": 10,\n  \"rateLimitPerFrequency\": 10,\n  \"rateLimitFrequencyInSeconds\": 10,\n  \"ownerEmail\": \"user@example.com\",\n  \"inputTemplate\": {\n    \"key_0\": 4369.64599079156,\n    \"key_1\": 5656\n  },\n  \"createdBy\": \"example_value\",\n  \"createTime\": 10,\n  \"updatedBy\": \"example_value\",\n  \"updateTime\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a86de058-346c-4c09-af83-5b855a590dee",
+              "name": "Task definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92265587-8dc2-42d0-a792-9fb84294ec0c",
+          "name": "Conductor Delete a Task Definition",
+          "request": {
+            "name": "Conductor Delete a Task Definition",
+            "description": {
+              "content": "Removes a task definition by its type name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "taskdefs",
+                ":taskType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskType",
+                  "description": "(Required) The task type name"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c14bc0f1-020c-46e0-9a8a-35670f6f6d60",
+              "name": "Task definition deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fc0e440-ba86-491f-a519-f548843b8a5b",
+              "name": "Task definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "taskdefs",
+                    ":taskType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskType",
+                      "description": "(Required) The task type name"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:8080/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d7781908-bc54-4e95-a872-d5a5a7a75e14",
+    "name": "Conductor Admin Metadata - Task API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.\n\nContact Support:\n Name: Conductor OSS",
+      "type": "text/plain"
+    }
+  }
+}

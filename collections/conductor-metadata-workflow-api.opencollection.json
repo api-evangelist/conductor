@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conductor Admin Metadata - Workflow API",
+    "version": "3.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata - Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Conductor Get All Workflow Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/workflow"
+          },
+          "docs": "Retrieves all registered workflow definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Create a New Workflow Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:8080/api/metadata/workflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new workflow definition with Conductor."
+        },
+        {
+          "info": {
+            "name": "Conductor Update Workflow Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:8080/api/metadata/workflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates one or more existing workflow definitions."
+        },
+        {
+          "info": {
+            "name": "Conductor Get a Workflow Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:8080/api/metadata/workflow/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow definition"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version of the workflow definition"
+              }
+            ]
+          },
+          "docs": "Retrieves a workflow definition by name and optionally by version."
+        },
+        {
+          "info": {
+            "name": "Conductor Delete a Workflow Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:8080/api/metadata/workflow/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the workflow definition"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version of the workflow definition"
+              }
+            ]
+          },
+          "docs": "Removes a workflow definition by name and version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
