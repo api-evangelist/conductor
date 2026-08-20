@@ -22,6 +22,12 @@ url: https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/
 tags:
 - Automation
 - Orchestration
+- States
+- Task
+- Workflows
+tags_raw:
+- Automation
+- Orchestration
 - State
 - Tasks
 - Workflows
@@ -172,6 +178,8 @@ apis:
   description: APIs for managing workflow executions
   humanURL: https://conductor-oss.github.io/conductor/documentation/api/workflow.html
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
