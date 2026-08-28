@@ -5,6 +5,19 @@ description: Conductor allows you to build a complex application using simple an
   application's execution flow. Conductor keeps track of the state, calls tasks in
   the right order (sequentially or in parallel, as defined by you), retry calls if
   needed, handle failure scenarios gracefully, and outputs the final result.
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: true
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
