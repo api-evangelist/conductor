@@ -1,10 +1,9 @@
 aid: conductor
 name: Conductor
-description: Conductor allows you to build a complex application using simple and
-  granular tasks that do not need to be aware of or keep track of the state of your
-  application's execution flow. Conductor keeps track of the state, calls tasks in
-  the right order (sequentially or in parallel, as defined by you), retry calls if
-  needed, handle failure scenarios gracefully, and outputs the final result.
+description: Conductor allows you to build a complex application using simple and granular tasks that
+  do not need to be aware of or keep track of the state of your application's execution flow. Conductor
+  keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by
+  you), retry calls if needed, handle failure scenarios gracefully, and outputs the final result.
 deliveryModel:
   model: self-hosted
   license: Apache-2.0
@@ -47,7 +46,7 @@ tags_raw:
 kind: contract
 access: 3rd-Party
 created: '2025-01-08'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 position: Consuming
 apis:
@@ -216,6 +215,8 @@ apis:
   - type: GraphQL
     url: graphql/conductor-graphql.md
 common:
+- type: Website
+  url: https://conductor-oss.github.io
 - type: IssueTracker
   url: https://github.com/conductor-oss/conductor/issues
 - type: Releases
@@ -246,50 +247,41 @@ common:
 - type: Features
   data:
   - name: Workflow Orchestration
-    description: Define and execute complex workflows with sequential and parallel
-      task execution.
+    description: Define and execute complex workflows with sequential and parallel task execution.
   - name: Task Management
-    description: Register, poll, and update granular task definitions with timeout
-      and retry policies.
+    description: Register, poll, and update granular task definitions with timeout and retry policies.
   - name: Event Handling
-    description: Create event handlers to trigger workflows or tasks based on external
-      events.
+    description: Create event handlers to trigger workflows or tasks based on external events.
   - name: Workflow Search
-    description: Search and filter workflow executions by status, type, and custom
-      parameters.
+    description: Search and filter workflow executions by status, type, and custom parameters.
   - name: Fault Tolerance
-    description: Automatic retries, pause/resume, and graceful failure handling for
-      long-running workflows.
+    description: Automatic retries, pause/resume, and graceful failure handling for long-running workflows.
   - name: Workflow Lifecycle Control
     description: Pause, resume, restart, retry, and terminate workflows programmatically.
 - type: UseCases
   data:
   - name: Microservices Orchestration
-    description: Coordinate complex business processes across distributed microservices
-      without tight coupling.
+    description: Coordinate complex business processes across distributed microservices without tight
+      coupling.
   - name: Data Pipeline Automation
-    description: Build and manage ETL and data processing pipelines with dependency
-      tracking and error recovery.
+    description: Build and manage ETL and data processing pipelines with dependency tracking and error
+      recovery.
   - name: Order Processing
-    description: Manage multi-step order fulfillment workflows including payment,
-      inventory, and shipping.
+    description: Manage multi-step order fulfillment workflows including payment, inventory, and shipping.
   - name: CI/CD Pipelines
-    description: Orchestrate build, test, and deployment workflows with conditional
-      logic and parallel execution.
+    description: Orchestrate build, test, and deployment workflows with conditional logic and parallel
+      execution.
 - type: Integrations
   data:
   - name: Apache Kafka
-    description: Trigger workflows and tasks from Kafka events using event handler
-      subscriptions.
+    description: Trigger workflows and tasks from Kafka events using event handler subscriptions.
   - name: Amazon SQS
-    description: Integrate with SQS for message-driven workflow initiation and task
-      completion.
+    description: Integrate with SQS for message-driven workflow initiation and task completion.
   - name: Docker
-    description: Run Conductor server and workers in containerized environments for
-      scalable deployment.
+    description: Run Conductor server and workers in containerized environments for scalable deployment.
   - name: Orkes Cloud
-    description: Use managed Conductor service from Orkes for enterprise-grade orchestration
-      without infrastructure management.
+    description: Use managed Conductor service from Orkes for enterprise-grade orchestration without infrastructure
+      management.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
