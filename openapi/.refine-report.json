@@ -1,12 +1,7 @@
 {
   "provider": "conductor",
   "sources": [
-    "conductor-admin-api-openapi.yml",
-    "conductor-event-api-openapi.yml",
-    "conductor-metadata-task-api-openapi.yml",
-    "conductor-metadata-workflow-api-openapi.yml",
-    "conductor-task-api-openapi.yml",
-    "conductor-workflow-api-openapi.yml"
+    "_original/conductor-conductor-openapi.yml"
   ],
   "outputs": [
     "conductor-admin-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "conductor-conductor-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "conductor-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "conductor-event-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "conductor-metadata-task-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "conductor-metadata-workflow-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "conductor-task-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "conductor-workflow-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

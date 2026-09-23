@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Conductor Admin Task API
-  description: Conductor is a workflow orchestration platform originally created by Netflix. It allows you to build complex applications using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retries calls if needed, handles failure scenarios gracefully, and outputs the final result. This API provides endpoints for managing workflow definitions, task definitions, workflow executions, task executions, and event handlers.
+  title: Conductor Task API
+  description: Conductor is a workflow orchestration platform originally created by Netflix.
   version: 3.x
   contact:
     name: Conductor OSS
@@ -323,6 +323,84 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    TaskSummary:
+      type: object
+      properties:
+        taskId:
+          type: string
+          example: '500123'
+        taskType:
+          type: string
+          example: example_value
+        taskDefName:
+          type: string
+          example: example_value
+        status:
+          type: string
+          enum:
+          - IN_PROGRESS
+          - CANCELED
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          - COMPLETED_WITH_ERRORS
+          - SCHEDULED
+          - TIMED_OUT
+          - SKIPPED
+          example: IN_PROGRESS
+        workflowId:
+          type: string
+          example: '500123'
+        workflowType:
+          type: string
+          example: example_value
+        correlationId:
+          type: string
+          example: '500123'
+        scheduledTime:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          example: example_value
+        updateTime:
+          type: string
+          example: example_value
+        endTime:
+          type: string
+          example: example_value
+        input:
+          type: string
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        reasonForIncompletion:
+          type: string
+          example: example_value
+        queueWaitTime:
+          type: integer
+          format: int64
+          example: 10
+        domain:
+          type: string
+          example: example_value
+    TaskExecLog:
+      type: object
+      properties:
+        log:
+          type: string
+          description: Log message
+          example: example_value
+        taskId:
+          type: string
+          description: Associated task ID
+          example: '500123'
+        createdTime:
+          type: integer
+          format: int64
+          description: Timestamp of the log entry
+          example: 10
     TaskResult:
       type: object
       required:
@@ -375,20 +453,6 @@ components:
           type: string
           description: Path to externally stored output payload
           example: example_value
-    SearchResultTaskSummary:
-      type: object
-      properties:
-        totalHits:
-          type: integer
-          format: int64
-          description: Total number of matching results
-          example: 10
-        results:
-          type: array
-          description: List of task summaries
-          items:
-            $ref: '#/components/schemas/TaskSummary'
-          example: []
     Task:
       type: object
       properties:
@@ -509,84 +573,20 @@ components:
           format: int64
           description: Time spent waiting in queue
           example: 10
-    TaskExecLog:
+    SearchResultTaskSummary:
       type: object
       properties:
-        log:
-          type: string
-          description: Log message
-          example: example_value
-        taskId:
-          type: string
-          description: Associated task ID
-          example: '500123'
-        createdTime:
+        totalHits:
           type: integer
           format: int64
-          description: Timestamp of the log entry
+          description: Total number of matching results
           example: 10
-    TaskSummary:
-      type: object
-      properties:
-        taskId:
-          type: string
-          example: '500123'
-        taskType:
-          type: string
-          example: example_value
-        taskDefName:
-          type: string
-          example: example_value
-        status:
-          type: string
-          enum:
-          - IN_PROGRESS
-          - CANCELED
-          - FAILED
-          - FAILED_WITH_TERMINAL_ERROR
-          - COMPLETED
-          - COMPLETED_WITH_ERRORS
-          - SCHEDULED
-          - TIMED_OUT
-          - SKIPPED
-          example: IN_PROGRESS
-        workflowId:
-          type: string
-          example: '500123'
-        workflowType:
-          type: string
-          example: example_value
-        correlationId:
-          type: string
-          example: '500123'
-        scheduledTime:
-          type: string
-          example: example_value
-        startTime:
-          type: string
-          example: example_value
-        updateTime:
-          type: string
-          example: example_value
-        endTime:
-          type: string
-          example: example_value
-        input:
-          type: string
-          example: example_value
-        output:
-          type: string
-          example: example_value
-        reasonForIncompletion:
-          type: string
-          example: example_value
-        queueWaitTime:
-          type: integer
-          format: int64
-          example: 10
-        domain:
-          type: string
-          example: example_value
+        results:
+          type: array
+          description: List of task summaries
+          items:
+            $ref: '#/components/schemas/TaskSummary'
+          example: []
 externalDocs:
   description: Conductor API Documentation
   url: https://conductor-oss.github.io/conductor/documentation/api/index.html
