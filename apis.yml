@@ -75,8 +75,6 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - type: GraphQL
-    url: graphql/conductor-graphql.md
 - aid: conductor:conductor-event-api
   name: Conductor Event API
   description: APIs for managing event handlers
@@ -102,8 +100,6 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - type: GraphQL
-    url: graphql/conductor-graphql.md
 - aid: conductor:conductor-metadata-task-api
   name: Conductor Metadata - Task API
   description: APIs for managing task definitions
@@ -129,8 +125,6 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - type: GraphQL
-    url: graphql/conductor-graphql.md
 - aid: conductor:conductor-metadata-workflow-api
   name: Conductor Metadata - Workflow API
   description: APIs for managing workflow definitions
@@ -156,8 +150,6 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - type: GraphQL
-    url: graphql/conductor-graphql.md
 - aid: conductor:conductor-task-api
   name: Conductor Task API
   description: APIs for polling and updating tasks
@@ -183,8 +175,6 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - type: GraphQL
-    url: graphql/conductor-graphql.md
 - aid: conductor:conductor-workflow-api
   name: Conductor Workflow API
   description: APIs for managing workflow executions
@@ -212,8 +202,6 @@ apis:
     url: json-ld/conductor-context.jsonld
   - type: JSONLD
     url: json-ld/conductor-conductor-context.jsonld
-  - type: GraphQL
-    url: graphql/conductor-graphql.md
 common:
 - type: Website
   url: https://conductor-oss.github.io
