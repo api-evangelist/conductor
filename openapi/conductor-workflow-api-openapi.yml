@@ -450,328 +450,6 @@ components:
           description: Default input template
           additionalProperties: true
           example: example_value
-    Workflow:
-      type: object
-      properties:
-        workflowId:
-          type: string
-          description: Unique workflow instance ID
-          example: '500123'
-        workflowName:
-          type: string
-          description: Name of the workflow definition
-          example: example_value
-        workflowVersion:
-          type: integer
-          description: Version of the workflow definition
-          example: 10
-        correlationId:
-          type: string
-          description: Correlation ID
-          example: '500123'
-        status:
-          type: string
-          description: Current status of the workflow
-          enum:
-          - RUNNING
-          - COMPLETED
-          - FAILED
-          - TIMED_OUT
-          - TERMINATED
-          - PAUSED
-          example: RUNNING
-        startTime:
-          type: integer
-          format: int64
-          description: Start time in epoch milliseconds
-          example: 10
-        endTime:
-          type: integer
-          format: int64
-          description: End time in epoch milliseconds
-          example: 10
-        updateTime:
-          type: integer
-          format: int64
-          description: Last update time
-          example: 10
-        input:
-          type: object
-          description: Workflow input
-          additionalProperties: true
-          example: example_value
-        output:
-          type: object
-          description: Workflow output
-          additionalProperties: true
-          example: example_value
-        tasks:
-          type: array
-          description: List of tasks in the workflow execution
-          items:
-            $ref: '#/components/schemas/Task'
-          example: []
-        reasonForIncompletion:
-          type: string
-          description: Reason for failure or termination
-          example: example_value
-        failedReferenceTaskNames:
-          type: array
-          description: List of failed task reference names
-          items:
-            type: string
-          example: []
-        workflowDefinition:
-          $ref: '#/components/schemas/WorkflowDef'
-        priority:
-          type: integer
-          description: Workflow priority
-          example: 10
-        variables:
-          type: object
-          description: Workflow variables
-          additionalProperties: true
-          example: example_value
-        lastRetriedTime:
-          type: integer
-          format: int64
-          description: Last retry timestamp
-          example: 10
-        ownerApp:
-          type: string
-          description: Owner application
-          example: example_value
-        createTime:
-          type: integer
-          format: int64
-          description: Creation timestamp
-          example: 10
-        createdBy:
-          type: string
-          description: Created by
-          example: example_value
-        parentWorkflowId:
-          type: string
-          description: Parent workflow ID if this is a sub-workflow
-          example: '500123'
-    TaskExecLog:
-      type: object
-      properties:
-        log:
-          type: string
-          description: Log message
-          example: example_value
-        taskId:
-          type: string
-          description: Associated task ID
-          example: '500123'
-        createdTime:
-          type: integer
-          format: int64
-          description: Timestamp of the log entry
-          example: 10
-    WorkflowSummary:
-      type: object
-      properties:
-        workflowId:
-          type: string
-          example: '500123'
-        workflowType:
-          type: string
-          example: example_value
-        version:
-          type: integer
-          example: 10
-        correlationId:
-          type: string
-          example: '500123'
-        startTime:
-          type: string
-          example: example_value
-        updateTime:
-          type: string
-          example: example_value
-        endTime:
-          type: string
-          example: example_value
-        status:
-          type: string
-          enum:
-          - RUNNING
-          - COMPLETED
-          - FAILED
-          - TIMED_OUT
-          - TERMINATED
-          - PAUSED
-          example: RUNNING
-        input:
-          type: string
-          example: example_value
-        output:
-          type: string
-          example: example_value
-        reasonForIncompletion:
-          type: string
-          example: example_value
-        executionTime:
-          type: integer
-          format: int64
-          example: 10
-        event:
-          type: string
-          example: example_value
-        failedReferenceTaskNames:
-          type: string
-          example: example_value
-        priority:
-          type: integer
-          example: 10
-    SearchResultWorkflowSummary:
-      type: object
-      properties:
-        totalHits:
-          type: integer
-          format: int64
-          description: Total number of matching results
-          example: 10
-        results:
-          type: array
-          description: List of workflow summaries
-          items:
-            $ref: '#/components/schemas/WorkflowSummary'
-          example: []
-    SkipTaskRequest:
-      type: object
-      properties:
-        taskInput:
-          type: object
-          description: Input for the skipped task
-          additionalProperties: true
-          example: example_value
-        taskOutput:
-          type: object
-          description: Output to set for the skipped task
-          additionalProperties: true
-          example: example_value
-    WorkflowTask:
-      type: object
-      required:
-      - name
-      - taskReferenceName
-      - type
-      properties:
-        name:
-          type: string
-          description: Name of the task
-          example: Example Title
-        taskReferenceName:
-          type: string
-          description: Unique reference name for the task within the workflow
-          example: example_value
-        type:
-          type: string
-          description: The type of task
-          enum:
-          - SIMPLE
-          - DYNAMIC
-          - FORK_JOIN
-          - FORK_JOIN_DYNAMIC
-          - DECISION
-          - SWITCH
-          - JOIN
-          - DO_WHILE
-          - SUB_WORKFLOW
-          - START_WORKFLOW
-          - EVENT
-          - WAIT
-          - HUMAN
-          - HTTP
-          - INLINE
-          - JSON_JQ_TRANSFORM
-          - LAMBDA
-          - SET_VARIABLE
-          - TERMINATE
-          - KAFKA_PUBLISH
-          example: SIMPLE
-        description:
-          type: string
-          description: Task description
-          example: A sample description.
-        inputParameters:
-          type: object
-          description: Input parameter mappings
-          additionalProperties: true
-          example: example_value
-        optional:
-          type: boolean
-          description: Whether this task is optional
-          default: false
-          example: true
-        startDelay:
-          type: integer
-          description: Delay in seconds before starting the task
-          default: 0
-          example: 10
-        asyncComplete:
-          type: boolean
-          description: Whether the task is completed asynchronously
-          default: false
-          example: true
-        retryCount:
-          type: integer
-          description: Number of retries
-          example: 10
-        sink:
-          type: string
-          description: Sink for EVENT tasks
-          example: example_value
-        subWorkflowParam:
-          type: object
-          description: Sub workflow parameters
-          properties:
-            name:
-              type: string
-            version:
-              type: integer
-          example: example_value
-        joinOn:
-          type: array
-          description: List of task reference names to join on
-          items:
-            type: string
-          example: []
-        forkTasks:
-          type: array
-          description: List of forked task lists
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/WorkflowTask'
-          example: []
-        decisionCases:
-          type: object
-          description: Decision cases for SWITCH/DECISION tasks
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/WorkflowTask'
-          example: example_value
-        defaultCase:
-          type: array
-          description: Default case tasks for SWITCH/DECISION
-          items:
-            $ref: '#/components/schemas/WorkflowTask'
-          example: []
-        loopCondition:
-          type: string
-          description: Loop condition for DO_WHILE tasks
-          example: example_value
-        loopOver:
-          type: array
-          description: Tasks to loop over in DO_WHILE
-          items:
-            $ref: '#/components/schemas/WorkflowTask'
-          example: []
     Task:
       type: object
       properties:
@@ -892,6 +570,124 @@ components:
           format: int64
           description: Time spent waiting in queue
           example: 10
+    SearchResultWorkflowSummary:
+      type: object
+      properties:
+        totalHits:
+          type: integer
+          format: int64
+          description: Total number of matching results
+          example: 10
+        results:
+          type: array
+          description: List of workflow summaries
+          items:
+            $ref: '#/components/schemas/WorkflowSummary'
+          example: []
+    Workflow:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: Unique workflow instance ID
+          example: '500123'
+        workflowName:
+          type: string
+          description: Name of the workflow definition
+          example: example_value
+        workflowVersion:
+          type: integer
+          description: Version of the workflow definition
+          example: 10
+        correlationId:
+          type: string
+          description: Correlation ID
+          example: '500123'
+        status:
+          type: string
+          description: Current status of the workflow
+          enum:
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - TIMED_OUT
+          - TERMINATED
+          - PAUSED
+          example: RUNNING
+        startTime:
+          type: integer
+          format: int64
+          description: Start time in epoch milliseconds
+          example: 10
+        endTime:
+          type: integer
+          format: int64
+          description: End time in epoch milliseconds
+          example: 10
+        updateTime:
+          type: integer
+          format: int64
+          description: Last update time
+          example: 10
+        input:
+          type: object
+          description: Workflow input
+          additionalProperties: true
+          example: example_value
+        output:
+          type: object
+          description: Workflow output
+          additionalProperties: true
+          example: example_value
+        tasks:
+          type: array
+          description: List of tasks in the workflow execution
+          items:
+            $ref: '#/components/schemas/Task'
+          example: []
+        reasonForIncompletion:
+          type: string
+          description: Reason for failure or termination
+          example: example_value
+        failedReferenceTaskNames:
+          type: array
+          description: List of failed task reference names
+          items:
+            type: string
+          example: []
+        workflowDefinition:
+          $ref: '#/components/schemas/WorkflowDef'
+        priority:
+          type: integer
+          description: Workflow priority
+          example: 10
+        variables:
+          type: object
+          description: Workflow variables
+          additionalProperties: true
+          example: example_value
+        lastRetriedTime:
+          type: integer
+          format: int64
+          description: Last retry timestamp
+          example: 10
+        ownerApp:
+          type: string
+          description: Owner application
+          example: example_value
+        createTime:
+          type: integer
+          format: int64
+          description: Creation timestamp
+          example: 10
+        createdBy:
+          type: string
+          description: Created by
+          example: example_value
+        parentWorkflowId:
+          type: string
+          description: Parent workflow ID if this is a sub-workflow
+          example: '500123'
     StartWorkflowRequest:
       type: object
       required:
@@ -931,6 +727,210 @@ components:
           type: string
           description: Path to externally stored input payload
           example: example_value
+    WorkflowTask:
+      type: object
+      required:
+      - name
+      - taskReferenceName
+      - type
+      properties:
+        name:
+          type: string
+          description: Name of the task
+          example: Example Title
+        taskReferenceName:
+          type: string
+          description: Unique reference name for the task within the workflow
+          example: example_value
+        type:
+          type: string
+          description: The type of task
+          enum:
+          - SIMPLE
+          - DYNAMIC
+          - FORK_JOIN
+          - FORK_JOIN_DYNAMIC
+          - DECISION
+          - SWITCH
+          - JOIN
+          - DO_WHILE
+          - SUB_WORKFLOW
+          - START_WORKFLOW
+          - EVENT
+          - WAIT
+          - HUMAN
+          - HTTP
+          - INLINE
+          - JSON_JQ_TRANSFORM
+          - LAMBDA
+          - SET_VARIABLE
+          - TERMINATE
+          - KAFKA_PUBLISH
+          example: SIMPLE
+        description:
+          type: string
+          description: Task description
+          example: A sample description.
+        inputParameters:
+          type: object
+          description: Input parameter mappings
+          additionalProperties: true
+          example: example_value
+        optional:
+          type: boolean
+          description: Whether this task is optional
+          default: false
+          example: true
+        startDelay:
+          type: integer
+          description: Delay in seconds before starting the task
+          default: 0
+          example: 10
+        asyncComplete:
+          type: boolean
+          description: Whether the task is completed asynchronously
+          default: false
+          example: true
+        retryCount:
+          type: integer
+          description: Number of retries
+          example: 10
+        sink:
+          type: string
+          description: Sink for EVENT tasks
+          example: example_value
+        subWorkflowParam:
+          type: object
+          description: Sub workflow parameters
+          properties:
+            name:
+              type: string
+            version:
+              type: integer
+          example: example_value
+        joinOn:
+          type: array
+          description: List of task reference names to join on
+          items:
+            type: string
+          example: []
+        forkTasks:
+          type: array
+          description: List of forked task lists
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowTask'
+          example: []
+        decisionCases:
+          type: object
+          description: Decision cases for SWITCH/DECISION tasks
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowTask'
+          example: example_value
+        defaultCase:
+          type: array
+          description: Default case tasks for SWITCH/DECISION
+          items:
+            $ref: '#/components/schemas/WorkflowTask'
+          example: []
+        loopCondition:
+          type: string
+          description: Loop condition for DO_WHILE tasks
+          example: example_value
+        loopOver:
+          type: array
+          description: Tasks to loop over in DO_WHILE
+          items:
+            $ref: '#/components/schemas/WorkflowTask'
+          example: []
+    SkipTaskRequest:
+      type: object
+      properties:
+        taskInput:
+          type: object
+          description: Input for the skipped task
+          additionalProperties: true
+          example: example_value
+        taskOutput:
+          type: object
+          description: Output to set for the skipped task
+          additionalProperties: true
+          example: example_value
+    TaskExecLog:
+      type: object
+      properties:
+        log:
+          type: string
+          description: Log message
+          example: example_value
+        taskId:
+          type: string
+          description: Associated task ID
+          example: '500123'
+        createdTime:
+          type: integer
+          format: int64
+          description: Timestamp of the log entry
+          example: 10
+    WorkflowSummary:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          example: '500123'
+        workflowType:
+          type: string
+          example: example_value
+        version:
+          type: integer
+          example: 10
+        correlationId:
+          type: string
+          example: '500123'
+        startTime:
+          type: string
+          example: example_value
+        updateTime:
+          type: string
+          example: example_value
+        endTime:
+          type: string
+          example: example_value
+        status:
+          type: string
+          enum:
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - TIMED_OUT
+          - TERMINATED
+          - PAUSED
+          example: RUNNING
+        input:
+          type: string
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        reasonForIncompletion:
+          type: string
+          example: example_value
+        executionTime:
+          type: integer
+          format: int64
+          example: 10
+        event:
+          type: string
+          example: example_value
+        failedReferenceTaskNames:
+          type: string
+          example: example_value
+        priority:
+          type: integer
+          example: 10
 externalDocs:
   description: Conductor API Documentation
   url: https://conductor-oss.github.io/conductor/documentation/api/index.html
