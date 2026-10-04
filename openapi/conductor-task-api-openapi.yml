@@ -323,6 +323,88 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    TaskResult:
+      type: object
+      required:
+      - workflowInstanceId
+      - taskId
+      - status
+      properties:
+        workflowInstanceId:
+          type: string
+          description: The workflow instance ID
+          example: '500123'
+        taskId:
+          type: string
+          description: The task ID
+          example: '500123'
+        status:
+          type: string
+          description: Task execution status
+          enum:
+          - IN_PROGRESS
+          - FAILED
+          - FAILED_WITH_TERMINAL_ERROR
+          - COMPLETED
+          example: IN_PROGRESS
+        outputData:
+          type: object
+          description: Task output data
+          additionalProperties: true
+          example: example_value
+        reasonForIncompletion:
+          type: string
+          description: Reason for failure
+          example: example_value
+        callbackAfterSeconds:
+          type: integer
+          format: int64
+          description: Callback delay for IN_PROGRESS tasks
+          example: 10
+        workerId:
+          type: string
+          description: ID of the worker updating the task
+          example: '500123'
+        logs:
+          type: array
+          description: Task execution logs
+          items:
+            $ref: '#/components/schemas/TaskExecLog'
+          example: []
+        externalOutputPayloadStoragePath:
+          type: string
+          description: Path to externally stored output payload
+          example: example_value
+    SearchResultTaskSummary:
+      type: object
+      properties:
+        totalHits:
+          type: integer
+          format: int64
+          description: Total number of matching results
+          example: 10
+        results:
+          type: array
+          description: List of task summaries
+          items:
+            $ref: '#/components/schemas/TaskSummary'
+          example: []
+    TaskExecLog:
+      type: object
+      properties:
+        log:
+          type: string
+          description: Log message
+          example: example_value
+        taskId:
+          type: string
+          description: Associated task ID
+          example: '500123'
+        createdTime:
+          type: integer
+          format: int64
+          description: Timestamp of the log entry
+          example: 10
     Task:
       type: object
       properties:
@@ -443,22 +525,6 @@ components:
           format: int64
           description: Time spent waiting in queue
           example: 10
-    TaskExecLog:
-      type: object
-      properties:
-        log:
-          type: string
-          description: Log message
-          example: example_value
-        taskId:
-          type: string
-          description: Associated task ID
-          example: '500123'
-        createdTime:
-          type: integer
-          format: int64
-          description: Timestamp of the log entry
-          example: 10
     TaskSummary:
       type: object
       properties:
@@ -521,72 +587,6 @@ components:
         domain:
           type: string
           example: example_value
-    TaskResult:
-      type: object
-      required:
-      - workflowInstanceId
-      - taskId
-      - status
-      properties:
-        workflowInstanceId:
-          type: string
-          description: The workflow instance ID
-          example: '500123'
-        taskId:
-          type: string
-          description: The task ID
-          example: '500123'
-        status:
-          type: string
-          description: Task execution status
-          enum:
-          - IN_PROGRESS
-          - FAILED
-          - FAILED_WITH_TERMINAL_ERROR
-          - COMPLETED
-          example: IN_PROGRESS
-        outputData:
-          type: object
-          description: Task output data
-          additionalProperties: true
-          example: example_value
-        reasonForIncompletion:
-          type: string
-          description: Reason for failure
-          example: example_value
-        callbackAfterSeconds:
-          type: integer
-          format: int64
-          description: Callback delay for IN_PROGRESS tasks
-          example: 10
-        workerId:
-          type: string
-          description: ID of the worker updating the task
-          example: '500123'
-        logs:
-          type: array
-          description: Task execution logs
-          items:
-            $ref: '#/components/schemas/TaskExecLog'
-          example: []
-        externalOutputPayloadStoragePath:
-          type: string
-          description: Path to externally stored output payload
-          example: example_value
-    SearchResultTaskSummary:
-      type: object
-      properties:
-        totalHits:
-          type: integer
-          format: int64
-          description: Total number of matching results
-          example: 10
-        results:
-          type: array
-          description: List of task summaries
-          items:
-            $ref: '#/components/schemas/TaskSummary'
-          example: []
 externalDocs:
   description: Conductor API Documentation
   url: https://conductor-oss.github.io/conductor/documentation/api/index.html

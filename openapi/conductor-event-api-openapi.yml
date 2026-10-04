@@ -133,40 +133,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EventHandler:
-      type: object
-      required:
-      - name
-      - event
-      - actions
-      properties:
-        name:
-          type: string
-          description: Name of the event handler
-          example: Example Title
-        event:
-          type: string
-          description: Event identifier in the format source:sink:subject (e.g., conductor:workflow_completed:myWorkflow)
-          example: example_value
-        condition:
-          type: string
-          description: Condition expression to evaluate
-          example: example_value
-        actions:
-          type: array
-          description: List of actions to perform when the event is received
-          items:
-            $ref: '#/components/schemas/EventHandlerAction'
-          example: []
-        active:
-          type: boolean
-          description: Whether the event handler is active
-          default: true
-          example: true
-        evaluatorType:
-          type: string
-          description: Type of evaluator for the condition
-          example: example_value
     EventHandlerAction:
       type: object
       properties:
@@ -221,6 +187,40 @@ components:
           description: Whether to expand inline JSON strings
           default: false
           example: true
+    EventHandler:
+      type: object
+      required:
+      - name
+      - event
+      - actions
+      properties:
+        name:
+          type: string
+          description: Name of the event handler
+          example: Example Title
+        event:
+          type: string
+          description: Event identifier in the format source:sink:subject (e.g., conductor:workflow_completed:myWorkflow)
+          example: example_value
+        condition:
+          type: string
+          description: Condition expression to evaluate
+          example: example_value
+        actions:
+          type: array
+          description: List of actions to perform when the event is received
+          items:
+            $ref: '#/components/schemas/EventHandlerAction'
+          example: []
+        active:
+          type: boolean
+          description: Whether the event handler is active
+          default: true
+          example: true
+        evaluatorType:
+          type: string
+          description: Type of evaluator for the condition
+          example: example_value
 externalDocs:
   description: Conductor API Documentation
   url: https://conductor-oss.github.io/conductor/documentation/api/index.html
