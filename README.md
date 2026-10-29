@@ -1,4 +1,4 @@
-# Conductor (conductor)
+# Conductor
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,66 +66,239 @@
 
 Conductor allows you to build a complex application using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retry calls if needed, handle failure scenarios gracefully, and outputs the final result.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/conductor/refs/heads/main/apis.yml)
+**Areas:** Automation · Orchestration · States · Task · Workflows
 
-## Scope
+## Conductor on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Conductor is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/conductor/](https://apis.io/providers/conductor/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Automation
-- Orchestration
-- State
-- Tasks
-- Workflows
+- [Conductor Admin API](https://apis.io/apis/conductor/conductor-admin-api/) — Administrative and health check APIs
+- [Conductor Event API](https://apis.io/apis/conductor/conductor-event-api/) — APIs for managing event handlers
+- [Conductor Metadata - Task API](https://apis.io/apis/conductor/conductor-metadata-task-api/) — APIs for managing task definitions
+- [Conductor Metadata - Workflow API](https://apis.io/apis/conductor/conductor-metadata-workflow-api/) — APIs for managing workflow definitions
+- [Conductor Task API](https://apis.io/apis/conductor/conductor-task-api/) — APIs for polling and updating tasks
+- [Conductor Workflow API](https://apis.io/apis/conductor/conductor-workflow-api/) — APIs for managing workflow executions
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Conductor
+Event-driven and webhook contracts.
 
-Conductor allows you to build a complex application using simple and granular tasks that do not need to be aware of or keep track of the state of your application's execution flow. Conductor keeps track of the state, calls tasks in the right order (sequentially or in parallel, as defined by you), retry calls if needed, handle failure scenarios gracefully, and outputs the final result.
+- [Conductor Events API](https://apis.io/asyncapis/conductor/conductor-conductor-asyncapi/)
 
-- **Human URL:** [https://conductor-oss.github.io/conductor/documentation/api/workflow.html](https://conductor-oss.github.io/conductor/documentation/api/workflow.html)
+#### Event channels (12)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Automation
-- Orchestration
-- State
-- Tasks
+- [task.canceled](https://apis.io/channels/conductor/task-canceled/)
+- [task.completed](https://apis.io/channels/conductor/task-completed/)
+- [task.failed](https://apis.io/channels/conductor/task-failed/)
+- [task.in_progress](https://apis.io/channels/conductor/task-in-progress/)
+- [task.scheduled](https://apis.io/channels/conductor/task-scheduled/)
+- [task.timed_out](https://apis.io/channels/conductor/task-timed-out/)
+- [workflow.completed](https://apis.io/channels/conductor/workflow-completed/)
+- [workflow.failed](https://apis.io/channels/conductor/workflow-failed/)
+- [workflow.paused](https://apis.io/channels/conductor/workflow-paused/)
+- [workflow.started](https://apis.io/channels/conductor/workflow-started/)
+- [workflow.terminated](https://apis.io/channels/conductor/workflow-terminated/)
+- [workflow.timed_out](https://apis.io/channels/conductor/workflow-timed-out/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://conductor-oss.github.io/conductor/documentation/api/workflow.html)
-- [OpenAPI](openapi/conductor-conductor-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/conductor-conductor.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/conductor-conductor.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/conductor-conductor-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/workflow-def.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/task-def.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/workflow-execution.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/event-handler.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/conductor-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON-LD](json-ld/conductor-conductor-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+GraphQL schemas.
 
-## Common Properties
+- [Moved to /providers/conductor/](https://apis.io/graphqls/conductor/conductor-graphql/)
 
-- [LinkedIn](https://www.linkedin.com/company/conductor-inc-)
-- [GitHub Repository](https://github.com/conductor-oss/conductor)
-- [Spectral Rules](rules/conductor-spectral-rules.yml)
-- [Vocabulary](vocabulary/conductor-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+#### Agentic access (1)
 
-## Maintainers
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- [Conductor Agentic Access](https://apis.io/agentic-access/conductor/conductor-agentic-access/)
+
+#### JSON Schema (19)
+
+The data models the API reads and writes.
+
+- [EventHandler](https://apis.io/schemas/conductor/conductor-conductor-event-handler/)
+- [EventHandlerAction](https://apis.io/schemas/conductor/conductor-conductor-event-handler-action/)
+- [SearchResultTaskSummary](https://apis.io/schemas/conductor/conductor-conductor-search-result-task-summary/)
+- [SearchResultWorkflowSummary](https://apis.io/schemas/conductor/conductor-conductor-search-result-workflow-summary/)
+- [SkipTaskRequest](https://apis.io/schemas/conductor/conductor-conductor-skip-task-request/)
+- [StartWorkflowRequest](https://apis.io/schemas/conductor/conductor-conductor-start-workflow-request/)
+- [Task](https://apis.io/schemas/conductor/conductor-conductor-task/)
+- [TaskDef](https://apis.io/schemas/conductor/conductor-conductor-task-def/)
+- [TaskExecLog](https://apis.io/schemas/conductor/conductor-conductor-task-exec-log/)
+- [TaskResult](https://apis.io/schemas/conductor/conductor-conductor-task-result/)
+- [TaskSummary](https://apis.io/schemas/conductor/conductor-conductor-task-summary/)
+- [Workflow](https://apis.io/schemas/conductor/conductor-conductor-workflow/)
+- [WorkflowDef](https://apis.io/schemas/conductor/conductor-conductor-workflow-def/)
+- [WorkflowSummary](https://apis.io/schemas/conductor/conductor-conductor-workflow-summary/)
+- [WorkflowTask](https://apis.io/schemas/conductor/conductor-conductor-workflow-task/)
+- [EventHandler](https://apis.io/schemas/conductor/event-handler/)
+- [TaskDef](https://apis.io/schemas/conductor/task-def/)
+- [WorkflowDef](https://apis.io/schemas/conductor/workflow-def/)
+- [WorkflowExecution](https://apis.io/schemas/conductor/workflow-execution/)
+
+#### JSON Structure (15)
+
+Data models expressed in JSON Structure.
+
+- [Conductor Conductor Event Handler Action Structure](https://apis.io/json-structure/conductor/conductor-conductor-event-handler-action-structure/)
+- [Conductor Conductor Event Handler Structure](https://apis.io/json-structure/conductor/conductor-conductor-event-handler-structure/)
+- [Conductor Conductor Search Result Task Summary Structure](https://apis.io/json-structure/conductor/conductor-conductor-search-result-task-summary-structure/)
+- [Conductor Conductor Search Result Workflow Summary Structure](https://apis.io/json-structure/conductor/conductor-conductor-search-result-workflow-summary-structure/)
+- [Conductor Conductor Skip Task Request Structure](https://apis.io/json-structure/conductor/conductor-conductor-skip-task-request-structure/)
+- [Conductor Conductor Start Workflow Request Structure](https://apis.io/json-structure/conductor/conductor-conductor-start-workflow-request-structure/)
+- [Conductor Conductor Task Def Structure](https://apis.io/json-structure/conductor/conductor-conductor-task-def-structure/)
+- [Conductor Conductor Task Exec Log Structure](https://apis.io/json-structure/conductor/conductor-conductor-task-exec-log-structure/)
+- [Conductor Conductor Task Result Structure](https://apis.io/json-structure/conductor/conductor-conductor-task-result-structure/)
+- [Conductor Conductor Task Structure](https://apis.io/json-structure/conductor/conductor-conductor-task-structure/)
+- [Conductor Conductor Task Summary Structure](https://apis.io/json-structure/conductor/conductor-conductor-task-summary-structure/)
+- [Conductor Conductor Workflow Def Structure](https://apis.io/json-structure/conductor/conductor-conductor-workflow-def-structure/)
+- [Conductor Conductor Workflow Structure](https://apis.io/json-structure/conductor/conductor-conductor-workflow-structure/)
+- [Conductor Conductor Workflow Summary Structure](https://apis.io/json-structure/conductor/conductor-conductor-workflow-summary-structure/)
+- [Conductor Conductor Workflow Task Structure](https://apis.io/json-structure/conductor/conductor-conductor-workflow-task-structure/)
+
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Conductor Conductor Context](https://apis.io/jsonld/conductor/conductor-conductor-context/)
+- [Conductor Context](https://apis.io/jsonld/conductor/conductor-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [conductor API Vocabulary](https://apis.io/vocabularies/conductor/conductor-vocabulary/)
+
+#### Examples (15)
+
+Example requests and responses.
+
+- [Conductor Conductor Event Handler Action Example](https://apis.io/examples/conductor/conductor-conductor-event-handler-action-example/)
+- [Conductor Conductor Event Handler Example](https://apis.io/examples/conductor/conductor-conductor-event-handler-example/)
+- [Conductor Conductor Search Result Task Summary Example](https://apis.io/examples/conductor/conductor-conductor-search-result-task-summary-example/)
+- [Conductor Conductor Search Result Workflow Summary Example](https://apis.io/examples/conductor/conductor-conductor-search-result-workflow-summary-example/)
+- [Conductor Conductor Skip Task Request Example](https://apis.io/examples/conductor/conductor-conductor-skip-task-request-example/)
+- [Conductor Conductor Start Workflow Request Example](https://apis.io/examples/conductor/conductor-conductor-start-workflow-request-example/)
+- [Conductor Conductor Task Def Example](https://apis.io/examples/conductor/conductor-conductor-task-def-example/)
+- [Conductor Conductor Task Example](https://apis.io/examples/conductor/conductor-conductor-task-example/)
+- [Conductor Conductor Task Exec Log Example](https://apis.io/examples/conductor/conductor-conductor-task-exec-log-example/)
+- [Conductor Conductor Task Result Example](https://apis.io/examples/conductor/conductor-conductor-task-result-example/)
+- [Conductor Conductor Task Summary Example](https://apis.io/examples/conductor/conductor-conductor-task-summary-example/)
+- [Conductor Conductor Workflow Def Example](https://apis.io/examples/conductor/conductor-conductor-workflow-def-example/)
+- [Conductor Conductor Workflow Example](https://apis.io/examples/conductor/conductor-conductor-workflow-example/)
+- [Conductor Conductor Workflow Summary Example](https://apis.io/examples/conductor/conductor-conductor-workflow-summary-example/)
+- [Conductor Conductor Workflow Task Example](https://apis.io/examples/conductor/conductor-conductor-workflow-task-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Conductor Admin API](https://apis.io/collections/conductor/open-conductor-admin-api/)
+- [Conductor API](https://apis.io/collections/conductor/open-conductor-conductor/)
+- [Conductor Admin Event API](https://apis.io/collections/conductor/open-conductor-event-api/)
+- [Conductor Admin Metadata - Task API](https://apis.io/collections/conductor/open-conductor-metadata-task-api/)
+- [Conductor Admin Metadata - Workflow API](https://apis.io/collections/conductor/open-conductor-metadata-workflow-api/)
+- [Conductor Admin Task API](https://apis.io/collections/conductor/open-conductor-task-api/)
+- [Conductor Admin Workflow API](https://apis.io/collections/conductor/open-conductor-workflow-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Conductor — asyncapi rules](https://apis.io/rules/conductor/conductor-asyncapi-spectral-rules/)
+- [Conductor — jsonschema rules](https://apis.io/rules/conductor/conductor-jsonschema-spectral-rules/)
+- [Conductor API Rules](https://apis.io/rules/conductor/conductor-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Conductor Domain Security](https://apis.io/security/conductor/conductor-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Conductor Plans Pricing](https://apis.io/plans/conductor/conductor-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Conductor Rate Limits](https://apis.io/rate-limits/conductor/conductor-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Conductor Finops](https://apis.io/finops/conductor/conductor-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://conductor-oss.github.io)
+- [Blog](https://orkes.io/blog/)
+
+## API Evangelist rating
+
+**Kin Score 40.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 69.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/conductor/](https://apis.io/providers/conductor/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Conductor: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/conductor/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
